@@ -1,0 +1,29 @@
+.profile-card-4 {
+    max-width: 800px !important;
+    padding-left: 0;
+    display: block;
+}
+
+.profile-card-4 .profile-content::before {
+    height: 40px;
+}
+
+.profile-card-4:hover img {
+    transform: rotate(2deg) scale(1.1, 1.1);
+    filter: brightness(110%);
+}
+
+#tabela_wycieczki {
+    color:white;
+    margin-top: 50px;
+    width: 800px;
+}
+
+tr, td {
+    border-collapse: collapse;
+}
+
+td {
+    border:2px solid white;
+    padding: 5px;
+}
