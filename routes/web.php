@@ -18,8 +18,5 @@ use App\Http\Controllers\TripController;
 
 Route::resource('trips', TripController::class);
 
-// Route::controller(TripController::class)->group(function() {
-//     Route::get('/', 'index') -> name('trips.index');
-//     Route::get('/trips/{id}', 'show') -> name('trips.show');
-// });
+require __DIR__.'/auth.php';
 

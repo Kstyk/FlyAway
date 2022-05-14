@@ -1,4 +1,4 @@
-<div>
+<div id="menu">
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
       <div class="navbar-header">
@@ -15,8 +15,15 @@
       <ul class="nav navbar-nav">
         <li><a href="#">O nas</a><span class="hover"></span></li>
         <li><a href="#">Kontakt</a><span class="hover"></span></li>
-        <li><a href="#">Zaloguj się...</a><span class="hover"></span></li>
+        @if (Auth::check())
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('logout') }}"> {{ Auth::user()->imie }},
+            wyloguj się... </a>
+            </li>
+        @else
+        <li><a href="{{ route('login') }}">Zaloguj się...</a><span class="hover"></span></li>
         <li><a href="#">Zarejestruj się...</a><span class="hover"></span></li>
+        @endif
       </ul>
     </div>
     </div>

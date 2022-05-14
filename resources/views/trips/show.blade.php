@@ -19,31 +19,42 @@
                             {{ $trip->nazwa }}
                         </div>
                     </div>
-                    <table id="tabela_wycieczki">
-                        <th>
-                            <td>Informacje</td>
-                        </th>
-                        <tr>
-                            <td>Opis</td>
-                            <td>{{ $trip->opis }}</td>
-                        </tr>
-                        <tr>
+                    <table class="table table-dark">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col"></th>
+                            <th scope="col">Informacja</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>Opis wycieczki</td>
+                            <td class="opis">{{ $trip->opis }}</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">2</th>
+                            <td>Kraj</td>
+                            <td>{{ $trip->Country->nazwa }}<br>(więcej informacji o kraju <a href="#">tutaj</a>)</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">3</th>
                             <td>Kontynent</td>
                             <td>{{ $trip->kontynent }}</td>
-                        </tr>
-                        <tr>
-                            <td>Kraj</td>
-                            <td>{{ $trip->Country->nazwa }}</td>
-                        </tr>
-                        <tr>
-                            <td>Czas trwania wycieczki</td>
-                            <td>{{ $trip->okres_trwania }}</td>
-                        </tr>
-                        <tr>
+                          </tr>
+                          <tr>
+                            <th scope="row">4</th>
+                            <td>Okres trwania wycieczki</td>
+                            <td>{{ $trip->okres_trwania }} dni</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">4</th>
                             <td>Cena wycieczki</td>
-                            <td>{{ $trip->cena }}</td>
-                        </tr>
-                    </table>
+                            <td>{{ $trip->cena }} PLN</td>
+                          </tr>
+                        </tbody>
+                      </table>
                 </div>
             </div>
         </div>

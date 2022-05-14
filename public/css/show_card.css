@@ -4,26 +4,36 @@
     display: block;
 }
 
-.profile-card-4 .profile-content::before {
-    height: 40px;
-}
-
-.profile-card-4:hover img {
-    transform: rotate(2deg) scale(1.1, 1.1);
+.profile-card-4 img:hover {
+    transform: rotate(2deg) scale(1.1,1.1);
     filter: brightness(110%);
 }
 
-#tabela_wycieczki {
+.profile-card-4 .profile-content::before {
+    content: "";
+    position: absolute;
+    height: 70px;
+    top: -20px;
+    left: 0px;
+    right: 0px;
+    background-color: #192226;
+    z-index: 0;
+    transform: skewY(3deg);
+    border-top: 2px solid white;
+}
+
+.table {
     color:white;
-    margin-top: 50px;
-    width: 800px;
+    word-wrap: break-word;
+    width:100%;
+    table-layout: fixed;
+    margin-top: 20px;
 }
 
-tr, td {
-    border-collapse: collapse;
+.table th {
+    text-align: center;
 }
 
-td {
-    border:2px solid white;
-    padding: 5px;
+.table tr th:first-child {
+    width: 10%;
 }

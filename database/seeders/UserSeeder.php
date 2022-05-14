@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
                 'nazwisko' => 'Kowal',
                 'rok_urodzenia' => '1992',
                 'email' => 'administrator@flyaway.pl',
-                'haslo' => Hash::make('admin'),
+                'password' => Hash::make('admin'),
                 'country_id' => '2',
                 'role_id' => '1'
             ],
@@ -33,7 +33,7 @@ class UserSeeder extends Seeder
                 'nazwisko' => 'Nowomiejski',
                 'rok_urodzenia' => '1995',
                 'email' => 'm.nowomiejski@gmail.com',
-                'haslo' => Hash::make('1234'),
+                'password' => Hash::make('1234'),
                 'country_id' => '2',
                 'role_id' => '2'
             ],
@@ -42,7 +42,7 @@ class UserSeeder extends Seeder
                 'nazwisko' => 'Kowalski',
                 'rok_urodzenia' => '1982',
                 'email' => 'k.kowalski@gmail.com',
-                'haslo' => Hash::make('1234'),
+                'password' => Hash::make('1234'),
                 'country_id' => '2',
                 'role_id' => '2'
             ],
@@ -51,7 +51,7 @@ class UserSeeder extends Seeder
                 'nazwisko' => 'Okrasa',
                 'rok_urodzenia' => '1992',
                 'email' => 'j.okrasa@gmail.com',
-                'haslo' => Hash::make('1234'),
+                'password' => Hash::make('1234'),
                 'country_id' => '2',
                 'role_id' => '2'
             ]

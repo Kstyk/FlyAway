@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('rok_urodzenia');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('haslo');
+            $table->string('password');
             $table->foreignIdFor(Country::class)->constrained();
             $table->foreignId('role_id')->nullable()->constrained();
             $table->rememberToken();

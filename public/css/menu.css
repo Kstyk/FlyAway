@@ -1,6 +1,11 @@
 body {
     background: #192226 !important;
 }
+
+#menu {
+    margin-bottom: 80px;
+}
+
 .navbar-inverse {
     background: #222b31 !important;
     border-bottom: 4px solid #ee445f !important;
@@ -15,6 +20,8 @@ body {
 .nav {
     margin-bottom: 0px;
 }
+
+
 .nav a {
     font: 500 11px Lato;
     letter-spacing: 2px;
