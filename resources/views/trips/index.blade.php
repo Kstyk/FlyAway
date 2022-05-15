@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
 @include('shared.header')
+</head>
 <body>
     @include('shared.nav')
     <div class="container" id="container_trips">
+        @if($errors->any())
+            <h4><?php echo "<script type='text/javascript'>alert('".$errors->first()."');</script>"; ?></h4>
+        @endif
         <div class="row">
         @forelse ($trips as $trip)
             <div class="col-md-4">
@@ -24,6 +29,20 @@
                                         </a>
                                     </div>
                             </div>
+                            @can('view', $trip)
+                            <div class="row" style="margin-top:10px;">
+                                <div class="mr-3">
+                                    <a class="btn btn-lg" href="{{ route('trips.edit', $trip->id) }}">
+                                        <span>Edytuj</span>
+                                    </a>
+                                    <form id="delete" class="btn btn-lg" method="POST" action="{{ route('trips.destroy', $trip->id) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button onclick="return confirm('Jesteś pewien, że chcesz usunąć tę wycieczkę?')">Usuń</button>
+                                    </form>
+                                </div>
+                            </div>
+                            @endcan
                         </div>
                     </div>
                 </div>

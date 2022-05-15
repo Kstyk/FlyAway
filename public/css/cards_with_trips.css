@@ -113,7 +113,16 @@ body {
     filter: brightness(110%);
 }
 
+#delete button {
+    background-color: inherit;
+    border:none;
+    font: 18px Lato !important;
+    text-transform: lowercase;
+    padding: 0;
+}
+
 /* buttons */
+
 .btn{
     color: #fff;
     background: linear-gradient(135deg, #192226, #541b1b);
@@ -121,6 +130,7 @@ body {
     font-size: 14px;
     font-weight: 700;
     text-transform: lowercase;
+    width: 40%;
     padding: 10px 20px;
     border: none;
     border-radius: 15px;
@@ -165,5 +175,8 @@ body {
     100%{ transform: rotate(0deg); }
 }
 @media only screen and (max-width: 767px){
-    .btn{ margin-bottom: 20px; }
+    .btn{
+     margin-bottom: 20px;
+    width:100%;
+    }
 }
