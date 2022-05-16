@@ -59,7 +59,7 @@ body {
 
 .profile-card-4 .profile-name {
     font-weight: bold;
-    position: absolute;
+    position: relative;
     left: 0px;
     right: 0px;
     top: 0px;
@@ -124,6 +124,25 @@ body {
     text-transform: lowercase;
     padding: 0;
 }
+
+.profile-card-airport {
+    min-height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-card-airport .profile-content {
+    padding-left: 2%;
+    padding-right: 2%;
+    width: 96%;
+}
+
+.profile-card-airport .profile-content::before {
+    border-top: none;
+
+}
+
 
 /* buttons */
 

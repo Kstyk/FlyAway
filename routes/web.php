@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Trip;
 use App\Http\Controllers\TripController;
 use App\Http\Controllers\CountryController;
+use App\Http\Controllers\AirportController;
 
 
 /*
@@ -19,6 +20,7 @@ use App\Http\Controllers\CountryController;
 
 Route::resource('trips', TripController::class);
 Route::resource('countries', CountryController::class);
+Route::resource('airports', AirportController::class);
 
 require __DIR__.'/auth.php';
 
