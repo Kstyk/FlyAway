@@ -64,4 +64,8 @@ class User extends Authenticatable
     public function userflights() {
         return $this->hasMany(UserFlight::class);
     }
+
+    public function isAdmin() {
+        return $this->role_id == 1;
+    }
 }

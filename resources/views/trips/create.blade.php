@@ -19,7 +19,7 @@
 
                 <div class="mb-md-5 mt-md-4 pb-5">
 
-                  <h2 class="fw-bold mb-2 text-uppercase">Edytuj kraj</h2>
+                  <h2 class="fw-bold mb-2 text-uppercase">Dodaj wycieczkę</h2>
                   @if ($errors->any())
                   <div class="alert alert-danger">
                       <ul>
@@ -29,25 +29,25 @@
                       </ul>
                   </div>
                   @endif
-                  <form method="POST" action="{{ route('trips.update', $trip->id) }}">
+                  <form method="POST" action="{{ route('trips.store') }}">
                     @csrf
-                    @method('PUT')
+                    @method('POST')
                     <p class="text-white-50 mb-5">Wprowadź poprawne dane</p>
                     <div class="form-outline form-white mb-4">
-                        <input id="nazwa" type="text" name="nazwa" value="{{ $trip->nazwa }}" class="form-control form-control-lg
+                        <input id="nazwa" type="text" name="nazwa" class="form-control form-control-lg
                         @error('nazwa') is-invalid @else is-valid
                         @enderror" />
                         <label class="form-label" for="typeEmailX">Nazwa</label>
                     </div>
 
                     <div class="form-outline form-white mb-4">
-                        <input name="kontynent" type="text" id="kontynent" value="{{ $trip->kontynent }}" class="form-control form-control-lg
+                        <input name="kontynent" type="text" id="kontynent" class="form-control form-control-lg
                         @error('kontynent') is-invalid @else is-valid
                         @enderror" />
                         <label class="form-label" for="typePasswordX">Kontynent</label>
                     </div>
                     <div class="form-outline form-white mb-4">
-                        <input name="okres_trwania" type="number" id="okres" value="{{ $trip->okres_trwania }}" class="form-control form-control-lg
+                        <input name="okres_trwania" type="number" id="okres" class="form-control form-control-lg
                         @error('okres_trwania') is-invalid @else is-valid
                         @enderror" />
                         <label class="form-label" for="typePasswordX">Okres trwania wycieczki</label>
@@ -55,11 +55,11 @@
                     <div class="form-outline form-white mb-4">
                         <textarea name="opis" id="opis" rows="5" class="form-control form-control-lg
                         @error('okres_trwania') is-invalid @else is-valid
-                        @enderror">{{ $trip->opis }}</textarea>
+                        @enderror"></textarea>
                         <label class="form-label" for="typePasswordX">Opis</label>
                     </div>
                     <div class="form-outline form-white mb-4">
-                        <input name="cena" type="number" id="okres" value="{{ $trip->cena }}" class="form-control form-control-lg
+                        <input name="cena" type="number" id="okres" class="form-control form-control-lg
                         @error('okres_trwania') is-invalid @else is-valid
                         @enderror" />
                         <label class="form-label" for="typePasswordX">Cena wycieczki</label>
@@ -67,7 +67,7 @@
                     <div class="form-outline form-white mb-4">
                         <select class="form-control form-control-lg" id="country_id" name="country_id">
                             @foreach ($countries as $c)
-                                <option value="{{$c->id}}" @if($c->nazwa == $trip->country->nazwa) selected @endif>
+                                <option value="{{ $c->id }}">
                                     {{ $c->nazwa }}
                                 </option>
                             @endforeach
@@ -75,7 +75,7 @@
                         <label class="form-label" for="typePasswordX">Kraj</label>
                     </div>
 
-                    <button class="btn btn-outline-light btn-lg px-5" type="submit">Edytuj</button>
+                    <button class="btn btn-outline-light btn-lg px-5" type="submit">Dodaj</button>
                   </form>
                 </div>
               </div>

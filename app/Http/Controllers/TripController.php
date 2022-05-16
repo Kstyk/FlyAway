@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use App\Models\Trip;
 use App\Models\Country;
+use Auth;
 use Exception;
 
 class TripController extends Controller
@@ -16,6 +17,43 @@ class TripController extends Controller
             ]);
     }
 
+    public function create()
+    {
+        if(Auth::check())
+            if(Auth::user()->isAdmin())
+                return view('trips.create', [
+                    'countries' => Country::all()
+                ]);
+            else
+                abort(403);
+        else
+            abort(403);
+    }
+
+    public function store(Request $request)
+    {
+        if(Auth::check())
+            if(Auth::user()->isAdmin()) {
+                $request->validate([
+                    'nazwa' => 'required|unique:trips',
+                    'kontynent' => 'required',
+                    'okres_trwania' => 'required|integer|min:0',
+                    'cena' => 'required|numeric|min:0',
+                    'opis' => 'required|min:0|max:1000',
+                    'country_id' => 'required',
+                ]);
+
+                $input = $request->all();
+                Trip::create($input);
+
+                return redirect()->route('trips.index');
+            } else {
+                abort(403);
+            }
+        else abort(403);
+    }
+
+
     public function show($id) {
         return view('trips.show', [
                 'trip' => Trip::findOrFail($id)
@@ -23,22 +61,26 @@ class TripController extends Controller
     }
 
     public function edit($id) {
-        if (!Gate::allows('is-admin')) {
+        if(Auth::check()){
+            if(Auth::user()->isAdmin()) {
+                return view('trips.edit', [
+                        'trip' => Trip::findOrFail($id),
+                        'countries' => Country::all()
+                ]);
+            } else
+                abort(403);
+        } else {
             abort(403);
         }
-
-        return view('trips.edit', [
-                'trip' => Trip::findOrFail($id),
-                'countries' => Country::all()
-        ]);
     }
 
     public function update(Request $request, $id)
     {
-        // 9.11
-        if (!Gate::allows('is-admin')) {
+        if(!Auth::check())
             abort(403);
-        }
+
+        if(!Auth::user()->isAdmin())
+            abort(403);
 
         $request->validate([
             'nazwa' => 'required|unique:trips,nazwa,'.$id,
@@ -57,6 +99,12 @@ class TripController extends Controller
 
     public function destroy(Trip $trip)
     {
+        if(!Auth::check())
+            abort(403);
+
+        if(!Auth::user()->isAdmin())
+            abort(403);
+
         try {
             $trip->delete();
             return redirect()->route('trips.index');

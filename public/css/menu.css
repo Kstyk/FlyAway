@@ -25,13 +25,13 @@ body {
 .nav a {
     font: 500 11px Lato;
     letter-spacing: 2px;
-    padding: 16px !important;
+    padding: 16px;
     color: #a3bfc6 !important;
     text-transform: uppercase;
     position: relative;
     z-index: 1000;
 }
-.nav a:hover {
+.whitehover:hover {
     color: #fff !important;
 }
 .nav li {
@@ -72,6 +72,17 @@ body {
     z-index: 0;
     opacity: 0;
 }
+
+
+.dropdown-item {
+    width: 100% !important;
+    margin: 5px !important;
+}
+
+.dropdown-item:hover {
+    color: #222b31 !important;
+}
+
 @media (max-width: 767px) {
     .nav {
         padding-bottom: 20px;

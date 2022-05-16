@@ -9,6 +9,13 @@
         @if($errors->any())
             <h4><?php echo "<script type='text/javascript'>alert('".$errors->first()."');</script>"; ?></h4>
         @endif
+        @can('create', $trips->first())
+        <div class="row">
+            <a class="btn btn-lg btn-add" href="{{ route('trips.create') }}">
+                <span>Dodaj wycieczkę</span>
+            </a>
+        </div>
+        @endcan
         <div class="row">
         @forelse ($trips as $trip)
             <div class="col-md-4">
@@ -29,7 +36,7 @@
                                         </a>
                                     </div>
                             </div>
-                            @can('view', $trip)
+                            @can('update', $trip)
                             <div class="row" style="margin-top:10px;">
                                 <div class="mr-3">
                                     <a class="btn btn-lg" href="{{ route('trips.edit', $trip->id) }}">

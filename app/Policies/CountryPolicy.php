@@ -3,11 +3,10 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\Trip;
+use App\Models\Country;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Auth;
 
-class TripPolicy
+class CountryPolicy
 {
     use HandlesAuthorization;
 
@@ -16,23 +15,23 @@ class TripPolicy
         return $user->role_id == 1;
     }
 
-    public function update(User $user, Trip $trip)
+    public function update(User $user, Country $c)
     {
         return $user->role_id == 1;
     }
 
-    public function delete(User $user, Trip $trip)
+    public function delete(User $user, Country $c)
     {
         return $user->role_id == 1;
     }
 
-    public function restore(User $user, Trip $trip)
+    public function restore(User $user, Country $c)
     {
-        return true;
+        return $user->role_id == 1;
     }
 
-    public function forceDelete(User $user, Trip $trip)
+    public function forceDelete(User $user, Country $c)
     {
-        return true;
+        return $user->role_id == 1;
     }
 }

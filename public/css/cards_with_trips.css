@@ -62,7 +62,7 @@ body {
     position: absolute;
     left: 0px;
     right: 0px;
-    top: -70px;
+    top: 0px;
     color: #FFF;
     font-size: 17px;
 }
@@ -92,6 +92,10 @@ body {
 .profile-card-4 .profile-overview h4 {
     color: #273751;
     font-weight: bold;
+}
+
+.profile-content .row {
+    margin-top: 10px;
 }
 
 .profile-card-4 .profile-content::before {
@@ -174,9 +178,24 @@ body {
     75%{ transform: rotate(1deg); }
     100%{ transform: rotate(0deg); }
 }
+
+.btn-add {
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
 @media only screen and (max-width: 767px){
     .btn{
      margin-bottom: 20px;
     width:100%;
+    }
+
+    .btn-add {
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+        border-radius: 0 !important;
+        border-left: 0;
+        border-right: 0;
     }
 }
