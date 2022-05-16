@@ -26,6 +26,7 @@ class FlightSeeder extends Seeder
                 [
                     'trip_id' => 4,
                     'nazwa_linii' => 'RyanAir',
+                    'liczba_miejsc' => 100,
                     'airport_id' => 11,
                     'airport_id_2' => 5,
                     'data_wylotu' => '2022-06-14'
@@ -33,6 +34,7 @@ class FlightSeeder extends Seeder
                 [
                     'trip_id' => 1,
                     'nazwa_linii' => 'WizzAir',
+                    'liczba_miejsc' => 100,
                     'airport_id' => 11,
                     'airport_id_2' => 3,
                     'data_wylotu' => '2022-06-12'
@@ -40,6 +42,7 @@ class FlightSeeder extends Seeder
                 [
                     'trip_id' => 1,
                     'nazwa_linii' => 'WizzAir',
+                    'liczba_miejsc' => 100,
                     'airport_id' => 12,
                     'airport_id_2' => 3,
                     'data_wylotu' => '2022-06-11'
@@ -47,6 +50,7 @@ class FlightSeeder extends Seeder
                 [
                     'trip_id' => 2,
                     'nazwa_linii' => 'Qatar Airlines',
+                    'liczba_miejsc' => 100,
                     'airport_id' => 12,
                     'airport_id_2' => 2,
                     'data_wylotu' => '2022-06-11'
@@ -54,6 +58,7 @@ class FlightSeeder extends Seeder
                 [
                     'trip_id' => 3,
                     'nazwa_linii' => 'Qatar Airlines',
+                    'liczba_miejsc' => 100,
                     'airport_id' => 11,
                     'airport_id_2' => 4,
                     'data_wylotu' => '2022-06-22'
@@ -61,6 +66,7 @@ class FlightSeeder extends Seeder
                 [
                     'trip_id' => 5,
                     'nazwa_linii' => 'WizzAir',
+                    'liczba_miejsc' => 100,
                     'airport_id' => 11,
                     'airport_id_2' => 6,
                     'data_wylotu' => '2022-06-11'
@@ -68,6 +74,7 @@ class FlightSeeder extends Seeder
                 [
                     'trip_id' => 5,
                     'nazwa_linii' => 'LOT',
+                    'liczba_miejsc' => 100,
                     'airport_id' => 12,
                     'airport_id_2' => 6,
                     'data_wylotu' => '2022-06-13'
@@ -75,6 +82,7 @@ class FlightSeeder extends Seeder
                 [
                     'trip_id' => 6,
                     'nazwa_linii' => 'RyanAir',
+                    'liczba_miejsc' => 100,
                     'airport_id' => 11,
                     'airport_id_2' => 8,
                     'data_wylotu' => '2022-06-22'
@@ -82,6 +90,7 @@ class FlightSeeder extends Seeder
                 [
                     'trip_id' => 6,
                     'nazwa_linii' => 'RyanAir',
+                    'liczba_miejsc' => 100,
                     'airport_id' => 12,
                     'airport_id_2' => 7,
                     'data_wylotu' => '2022-06-15'
@@ -89,6 +98,7 @@ class FlightSeeder extends Seeder
                 [
                     'trip_id' => 6,
                     'nazwa_linii' => 'RyanAir',
+                    'liczba_miejsc' => 100,
                     'airport_id' => 11,
                     'airport_id_2' => 7,
                     'data_wylotu' => '2022-06-22'
@@ -96,6 +106,7 @@ class FlightSeeder extends Seeder
                 [
                     'trip_id' => 7,
                     'nazwa_linii' => 'RyanAir',
+                    'liczba_miejsc' => 100,
                     'airport_id' => 12,
                     'airport_id_2' => 8,
                     'data_wylotu' => '2022-06-12'
@@ -103,6 +114,7 @@ class FlightSeeder extends Seeder
                 [
                     'trip_id' => 8,
                     'nazwa_linii' => 'WizzAir',
+                    'liczba_miejsc' => 100,
                     'airport_id' => 11,
                     'airport_id_2' => 9,
                     'data_wylotu' => '2022-05-30'
@@ -110,6 +122,7 @@ class FlightSeeder extends Seeder
                 [
                     'trip_id' => 8,
                     'nazwa_linii' => 'WizzAir',
+                    'liczba_miejsc' => 100,
                     'airport_id' => 12,
                     'airport_id_2' => 9,
                     'data_wylotu' => '2022-05-31'
@@ -117,6 +130,7 @@ class FlightSeeder extends Seeder
                 [
                     'trip_id' => 9,
                     'nazwa_linii' => 'LOT',
+                    'liczba_miejsc' => 100,
                     'airport_id' => 12,
                     'airport_id_2' => 10,
                     'data_wylotu' => '2022-06-01'
@@ -124,6 +138,7 @@ class FlightSeeder extends Seeder
                 [
                     'trip_id' => 10,
                     'nazwa_linii' => 'WizzAir',
+                    'liczba_miejsc' => 100,
                     'airport_id' => 11,
                     'airport_id_2' => 13,
                     'data_wylotu' => '2022-06-22'
@@ -131,6 +146,7 @@ class FlightSeeder extends Seeder
                 [
                     'trip_id' => 10,
                     'nazwa_linii' => 'WizzAir',
+                    'liczba_miejsc' => 100,
                     'airport_id' => 12,
                     'airport_id_2' => 13,
                     'data_wylotu' => '2022-06-24'
@@ -138,6 +154,7 @@ class FlightSeeder extends Seeder
                 [
                     'trip_id' => 11,
                     'nazwa_linii' => 'WizzAir',
+                    'liczba_miejsc' => 100,
                     'airport_id' => 11,
                     'airport_id_2' => 14,
                     'data_wylotu' => '2022-06-22'

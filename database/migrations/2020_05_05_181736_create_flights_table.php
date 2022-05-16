@@ -19,6 +19,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Trip::class)->constrained();
             $table->string('nazwa_linii', 128);
+            $table->integer('liczba_miejsc');
             $table->foreignIdFor(Airport::class)->constrained();
             $table->foreignIdFor(Airport::class, 'airport_id_2')->constrained();
             $table->date('data_wylotu');

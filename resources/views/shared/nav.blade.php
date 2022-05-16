@@ -28,7 +28,7 @@
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="{{ route('trips.index') }}">Wycieczki</a><br>
                 <a class="dropdown-item" href="{{ route('countries.index') }}">Kraje</a><br>
-                <a class="dropdown-item" href="#">Loty</a><br>
+                <a class="dropdown-item" href="{{ route('flights.index') }}">Loty</a><br>
                 <a class="dropdown-item" href="{{ route('airports.index') }}">Lotniska</a><br>
                 <a class="dropdown-item" href="#">Użytkownicy</a><br>
               </div>
