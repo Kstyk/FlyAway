@@ -13,18 +13,18 @@
 
 <body>
     @include('shared.nav')
-    <div class="container">
+    <div class="container container-fluid">
         @if ($errors->any())
             <h4><?php echo "<script type='text/javascript'>alert('" . $errors->first() . "');</script>"; ?></h4>
         @endif
-        {{-- @can('create', $countries->first())
+        @can('create', $flights->first())
         <div class="row">
-            <a class="btn btn-lg btn-add" href="{{ route('countries.create') }}">
-                <span>Dodaj kraj</span>
+            <a class="btn btn-lg btn-add" href="{{ route('flights.create') }}">
+                <span>Dodaj lot</span>
             </a>
         </div>
-        @endcan --}}
-
+        @endcan
+        <div class="container-fluid pt-0">
         <table class="table table-dark text-white">
             <thead>
               <tr>
@@ -48,7 +48,11 @@
                     <td>{{ $f->Airport2->nazwa }}</td>
                     <td>{{ $f->data_wylotu }}</td>
                     <td><a href="{{ route('flights.edit', $f) }}">Edycja</a></td>
-                    <td>Usuń</td>
+                    <td><form id="delete" method="POST" action="{{ route('flights.destroy', $f->id) }}">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten lot?')">Usuń</button>
+                    </form></td>
                 </tr>
                 @empty
               @endforelse
@@ -57,6 +61,7 @@
 
             </tbody>
           </table>
+        </div>
     </div>
     @include('shared.js')
 </body>

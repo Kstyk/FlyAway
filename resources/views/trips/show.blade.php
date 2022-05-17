@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="profile-card-4 text-center"><img src="{{ asset('storage\img_trips\p'.$trip->id.'.jpg') }}"
-                        class="img img-responsive">
+                        class="img img-fluid">
                     <div class="profile-content">
                         <div class="profile-name">
                             {{ $trip->nazwa }}

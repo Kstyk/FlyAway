@@ -7,7 +7,7 @@
 
 <body>
     @include('shared.nav')
-    <div class="container">
+    <div class="container container-fluid">
         @if ($errors->any())
             <h4><?php echo "<script type='text/javascript'>alert('" . $errors->first() . "');</script>"; ?></h4>
         @endif
@@ -26,17 +26,10 @@
                             <div class="profile-name">
                                 {{ $airport->nazwa }}
                             </div>
-                            <div class="row airport-row">
-                                <div class="row">
-                                    <div class="mr-3">
                                         <a class="btn btn-lg" href="{{ route('airports.show', $airport) }}">
                                             <span>Więcej<br>szczegółów</span>
                                         </a>
-                                    </div>
-                                </div>
-                                @can('update', $airport)
-                                <div class="row" style="margin-top:10px;">
-                                    <div class="mr-3">
+                                @can('delete', $airport)
                                         <a class="btn btn-lg" href="{{ route('airports.edit', $airport) }}">
                                             <span>Edytuj</span>
                                         </a>
@@ -46,10 +39,7 @@
                                             <button
                                                 onclick="return confirm('Jesteś pewien, że chcesz usunąć to lotnisko?')">Usuń</button>
                                         </form>
-                                    </div>
-                                </div>
                                 @endcan
-                            </div>
                         </div>
                     </div>
                 </div>

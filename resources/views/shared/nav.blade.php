@@ -1,55 +1,51 @@
-<div id="menu">
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="{{ route('trips.index') }}">FlyAway</a>
-      </div>
-
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a class="whitehover" href="#">O nas</a><span class="hover"></span></li>
-        <li><a class="whitehover" href="#">Kontakt</a><span class="hover"></span></li>
-        @if (Auth::check())
-        <li class="nav-item">
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid pt-0">
+      <a class="navbar-brand" href="{{ route('trips.index') }}">FlyAway</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">O nas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Kontakt</a>
+          </li>
+          @if (Auth::check())
+          <li class="nav-item">
             <a class="nav-link whitehover" href="{{ route('logout') }}"> {{ Auth::user()->imie }},
             wyloguj się... </a>
         </li>
-        @if(Auth::user()->isAdmin())
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Panel Zarządzania
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ route('trips.index') }}">Wycieczki</a><br>
-                <a class="dropdown-item" href="{{ route('countries.index') }}">Kraje</a><br>
-                <a class="dropdown-item" href="{{ route('flights.index') }}">Loty</a><br>
-                <a class="dropdown-item" href="{{ route('airports.index') }}">Lotniska</a><br>
-                <a class="dropdown-item" href="#">Użytkownicy</a><br>
-              </div>
+          @if(Auth::user()->isAdmin())
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Panel Zarządzania
+            </a>
+            <ul class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href="{{ route('trips.index') }}">Wycieczki</a></li>
+              <li><a class="dropdown-item" href="{{ route('countries.index') }}">Kraje</a></li>
+              <li><a class="dropdown-item" href="{{ route('flights.index') }}">Loty</a></li>
+              <li><a class="dropdown-item" href="{{ route('airports.index') }}">Lotniska</a></li>
+              <li><a class="dropdown-item" href="#">Użytkownicy</a></li>
+            </ul>
           </li>
-        @else
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          @else
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Moje konto
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Moje dane</a>
-              <a class="dropdown-item" href="#">Moje loty</a>
-            </div>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href="#">Moje dane</a></li>
+              <li><a class="dropdown-item" href="#">Moje loty</a></li>
+            </ul>
           </li>
-        @endif
-        @else
-        <li><a href="{{ route('login') }}">Zaloguj się...</a><span class="hover"></span></li>
-        <li><a href="#">Zarejestruj się...</a><span class="hover"></span></li>
-        @endif
-      </ul>
-    </div>
+          @endif
+          @else
+          <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Zaloguj się...</a><span class="hover"></span></li>
+          <li class="nav-item"><a class="nav-link" href="#">Zarejestruj się...</a><span class="hover"></span></li>
+          @endif
+        </ul>
+      </div>
     </div>
   </nav>
-</div>

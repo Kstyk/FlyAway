@@ -20,7 +20,7 @@
 
                 <div class="mb-md-5 mt-md-4 pb-5">
 
-                  <h2 class="fw-bold mb-2 text-uppercase">Edytuj lot</h2>
+                  <h2 class="fw-bold mb-2 text-uppercase">Dodaj lot</h2>
                   @if ($errors->any())
                   <div class="alert alert-danger">
                       <ul>
@@ -30,14 +30,14 @@
                       </ul>
                   </div>
                   @endif
-                  <form method="POST" action="{{ route('flights.update', $flight->id) }}">
+                  <form method="POST" action="{{ route('flights.store') }}">
                     @csrf
-                    @method('PUT')
+                    @method('POST')
                     <p class="text-white-50 mb-5">Wprowadź poprawne dane</p>
                     <div class="form-outline form-white mb-4">
                         <select class="form-control form-control-lg" id="trip_id" name="trip_id">
                             @foreach ($trips as $t)
-                                <option value="{{$t->id}}" @if($t->nazwa == $flight->trip->nazwa) selected @endif>
+                                <option value="{{$t->id}}">
                                     {{ $t->nazwa }}
                                 </option>
                             @endforeach
@@ -45,13 +45,13 @@
                         <label class="form-label" for="trip_id">Wycieczka</label>
                     </div>
                     <div class="form-outline form-white mb-4">
-                        <input id="nazwa_linii" type="text" name="nazwa_linii" value="{{ $flight->nazwa_linii }}" class="form-control form-control-lg
+                        <input id="nazwa_linii" type="text" name="nazwa_linii" class="form-control form-control-lg
                         @error('nazwa_linii') is-invalid @else is-valid
                         @enderror" />
                         <label class="form-label" for="nazwa_linii">Nazwa linii</label>
                     </div>
                     <div class="form-outline form-white mb-4">
-                        <input name="liczba_miejsc" type="number" id="liczba_miejsc" value="{{ $flight->liczba_miejsc }}" class="form-control form-control-lg
+                        <input name="liczba_miejsc" type="number" id="liczba_miejsc" class="form-control form-control-lg
                         @error('liczba_miejsc') is-invalid @else is-valid
                         @enderror" />
                         <label class="form-label" for="liczba_miejsc">Liczba miejsc</label>
@@ -59,8 +59,8 @@
                     <div class="form-outline form-white mb-4">
                         <select class="form-control form-control-lg" id="airport_id" name="airport_id">
                             @foreach ($airports as $a)
-                                <option value="{{$a->id}}" @if($a->nazwa == $flight->airport->nazwa) selected @endif>
-                                    {{ $a->nazwa }}
+                                <option value="{{$a->id}}">
+                                    {{ $a->nazwa }}, {{ $a->miasto }}
                                 </option>
                             @endforeach
                         </select>
@@ -69,20 +69,20 @@
                     <div class="form-outline form-white mb-4">
                         <select class="form-control form-control-lg" id="airport_id_2" name="airport_id_2">
                             @foreach ($airports as $a)
-                                <option value="{{$a->id}}" @if($a->nazwa == $flight->airport2->nazwa) selected @endif>
-                                    {{ $a->nazwa }}
+                                <option value="{{$a->id}}">
+                                    {{ $a->nazwa }}, {{ $a->miasto }}
                                 </option>
                             @endforeach
                         </select>
                         <label class="form-label" for="airport_id_2">Lotnisko końcowe</label>
                     </div>
                     <div class="form-outline form-white mb-4">
-                        <input name="data_wylotu" type="text" class="form-control" value={{ \Carbon\Carbon::parse($a->data_wylotu)->format('Y-m-d') }}>
+                        <input name="data_wylotu" type="text" class="form-control">
 
                         <label class="form-label" for="data_wylotu">Data wylotu</label>
                     </div>
 
-                    <button class="btn btn-outline-light btn-lg px-5" type="submit">Edytuj</button>
+                    <button class="btn btn-outline-light btn-lg px-5" type="submit">Dodaj</button>
                   </form>
                 </div>
               </div>
