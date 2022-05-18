@@ -30,9 +30,9 @@ class AirportController extends Controller
                     'countries' => Country::all()
                 ]);
             else
-                abort(403);
+                return redirect()->route('airports.index');
         else
-            abort(403);
+            return redirect()->route('airports.index');
     }
 
     public function store(Request $request)
@@ -50,9 +50,9 @@ class AirportController extends Controller
 
                 return redirect()->route('airports.index');
             } else {
-                abort(403);
+                return redirect()->route('airports.index');
             }
-        else abort(403);
+        else return redirect()->route('airports.index');
     }
 
     public function edit($id) {
@@ -63,19 +63,19 @@ class AirportController extends Controller
                         'countries' => Country::all()
                 ]);
             } else
-                abort(403);
+                return redirect()->route('airports.index');
         } else {
-            abort(403);
+            return redirect()->route('airports.index');
         }
     }
 
     public function update(Request $request, $id)
     {
         if(!Auth::check())
-            abort(403);
+             return redirect()->route('airports.index');
 
         if(!Auth::user()->isAdmin())
-            abort(403);
+            return redirect()->route('airports.index');
 
         $request->validate([
             'nazwa' => 'required|unique:airports,nazwa,'.$id,
@@ -92,10 +92,10 @@ class AirportController extends Controller
     public function destroy(Airport $airport)
     {
         if(!Auth::check())
-            abort(403);
+            return redirect()->route('airports.index');
 
         if(!Auth::user()->isAdmin())
-            abort(403);
+            return redirect()->route('airports.index');
 
         try {
             $airport->delete();

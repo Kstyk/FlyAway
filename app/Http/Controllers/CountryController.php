@@ -28,9 +28,9 @@ class CountryController extends Controller
                         'c' => Country::findOrFail($id),
                 ]);
             } else
-                abort(403);
+                return redirect()->route('countries.index');
         } else {
-            abort(403);
+            return redirect()->route('countries.index');
         }
     }
 
@@ -62,9 +62,9 @@ class CountryController extends Controller
             if(Auth::user()->isAdmin())
                 return view('countries.create');
             else
-                abort(403);
+                return redirect()->route('countries.index');
         else
-            abort(403);
+            return redirect()->route('countries.index');
     }
 
     public function store(Request $request)
@@ -84,18 +84,18 @@ class CountryController extends Controller
 
                 return redirect()->route('countries.index');
             } else {
-                abort(403);
+                return redirect()->route('countries.index');
             }
-        else abort(403);
-    }
+            return redirect()->route('countries.index');
+        }
 
     public function destroy($c)
     {
         if(!Auth::check())
-            abort(403);
+            return redirect()->route('countries.index');
 
         if(!Auth::user()->isAdmin())
-            abort(403);
+            return redirect()->route('countries.index');
 
         try {
             $query = Country::where('id', $c)->delete();

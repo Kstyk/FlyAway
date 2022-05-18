@@ -25,9 +25,9 @@ class TripController extends Controller
                     'countries' => Country::all()
                 ]);
             else
-                abort(403);
+                return redirect()->route('trips.index');
         else
-            abort(403);
+            return redirect()->route('trips.index');
     }
 
     public function store(Request $request)
@@ -48,9 +48,9 @@ class TripController extends Controller
 
                 return redirect()->route('trips.index');
             } else {
-                abort(403);
+                return redirect()->route('trips.index');
             }
-        else abort(403);
+        else return redirect()->route('trips.index');
     }
 
 
@@ -68,19 +68,19 @@ class TripController extends Controller
                         'countries' => Country::all()
                 ]);
             } else
-                abort(403);
+                return redirect()->route('trips.index');
         } else {
-            abort(403);
+            return redirect()->route('trips.index');
         }
     }
 
     public function update(Request $request, $id)
     {
         if(!Auth::check())
-            abort(403);
+            return redirect()->route('trips.index');
 
         if(!Auth::user()->isAdmin())
-            abort(403);
+            return redirect()->route('trips.index');
 
         $request->validate([
             'nazwa' => 'required|unique:trips,nazwa,'.$id,
@@ -100,10 +100,10 @@ class TripController extends Controller
     public function destroy(Trip $trip)
     {
         if(!Auth::check())
-            abort(403);
+            return redirect()->route('trips.index');
 
         if(!Auth::user()->isAdmin())
-            abort(403);
+            return redirect()->route('trips.index');
 
         try {
             $trip->delete();

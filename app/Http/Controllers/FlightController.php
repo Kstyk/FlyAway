@@ -26,9 +26,9 @@ class FlightController extends Controller
                     'airports' => Airport::all()
                 ]);
             else
-                abort(403);
+                return redirect()->route('flights.index');
         else
-            abort(403);
+            return redirect()->route('flights.index');
     }
 
     public function store(Request $request)
@@ -49,9 +49,9 @@ class FlightController extends Controller
 
                 return redirect()->route('flights.index');
             } else {
-                abort(403);
+                return redirect()->route('flights.index');
             }
-        else abort(403);
+        else return redirect()->route('flights.index');
     }
 
     public function edit($id) {
@@ -63,19 +63,19 @@ class FlightController extends Controller
                         'airports' => Airport::all()
                 ]);
             } else
-                abort(403);
+                return redirect()->route('flights.index');
         } else {
-            abort(403);
+            return redirect()->route('flights.index');
         }
     }
 
     public function update(Request $request, $id)
     {
         if(!Auth::check())
-            abort(403);
+            return redirect()->route('flights.index');
 
         if(!Auth::user()->isAdmin())
-            abort(403);
+            return redirect()->route('flights.index');
 
         $request->validate([
             'trip_id' => 'required',
@@ -95,10 +95,10 @@ class FlightController extends Controller
     public function destroy($f)
     {
         if(!Auth::check())
-            abort(403);
+            return redirect()->route('flights.index');
 
         if(!Auth::user()->isAdmin())
-            abort(403);
+            return redirect()->route('flights.index');
 
         try {
             $query = Flight::where('id', $f)->delete();
