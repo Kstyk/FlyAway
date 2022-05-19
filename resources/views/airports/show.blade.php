@@ -7,6 +7,7 @@
     <title>Szczegóły tripa</title>
     @include('shared.header')
     <link rel="stylesheet" href="{{asset('css/show_card.css')}}">
+    <link rel="stylesheet" href="{{asset('css/cards_with_trips.css')}}">
 <body>
     @include('shared.nav')
     <div class="container">

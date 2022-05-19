@@ -36,7 +36,7 @@
               Moje konto
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="dropdown-item" href="#">Moje dane</a></li>
+              <li><a class="dropdown-item" href="{{ route('users.show', Auth::user()->id) }}">Moje dane</a></li>
               <li><a class="dropdown-item" href="#">Moje loty</a></li>
             </ul>
           </li>

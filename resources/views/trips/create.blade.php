@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     @include('shared.header')
+    <link rel="stylesheet" href="{{asset('css/cards_with_trips.css')}}">
     <style>
         body {
             color:white;
@@ -29,7 +30,7 @@
                       </ul>
                   </div>
                   @endif
-                  <form method="POST" action="{{ route('trips.store') }}">
+                  <form method="POST" enctype="multipart/form-data" action="{{ route('trips.store') }}">
                     @csrf
                     @method('POST')
                     <p class="text-white-50 mb-5">Wprowadź poprawne dane</p>
@@ -73,6 +74,12 @@
                             @endforeach
                         </select>
                         <label class="form-label" for="typePasswordX">Kraj</label>
+                    </div>
+                    <div class="form-outline form-white mb-4">
+                        <input name="img_name" type="file" id="img_name" accept="image/png, image/gif, image/jpeg" class="form-control form-control-lg
+                        @error('img_name') is-invalid @else is-valid
+                        @enderror" />
+                        <label class="form-label" for="img_name">Zdjęcie wycieczki</label>
                     </div>
 
                     <button class="btn btn-outline-light btn-lg px-5" type="submit">Dodaj</button>

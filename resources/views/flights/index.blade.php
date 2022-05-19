@@ -4,6 +4,7 @@
 <head>
     <title>Flights</title>
     @include('shared.header')
+    <link rel="stylesheet" href="{{asset('css/cards_with_trips.css')}}">
     <style>
         table {
             color:white;

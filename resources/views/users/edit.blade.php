@@ -20,7 +20,7 @@
 
                 <div class="mb-md-5 mt-md-4 pb-5">
 
-                  <h2 class="fw-bold mb-2 text-uppercase">Edytuj kraj</h2>
+                  <h2 class="fw-bold mb-2 text-uppercase">Edytuj użytkownika</h2>
                   @if ($errors->any())
                   <div class="alert alert-danger">
                       <ul>
@@ -30,42 +30,35 @@
                       </ul>
                   </div>
                   @endif
-                  <form method="POST" action="{{ route('countries.update', $c->id) }}">
+                  <form method="POST" action="{{ route('users.update', $user->id) }}">
                     @csrf
                     @method('PUT')
                     <p class="text-white-50 mb-5">Wprowadź poprawne dane</p>
                     <div class="form-outline form-white mb-4">
-                        <input id="nazwa" type="text" name="nazwa" value="{{ $c->nazwa }}" class="form-control form-control-lg
-                        @error('nazwa') is-invalid @else is-valid
+                        <input id="imie" type="text" name="imie" value="{{ $user->imie }}" class="form-control form-control-lg
+                        @error('imie') is-invalid @else is-valid
                         @enderror" />
-                        <label class="form-label" for="typeEmailX">Nazwa</label>
+                        <label class="form-label" for="imie">Imię</label>
                     </div>
 
                     <div class="form-outline form-white mb-4">
-                        <input name="iso3166" type="text" id="iso" value="{{ $c->iso3166 }}" class="form-control form-control-lg
-                        @error('iso3166') is-invalid @else is-valid
+                        <input name="nazwisko" type="text" id="nazwisko" value="{{ $user->nazwisko }}" class="form-control form-control-lg
+                        @error('nazwisko') is-invalid @else is-valid
                         @enderror" />
-                        <label class="form-label" for="typePasswordX">Kod ISO 3166</label>
+                        <label class="form-label" for="nazwisko">Nazwisko</label>
                     </div>
                     <div class="form-outline form-white mb-4">
-                        <input name="waluta" type="text" id="waluta" value="{{ $c->waluta }}" class="form-control form-control-lg
-                        @error('waluta') is-invalid @else is-valid
+                        <input name="rok_urodzenia" type="number" id="rok_urodzenia" value="{{ $user->rok_urodzenia }}" class="form-control form-control-lg
+                        @error('rok_urodzenia') is-invalid @else is-valid
                         @enderror" />
-                        <label class="form-label" for="typePasswordX">Waluta</label>
+                        <label class="form-label" for="rok_urodzenia">Rok urodzenia</label>
                     </div>
                     <div class="form-outline form-white mb-4">
-                        <input name="powierzchnia_calkowita" type="number" id="powierzchnia_calkowita" value="{{ $c->powierzchnia_calkowita }}" class="form-control form-control-lg
-                        @error('powierzchnia_calkowita') is-invalid @else is-valid
+                        <input name="email" type="email" id="email" value="{{ $user->email }}" class="form-control form-control-lg
+                        @error('email') is-invalid @else is-valid
                         @enderror" />
-                        <label class="form-label" for="typePasswordX">Powierzchnia całkowita</label>
+                        <label class="form-label" for="email">Email</label>
                     </div>
-                    <div class="form-outline form-white mb-4">
-                        <input name="jezyk_urzedowy" type="text" id="jezyk_urzedowy" value="{{ $c->jezyk_urzedowy }}" class="form-control form-control-lg
-                        @error('jezyk_urzedowy') is-invalid @else is-valid
-                        @enderror" />
-                        <label class="form-label" for="typePasswordX">Język urzędowy</label>
-                    </div>
-
                     <button class="btn btn-outline-light btn-lg px-5" type="submit">Edytuj</button>
                   </form>
                 </div>

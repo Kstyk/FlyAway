@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
     @include('shared.header')
+    <link rel="stylesheet" href="{{asset('css/cards_with_trips.css')}}">
     <style>
         body {
             color:white;

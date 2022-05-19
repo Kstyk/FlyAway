@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('opis',1000);
             $table->integer('cena');
             $table->foreignIdFor(Country::class)->constrained();
+            $table->string('img_name', 150);
             $table->timestamps();
         });
     }

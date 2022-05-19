@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 @include('shared.header')
+<link rel="stylesheet" href="{{asset('css/cards_with_trips.css')}}">
 </head>
 <body>
     @include('shared.nav')
@@ -19,7 +20,7 @@
         <div class="row">
         @forelse ($trips as $trip)
             <div class="col-md-4">
-                <div class="profile-card-4 text-center"><img src="{{ asset('storage\img_trips\p'.$trip->id.'.jpg') }}"
+                <div class="profile-card-4 text-center"><img src="{{ asset('storage\img_trips\\'.$trip->img_name.'') }}"
                         class="img img-fluid">
                     <div class="profile-content">
                         <div class="profile-name">

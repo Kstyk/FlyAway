@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     @include('shared.header')
+    <link rel="stylesheet" href="{{asset('css/cards_with_trips.css')}}">
     <style>
         body {
             color:white;

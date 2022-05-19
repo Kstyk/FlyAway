@@ -8,12 +8,20 @@ use App\Models\Trip;
 use App\Models\Country;
 use Auth;
 use Exception;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 class TripController extends Controller
 {
     public function index() {
         return view('trips.index', [
                 'trips' => Trip::all()
+            ]);
+    }
+
+    public function show($id) {
+        return view('trips.show', [
+                'trip' => Trip::findOrFail($id)
             ]);
     }
 
@@ -41,9 +49,28 @@ class TripController extends Controller
                     'cena' => 'required|numeric|min:0',
                     'opis' => 'required|min:0|max:1000',
                     'country_id' => 'required',
+                    'img_name' => 'image|required|unique:trips|mimes:jpeg,png,jpg,gif,svg',
                 ]);
 
-                $input = $request->all();
+                if ($request->hasFile('img_name')) {
+                    $image      = $request->file('img_name');
+                    $filename = $image->getClientOriginalName();
+
+                    $img = Image::make($image->getRealPath());
+                    $img->resize(1280, 720, function ($constraint) {
+                        $constraint->aspectRatio();
+                    });
+
+                    $img->stream(); // <-- Key point
+
+                    //dd();
+                    Storage::disk('public')->put('img_trips'.'/'.$filename, $img, 'public');
+
+                    $requestData = $request->all();
+                    $requestData['img_name'] = $filename;
+                }
+
+                $input = $requestData;
                 Trip::create($input);
 
                 return redirect()->route('trips.index');
@@ -51,13 +78,6 @@ class TripController extends Controller
                 return redirect()->route('trips.index');
             }
         else return redirect()->route('trips.index');
-    }
-
-
-    public function show($id) {
-        return view('trips.show', [
-                'trip' => Trip::findOrFail($id)
-            ]);
     }
 
     public function edit($id) {
@@ -82,17 +102,36 @@ class TripController extends Controller
         if(!Auth::user()->isAdmin())
             return redirect()->route('trips.index');
 
-        $request->validate([
-            'nazwa' => 'required|unique:trips,nazwa,'.$id,
-            'kontynent' => 'required',
-            'okres_trwania' => 'required|integer|min:0',
-            'cena' => 'required|numeric|min:0',
-            'opis' => 'required|min:0|max:1000',
-            'country_id' => 'required',
-        ]);
+            $request->validate([
+                'nazwa' => 'required|unique:trips,nazwa,'.$id,
+                'kontynent' => 'required',
+                'okres_trwania' => 'required|integer|min:0',
+                'cena' => 'required|numeric|min:0',
+                'opis' => 'required|min:0|max:1000',
+                'country_id' => 'required',
+                'img_name' => 'image|required|unique:trips|mimes:jpeg,png,jpg,gif,svg',
+            ]);
+
+            if ($request->hasFile('img_name')) {
+                $image      = $request->file('img_name');
+                $filename = $image->getClientOriginalName();
+
+                $img = Image::make($image->getRealPath());
+                $img->resize(1280, 720, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+
+                $img->stream(); // <-- Key point
+
+                //dd();
+                Storage::disk('public')->put('img_trips'.'/'.$filename, $img, 'public');
+
+                $requestData = $request->all();
+                $requestData['img_name'] = $filename;
+            }
 
         $trip = Trip::findOrFail($id);
-        $input = $request->all();
+        $input = $requestData;
         $trip->update($input);
         return redirect()->route('trips.index');
     }

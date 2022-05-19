@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     @include("shared.header")
+    <link rel="stylesheet" href="{{asset('css/cards_with_trips.css')}}">
     <link rel="stylesheet" href="css/login.css">
 </head>
 <body class="text-white">
