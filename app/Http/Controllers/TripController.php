@@ -103,7 +103,7 @@ class TripController extends Controller
             return redirect()->route('trips.index');
 
             $request->validate([
-                'name' => 'required|unique:trips,nazwa,'.$id,
+                'name' => 'required|unique:trips,name,'.$id,
                 'continent' => 'required',
                 'period' => 'required|integer|min:0',
                 'price' => 'required|numeric|min:0',
@@ -138,12 +138,6 @@ class TripController extends Controller
 
     public function destroy(Trip $trip)
     {
-        if(!Auth::check())
-            return redirect()->route('trips.index');
-
-        if(!Auth::user()->isAdmin())
-            return redirect()->route('trips.index');
-
         try {
             $trip->delete();
             return redirect()->route('trips.index');

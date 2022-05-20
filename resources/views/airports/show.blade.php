@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="{{asset('css/cards_with_trips.css')}}">
 <body>
     @include('shared.nav')
-    <div class="container">
+    <div class="container container-fluid">
+        <h1 class="fw-bold mb-2 text-uppercase text-white text-center border-bottom border-white pb-1 mb-5">{{ $airport->name }}</h1>
         <div class="row">
             <div class="col-md-12">
                 <div class="profile-card-4 text-center">

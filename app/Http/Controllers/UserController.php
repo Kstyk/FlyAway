@@ -5,9 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Auth;
+use Exception;
 
 class UserController extends Controller
 {
+    public function index() {
+        if(Auth::check()) {
+            if(Auth::user()->isAdmin()) {
+                return view('users.index', [
+                    'users' => User::all()
+                ]);
+            }
+        }
+    }
+
     public function show($id) {
         if(Auth::check()) {
             if(Auth::user()->isAdmin() || Auth::user()->id == $id) {
@@ -41,7 +52,7 @@ class UserController extends Controller
                     $request->validate([
                         'name' => 'required',
                         'surname' => 'required',
-                        'date_of_birth' => 'required|integer',
+                        'date_of_birth' => 'required|integer|max:2004|min:1880',
                         'email' => 'required|min:0',
                     ]);
 
@@ -55,6 +66,16 @@ class UserController extends Controller
         return redirect()->route('trips.index');
     }
 
+    }
+
+    public function destroy($id)
+    {
+        try {
+            $query = User::where('id', $id)->delete();
+            return redirect()->route('users.index');
+        } catch(Exception $e) {
+            return redirect()->route('users.index')->withErrors(['msg' => "Nie można usunąć tego użytkownika, ponieważ ma aktualnie zarezerwowane loty lub historię lotów."]);
+        }
     }
 
 }

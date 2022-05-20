@@ -6,8 +6,12 @@ body {
     color:#a3bfc6 !important;
 }
 
+.navbar a:hover {
+    text-decoration: underline;
+}
+
 .navbar {
-    border-bottom: 4px solid #ee445f;
+    border-bottom: 4px solid #a3bfc6;
 }
 
 @media only screen and (min-width:992px) {

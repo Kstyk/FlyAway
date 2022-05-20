@@ -25,7 +25,7 @@
                 <div class="col-md-4">
                     <div class="profile-card-4 text-center profile-card-airport">
                         <div class="profile-content">
-                            <div class="profile-name">
+                            <div class="profile-name mb-3">
                                 {{ $airport->name }}
                             </div>
                                         <a class="btn btn-lg" href="{{ route('airports.show', $airport) }}">

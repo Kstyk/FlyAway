@@ -15,7 +15,7 @@
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col-12 col-lg-12 col-xl-12">
-            <div class="card bg-dark text-white" style="border-radius: 1rem;">
+            <div class="card bg-transparent text-white" style="border-radius: 1rem;">
               <div class="card-body p-5 text-center">
 
                 <div class="mb-md-5 mt-md-4 pb-5">

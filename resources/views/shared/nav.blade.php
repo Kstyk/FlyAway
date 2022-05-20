@@ -26,7 +26,7 @@
               <li><a class="dropdown-item" href="{{ route('flights.index') }}">Loty</a></li>
               <li><a class="dropdown-item" href="{{ route('airports.index') }}">Lotniska</a></li>
               <li><a class="dropdown-item" href="{{ route('userflights.index') }}">Zarezerwowane loty</a></li>
-              <li><a class="dropdown-item" href="#">Użytkownicy</a></li>
+              <li><a class="dropdown-item" href="{{ route('users.index') }}">Użytkownicy</a></li>
             </ul>
           </li>
           @else

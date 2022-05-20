@@ -59,9 +59,6 @@
                 @empty
               @endforelse
             </thead>
-            <tbody>
-
-            </tbody>
           </table>
         </div>
     </div>

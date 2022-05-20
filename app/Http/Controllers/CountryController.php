@@ -43,7 +43,7 @@ class CountryController extends Controller
             abort(403);
 
         $request->validate([
-            'name' => 'required|max:255|unique:countries,nazwa,'.$id,
+            'name' => 'required|max:255|unique:countries,name,'.$id,
             'iso3166' => 'required|min:0|max:3',
             'currency' => 'required|max:64',
             'total_surface' => 'required|numeric|min:1',
