@@ -52,7 +52,7 @@
                           <td>{{ $user->email }}</td>
                       </tr>
                       <tr>
-                          <th colspan="2"><a href="#">Zmień hasło</a></th>
+                          <th colspan="2"><a class="btn btn-outline-light btn-lg px-5 text-white" href="{{ route('change-password') }}">Zmień hasło</a></th>
                       </tr>
                     </tbody>
                   </table>

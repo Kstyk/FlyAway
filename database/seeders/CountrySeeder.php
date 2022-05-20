@@ -110,7 +110,14 @@ class CountrySeeder extends Seeder
                     'waluta' => 'rand',
                     'powierzchnia_calkowita' => 1219090,
                     'jezyk_urzedowy' => 'angielski'
-                ]
+                ],
+                [
+                    'nazwa' => 'Algieria',
+                    'iso3166' => 'DZ',
+                    'waluta' => 'dinar algierski',
+                    'powierzchnia_calkowita' => 2381741,
+                    'jezyk_urzedowy' => 'arabski'
+                ],
             ],
             'nazwa'
         );
