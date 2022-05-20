@@ -26,7 +26,7 @@
                         </div>
 
                         <div class="media-body mb-5 text-white pb-10 justify-content-end">
-                            <h4 class="mt-0 mb-0">{{ $user->imie }} {{ $user->nazwisko }}</h4>
+                            <h4 class="mt-0 mb-0">{{ $user->name }} {{ $user->surname }}</h4>
                             <a href="{{ route('users.edit', $user->id) }}" class="btn btn-outline-dark btn-sm btn-block p-2 text-white mt-2">Edytuj profil</a>
                         </div>
 
@@ -37,15 +37,15 @@
                     <tbody>
                       <tr>
                         <th>Imię</th>
-                        <td>{{ $user->imie }}</td>
+                        <td>{{ $user->name }}</td>
                       </tr>
                       <tr>
                         <th>Nazwisko</th>
-                        <td>{{ $user->nazwisko }}</td>
+                        <td>{{ $user->surname }}</td>
                       </tr>
                       <tr>
                         <th>Rok urodzenia</th>
-                        <td>{{ $user->rok_urodzenia }}</td>
+                        <td>{{ $user->date_of_birth }}</td>
                       </tr>
                       <tr>
                           <th>Email</th>

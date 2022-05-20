@@ -42,12 +42,12 @@
               @forelse ($flights as $f)
                 <tr>
                     <td>{{ $f->id }}</td>
-                    <td>{{ $f->Trip->nazwa }}</td>
-                    <td>{{ $f->nazwa_linii }}</td>
-                    <td>{{ $f->liczba_miejsc }}</td>
-                    <td>{{ $f->Airport->nazwa }}</td>
-                    <td>{{ $f->Airport2->nazwa }}</td>
-                    <td>{{ $f->data_wylotu }}</td>
+                    <td>{{ $f->Trip->name }}</td>
+                    <td>{{ $f->airline_name }}</td>
+                    <td>{{ $f->places }}</td>
+                    <td>{{ $f->Airport->name }}</td>
+                    <td>{{ $f->Airport2->name }}</td>
+                    <td>{{ $f->departure_date }}</td>
                     <td><a href="{{ route('flights.edit', $f) }}">Edycja</a></td>
                     <td><form id="delete" method="POST" action="{{ route('flights.destroy', $f->id) }}">
                         @csrf

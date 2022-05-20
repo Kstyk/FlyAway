@@ -43,11 +43,11 @@ class CountryController extends Controller
             abort(403);
 
         $request->validate([
-            'nazwa' => 'required|max:255|unique:countries,nazwa,'.$id,
+            'name' => 'required|max:255|unique:countries,nazwa,'.$id,
             'iso3166' => 'required|min:0|max:3',
-            'waluta' => 'required|max:64',
-            'powierzchnia_calkowita' => 'required|numeric|min:1',
-            'jezyk_urzedowy' => 'required|min:0|max:64',
+            'currency' => 'required|max:64',
+            'total_surface' => 'required|numeric|min:1',
+            'language' => 'required|min:0|max:64',
         ]);
 
         $c = Country::findOrFail($id);
@@ -72,11 +72,11 @@ class CountryController extends Controller
         if(Auth::check())
             if(Auth::user()->isAdmin()) {
                 $request->validate([
-                    'nazwa' => 'required|max:255|unique:countries',
+                    'name' => 'required|max:255|unique:countries',
                     'iso3166' => 'required|min:0|max:3',
-                    'waluta' => 'required|max:64',
-                    'powierzchnia_calkowita' => 'required|numeric|min:1',
-                    'jezyk_urzedowy' => 'required|min:0|max:64',
+                    'currency' => 'required|max:64',
+                    'total_surface' => 'required|numeric|min:1',
+                    'language' => 'required|min:0|max:64',
                 ]);
 
                 $input = $request->all();

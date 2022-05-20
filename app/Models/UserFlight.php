@@ -11,13 +11,13 @@ class UserFlight extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id', 'user_id', 'flight_id', 'data_zakupu'];
+    protected $fillable = ['id', 'user_id', 'flight_id', 'date_of_purchase'];
 
-    public function users() {
+    public function user() {
         return $this->belongsTo(User::class);
     }
 
-    public function flights() {
+    public function flight() {
         return $this->belongsTo(Flight::class);
     }
 }

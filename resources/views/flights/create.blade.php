@@ -38,29 +38,29 @@
                         <select class="form-control form-control-lg" id="trip_id" name="trip_id">
                             @foreach ($trips as $t)
                                 <option value="{{$t->id}}">
-                                    {{ $t->nazwa }}
+                                    {{ $t->name }}
                                 </option>
                             @endforeach
                         </select>
                         <label class="form-label" for="trip_id">Wycieczka</label>
                     </div>
                     <div class="form-outline form-white mb-4">
-                        <input id="nazwa_linii" type="text" name="nazwa_linii" class="form-control form-control-lg
-                        @error('nazwa_linii') is-invalid @else is-valid
+                        <input id="airline_name" type="text" name="airline_name" class="form-control form-control-lg
+                        @error('airline_name') is-invalid @else is-valid
                         @enderror" />
-                        <label class="form-label" for="nazwa_linii">Nazwa linii</label>
+                        <label class="form-label" for="airline_name">Nazwa linii</label>
                     </div>
                     <div class="form-outline form-white mb-4">
-                        <input name="liczba_miejsc" type="number" id="liczba_miejsc" class="form-control form-control-lg
-                        @error('liczba_miejsc') is-invalid @else is-valid
+                        <input name="places" type="number" id="places" class="form-control form-control-lg
+                        @error('places') is-invalid @else is-valid
                         @enderror" />
-                        <label class="form-label" for="liczba_miejsc">Liczba miejsc</label>
+                        <label class="form-label" for="places">Liczba miejsc</label>
                     </div>
                     <div class="form-outline form-white mb-4">
                         <select class="form-control form-control-lg" id="airport_id" name="airport_id">
                             @foreach ($airports as $a)
                                 <option value="{{$a->id}}">
-                                    {{ $a->nazwa }}, {{ $a->miasto }}
+                                    {{ $a->name }}, {{ $a->city }}
                                 </option>
                             @endforeach
                         </select>
@@ -70,16 +70,16 @@
                         <select class="form-control form-control-lg" id="airport_id_2" name="airport_id_2">
                             @foreach ($airports as $a)
                                 <option value="{{$a->id}}">
-                                    {{ $a->nazwa }}, {{ $a->miasto }}
+                                    {{ $a->name }}, {{ $a->city }}
                                 </option>
                             @endforeach
                         </select>
                         <label class="form-label" for="airport_id_2">Lotnisko końcowe</label>
                     </div>
                     <div class="form-outline form-white mb-4">
-                        <input name="data_wylotu" type="text" class="form-control">
+                        <input name="departure_date" type="text" class="form-control">
 
-                        <label class="form-label" for="data_wylotu">Data wylotu</label>
+                        <label class="form-label" for="departure_date">Data wylotu</label>
                     </div>
 
                     <button class="btn btn-outline-light btn-lg px-5" type="submit">Dodaj</button>

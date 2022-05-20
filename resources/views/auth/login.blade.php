@@ -38,21 +38,21 @@
                         <input id="emai" type="email" name="email" value="{{ old('email') }}" class="form-control form-control-lg
                         @error('email') is-invalid @else is-valid
                         @enderror" />
-                        <label class="form-label" for="typeEmailX">Email</label>
+                        <label class="form-label" for="email">Email</label>
                     </div>
 
                     <div class="form-outline form-white mb-4">
-                        <input name="password" type="password" id="haslo" class="form-control form-control-lg
+                        <input name="password" type="password" id="password" class="form-control form-control-lg
                         @error('password') is-invalid @else is-valid
                         @enderror" />
-                        <label class="form-label" for="typePasswordX">Password</label>
+                        <label class="form-label" for="password">Password</label>
                     </div>
 
                     <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
                   </form>
                 </div>
                 <div>
-                  <p class="mb-0">Don't have an account? <a href="#!" class="text-white-50 fw-bold">Sign Up</a>
+                  <p class="mb-0">Nie masz konta? <a href="#!" class="text-white-50 fw-bold">Zarejestruj się!</a>
                   </p>
                 </div>
 

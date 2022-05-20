@@ -43,11 +43,11 @@ class TripController extends Controller
         if(Auth::check())
             if(Auth::user()->isAdmin()) {
                 $request->validate([
-                    'nazwa' => 'required|unique:trips',
-                    'kontynent' => 'required',
-                    'okres_trwania' => 'required|integer|min:0',
-                    'cena' => 'required|numeric|min:0',
-                    'opis' => 'required|min:0|max:1000',
+                    'name' => 'required|unique:trips',
+                    'continent' => 'required',
+                    'period' => 'required|integer|min:0',
+                    'price' => 'required|numeric|min:0',
+                    'describe' => 'required|min:0|max:1000',
                     'country_id' => 'required',
                     'img_name' => 'image|required|unique:trips|mimes:jpeg,png,jpg,gif,svg',
                 ]);
@@ -103,11 +103,11 @@ class TripController extends Controller
             return redirect()->route('trips.index');
 
             $request->validate([
-                'nazwa' => 'required|unique:trips,nazwa,'.$id,
-                'kontynent' => 'required',
-                'okres_trwania' => 'required|integer|min:0',
-                'cena' => 'required|numeric|min:0',
-                'opis' => 'required|min:0|max:1000',
+                'name' => 'required|unique:trips,nazwa,'.$id,
+                'continent' => 'required',
+                'period' => 'required|integer|min:0',
+                'price' => 'required|numeric|min:0',
+                'describe' => 'required|min:0|max:1000',
                 'country_id' => 'required',
                 'img_name' => 'image|required|unique:trips|mimes:jpeg,png,jpg,gif,svg',
             ]);

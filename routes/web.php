@@ -7,6 +7,7 @@ use App\Http\Controllers\CountryController;
 use App\Http\Controllers\AirportController;
 use App\Http\Controllers\FlightController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserFlightController;
 
 
 /*
@@ -25,6 +26,11 @@ Route::resource('countries', CountryController::class);
 Route::resource('airports', AirportController::class);
 Route::resource('flights', FlightController::class);
 Route::resource('users', UserController::class);
+
+Route::get('reserve/{id}', [UserFlightController::class, 'create'])->name('reserve');
+Route::post('store', [UserFlightController::class, 'store'])->name('userflight.store');
+Route::resource('userflights', UserFlightController::class);
+
 
 require __DIR__.'/auth.php';
 

@@ -20,11 +20,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'imie',
-        'nazwisko',
-        'rok_urodzenia',
+        'name',
+        'surname',
+        'date_of_birth',
         'email',
-        'haslo',
+        'password',
         'country_id',
         'role_id'
     ];
@@ -51,11 +51,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    public function setPasswordAttribute($password)
-    {
-        $this->attributes['password'] = bcrypt($password);
-    }
 
     public function country() {
         return $this->belongsTo(Country::class);

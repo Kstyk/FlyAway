@@ -23,77 +23,77 @@ class AirportSeeder extends Seeder
         Schema::enableForeignKeyConstraints();
         Airport::upsert([
             [
-                'nazwa' => 'Hartsfield-Jackson Atlanta International Airport',
+                'name' => 'Hartsfield-Jackson Atlanta International Airport',
                 'country_id' => 1,
-                'miasto' => 'Atlanta'
+                'city' => 'Atlanta'
             ],
             [
-                'nazwa' => 'Międzynarodowe Lotnisko w Pekinie',
+                'name' => 'Międzynarodowe Lotnisko w Pekinie',
                 'country_id' => 3,
-                'miasto' => 'Pekin'
+                'city' => 'Pekin'
             ],
             [
-                'nazwa' => 'Los Angeles International Airport',
+                'name' => 'Los Angeles International Airport',
                 'country_id' => 1,
-                'miasto' => 'Los Angeles'
+                'city' => 'Los Angeles'
             ],
             [
-                'nazwa' => 'Dubai International Airport',
+                'name' => 'Dubai International Airport',
                 'country_id' => 4,
-                'miasto' => 'Dubaj'
+                'city' => 'Dubaj'
             ],
             [
-                'nazwa' => 'Tokio Haneda Airport',
+                'name' => 'Tokio Haneda Airport',
                 'country_id' => 5,
-                'miasto' => 'Tokio'
+                'city' => 'Tokio'
             ],
             [
-                'nazwa' => 'Heathrow Airport',
+                'name' => 'Heathrow Airport',
                 'country_id' => 6,
-                'miasto' => 'Londyn'
+                'city' => 'Londyn'
             ],
             [
-                'nazwa' => 'Charles de Gaulle Airport',
+                'name' => 'Charles de Gaulle Airport',
                 'country_id' => 7,
-                'miasto' => 'Paryż'
+                'city' => 'Paryż'
             ],
             [
-                'nazwa' => 'Schiphol Airport',
+                'name' => 'Schiphol Airport',
                 'country_id' => 8,
-                'miasto' => 'Amsterdam'
+                'city' => 'Amsterdam'
             ],
             [
-                'nazwa' => 'Incheon International Airport',
+                'name' => 'Incheon International Airport',
                 'country_id' => 9,
-                'miasto' => 'Seul'
+                'city' => 'Seul'
             ],
             [
-                'nazwa' => 'Frankfurt Airport',
+                'name' => 'Frankfurt Airport',
                 'country_id' => 10,
-                'miasto' => 'Frankfurt'
+                'city' => 'Frankfurt'
             ],
             [
-                'nazwa' => 'Lotnisko Chopina w Warszawie',
+                'name' => 'Lotnisko Chopina w Warszawie',
                 'country_id' => 2,
-                'miasto' => 'Warszawa'
+                'city' => 'Warszawa'
             ],
             [
-                'nazwa' => 'Port lotniczy Kraków-Balice',
+                'name' => 'Port lotniczy Kraków-Balice',
                 'country_id' => 2,
-                'miasto' => 'Kraków'
+                'city' => 'Kraków'
             ],
             [
-                'nazwa' => 'Rio de Janeiro International Airport',
+                'name' => 'Rio de Janeiro International Airport',
                 'country_id' => 11,
-                'miasto' => 'Rio de Janeiro'
+                'city' => 'Rio de Janeiro'
             ],
             [
-                'nazwa' => 'O. R. Tambo International Airport',
+                'name' => 'O. R. Tambo International Airport',
                 'country_id' => 12,
-                'miasto' => 'Johannesburg'
+                'city' => 'Johannesburg'
             ]
         ],
-        'nazwa'
+        'name'
     );
     }
 }

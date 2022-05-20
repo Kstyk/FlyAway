@@ -16,11 +16,11 @@ return new class extends Migration
     {
         Schema::create('trips', function (Blueprint $table) {
             $table->id();
-            $table->string('nazwa', 64);
-            $table->string('kontynent', 64);
-            $table->integer('okres_trwania');
-            $table->string('opis',1000);
-            $table->integer('cena');
+            $table->string('name', 64);
+            $table->string('continent', 64);
+            $table->integer('period');
+            $table->string('describe',1000);
+            $table->double('price');
             $table->foreignIdFor(Country::class)->constrained();
             $table->string('img_name', 150);
             $table->timestamps();

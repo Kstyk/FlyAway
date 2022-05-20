@@ -35,10 +35,10 @@
                     @method('POST')
                     <p class="text-white-50 mb-5">Wprowadź poprawne dane</p>
                     <div class="form-outline form-white mb-4">
-                        <input id="nazwa" type="text" name="nazwa" class="form-control form-control-lg
-                        @error('nazwa') is-invalid @else is-valid
+                        <input id="name" type="text" name="name" class="form-control form-control-lg
+                        @error('name') is-invalid @else is-valid
                         @enderror" />
-                        <label class="form-label" for="nazwa">Nazwa</label>
+                        <label class="form-label" for="name">Nazwa</label>
                     </div>
                     <div class="form-outline form-white mb-4">
                         <select class="form-control form-control-lg" id="country_id" name="country_id">
@@ -51,10 +51,10 @@
                         <label class="form-label" for="country_id">Kraj</label>
                     </div>
                     <div class="form-outline form-white mb-4">
-                        <input name="miasto" type="text" id="miasto" class="form-control form-control-lg
-                        @error('miasto') is-invalid @else is-valid
+                        <input name="city" type="text" id="city" class="form-control form-control-lg
+                        @error('city') is-invalid @else is-valid
                         @enderror" />
-                        <label class="form-label" for="miasto">Miasto</label>
+                        <label class="form-label" for="city">Miasto</label>
                     </div>
 
 

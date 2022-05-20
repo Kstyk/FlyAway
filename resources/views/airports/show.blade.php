@@ -16,7 +16,7 @@
                 <div class="profile-card-4 text-center">
                     <div class="profile-content">
                         <div class="profile-name">
-                            {{ $airport->nazwa }}
+                            {{ $airport->name }}
                         </div>
                     </div>
                     <table class="table table-dark">
@@ -31,12 +31,12 @@
                           <tr>
                             <th scope="row">1</th>
                             <td>Kraj</td>
-                            <td>{{ $airport->Country->nazwa }}</td>
+                            <td>{{ $airport->Country->name }}</td>
                           </tr>
                           <tr>
                             <th scope="row">2</th>
                             <td>Miasto</td>
-                            <td>{{ $airport->miasto }}</td>
+                            <td>{{ $airport->city }}</td>
                           </tr>
                         </tbody>
                       </table>

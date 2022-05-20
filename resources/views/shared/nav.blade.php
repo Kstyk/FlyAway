@@ -14,7 +14,7 @@
           </li>
           @if (Auth::check())
           <li class="nav-item">
-            <a class="nav-link whitehover" href="{{ route('logout') }}"> {{ Auth::user()->imie }},
+            <a class="nav-link whitehover" href="{{ route('logout') }}"> {{ Auth::user()->name }},
             wyloguj się... </a>
         </li>
           @if(Auth::user()->isAdmin())
@@ -27,6 +27,7 @@
               <li><a class="dropdown-item" href="{{ route('countries.index') }}">Kraje</a></li>
               <li><a class="dropdown-item" href="{{ route('flights.index') }}">Loty</a></li>
               <li><a class="dropdown-item" href="{{ route('airports.index') }}">Lotniska</a></li>
+              <li><a class="dropdown-item" href="{{ route('userflights.index') }}">Zarezerwowane loty</a></li>
               <li><a class="dropdown-item" href="#">Użytkownicy</a></li>
             </ul>
           </li>
@@ -37,7 +38,7 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <li><a class="dropdown-item" href="{{ route('users.show', Auth::user()->id) }}">Moje dane</a></li>
-              <li><a class="dropdown-item" href="#">Moje loty</a></li>
+              <li><a class="dropdown-item" href="{{ route('userflights.index') }}">Moje loty</a></li>
             </ul>
           </li>
           @endif

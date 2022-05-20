@@ -11,7 +11,7 @@ class Trip extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id', 'nazwa', 'kontynent', 'okres_trwania', 'opis', 'cena', 'country_id', 'img_name'];
+    protected $fillable = ['id', 'name', 'continent', 'period', 'describe', 'price', 'country_id', 'img_name'];
 
     public function country() {
         return $this->belongsTo(Country::class);

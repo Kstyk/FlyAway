@@ -11,7 +11,7 @@ class Airport extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id', 'nazwa', 'country_id', 'miasto'];
+    protected $fillable = ['id', 'name', 'country_id', 'city'];
 
     public function flights() {
         return $this->hasMany(Flight::class);

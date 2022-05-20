@@ -35,23 +35,23 @@
                     @method('PUT')
                     <p class="text-white-50 mb-5">Wprowadź poprawne dane</p>
                     <div class="form-outline form-white mb-4">
-                        <input id="imie" type="text" name="imie" value="{{ $user->imie }}" class="form-control form-control-lg
-                        @error('imie') is-invalid @else is-valid
+                        <input id="name" type="text" name="name" value="{{ $user->name }}" class="form-control form-control-lg
+                        @error('name') is-invalid @else is-valid
                         @enderror" />
-                        <label class="form-label" for="imie">Imię</label>
+                        <label class="form-label" for="name">Imię</label>
                     </div>
 
                     <div class="form-outline form-white mb-4">
-                        <input name="nazwisko" type="text" id="nazwisko" value="{{ $user->nazwisko }}" class="form-control form-control-lg
-                        @error('nazwisko') is-invalid @else is-valid
+                        <input name="surname" type="text" id="surname" value="{{ $user->surname }}" class="form-control form-control-lg
+                        @error('surname') is-invalid @else is-valid
                         @enderror" />
-                        <label class="form-label" for="nazwisko">Nazwisko</label>
+                        <label class="form-label" for="surname">Nazwisko</label>
                     </div>
                     <div class="form-outline form-white mb-4">
-                        <input name="rok_urodzenia" type="number" id="rok_urodzenia" value="{{ $user->rok_urodzenia }}" class="form-control form-control-lg
-                        @error('rok_urodzenia') is-invalid @else is-valid
+                        <input name="date_of_birth" type="number" id="date_of_birth" value="{{ $user->date_of_birth }}" class="form-control form-control-lg
+                        @error('date_of_birth') is-invalid @else is-valid
                         @enderror" />
-                        <label class="form-label" for="rok_urodzenia">Rok urodzenia</label>
+                        <label class="form-label" for="date_of_birth">Rok urodzenia</label>
                     </div>
                     <div class="form-outline form-white mb-4">
                         <input name="email" type="email" id="email" value="{{ $user->email }}" class="form-control form-control-lg

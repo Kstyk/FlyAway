@@ -17,7 +17,7 @@
                         class="img img-fluid">
                     <div class="profile-content">
                         <div class="profile-name">
-                            {{ $trip->nazwa }}
+                            {{ $trip->name }}
                         </div>
                     </div>
                     <table class="table table-dark">
@@ -32,27 +32,27 @@
                           <tr>
                             <th scope="row">1</th>
                             <td>Opis wycieczki</td>
-                            <td class="opis">{{ $trip->opis }}</td>
+                            <td class="opis">{{ $trip->describe }}</td>
                           </tr>
                           <tr>
                             <th scope="row">2</th>
                             <td>Kraj</td>
-                            <td>{{ $trip->Country->nazwa }}<br>(więcej informacji o kraju <a href="{{ route('countries.show', $trip->Country) }}">tutaj</a>)</td>
+                            <td>{{ $trip->Country->name }}<br>(więcej informacji o kraju <a href="{{ route('countries.show', $trip->Country) }}">tutaj</a>)</td>
                           </tr>
                           <tr>
                             <th scope="row">3</th>
                             <td>Kontynent</td>
-                            <td>{{ $trip->kontynent }}</td>
+                            <td>{{ $trip->continent }}</td>
                           </tr>
                           <tr>
                             <th scope="row">4</th>
                             <td>Okres trwania wycieczki</td>
-                            <td>{{ $trip->okres_trwania }} dni</td>
+                            <td>{{ $trip->period }} dni</td>
                           </tr>
                           <tr>
                             <th scope="row">4</th>
                             <td>Cena wycieczki</td>
-                            <td>{{ $trip->cena }} PLN</td>
+                            <td>{{ $trip->price }} PLN</td>
                           </tr>
                         </tbody>
                       </table>

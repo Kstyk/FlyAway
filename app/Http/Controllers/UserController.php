@@ -39,9 +39,9 @@ class UserController extends Controller
             if(Auth::user()->isAdmin() || Auth::user()->id == $id) {
 
                     $request->validate([
-                        'imie' => 'required',
-                        'nazwisko' => 'required',
-                        'rok_urodzenia' => 'required|integer',
+                        'name' => 'required',
+                        'surname' => 'required',
+                        'date_of_birth' => 'required|integer',
                         'email' => 'required|min:0',
                     ]);
 

@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('countries', function (Blueprint $table) {
             $table->id();
-            $table->string('nazwa')->unique();
+            $table->string('name')->unique();
             $table->string('iso3166', 3)->unique();
-            $table->string('waluta', 64);
-            $table->double('powierzchnia_calkowita');
-            $table->string('jezyk_urzedowy', 64);
+            $table->string('currency', 64);
+            $table->double('total_surface');
+            $table->string('language', 64);
             $table->timestamps();
         });
     }

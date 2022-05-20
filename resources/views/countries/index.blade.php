@@ -25,7 +25,7 @@
                     <div class="profile-card-4 text-center">
                         <div class="profile-content">
                             <div class="profile-name">
-                                {{ $c->nazwa }}
+                                {{ $c->name }}
                             </div>
                                         <a class="btn btn-lg" href="{{ route('countries.show', $c) }}">
                                             <span>Więcej<br>szczegółów</span>

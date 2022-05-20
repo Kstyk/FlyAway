@@ -18,11 +18,11 @@ return new class extends Migration
         Schema::create('flights', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Trip::class)->constrained();
-            $table->string('nazwa_linii', 128);
-            $table->integer('liczba_miejsc');
+            $table->string('airline_name', 128);
+            $table->integer('places');
             $table->foreignIdFor(Airport::class)->constrained();
             $table->foreignIdFor(Airport::class, 'airport_id_2')->constrained();
-            $table->date('data_wylotu');
+            $table->date('departure_date');
             $table->timestamps();
         });
     }

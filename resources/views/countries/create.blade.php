@@ -35,10 +35,10 @@
                     @method('POST')
                     <p class="text-white-50 mb-5">Wprowadź poprawne dane</p>
                     <div class="form-outline form-white mb-4">
-                        <input id="nazwa" type="text" name="nazwa" class="form-control form-control-lg
-                        @error('nazwa') is-invalid @else is-valid
+                        <input id="name" type="text" name="name" class="form-control form-control-lg
+                        @error('name') is-invalid @else is-valid
                         @enderror" />
-                        <label class="form-label" for="nazwa">Nazwa</label>
+                        <label class="form-label" for="name">Nazwa</label>
                     </div>
 
                     <div class="form-outline form-white mb-4">
@@ -48,22 +48,22 @@
                         <label class="form-label" for="iso3166">Kod iso3166</label>
                     </div>
                     <div class="form-outline form-white mb-4">
-                        <input name="waluta" type="text" id="waluta" class="form-control form-control-lg
-                        @error('waluta') is-invalid @else is-valid
+                        <input name="currency" type="text" id="currency" class="form-control form-control-lg
+                        @error('currency') is-invalid @else is-valid
                         @enderror" />
-                        <label class="form-label" for="waluta">Waluta</label>
+                        <label class="form-label" for="currency">Waluta</label>
                     </div>
                     <div class="form-outline form-white mb-4">
-                        <input name="powierzchnia_calkowita" type="number" id="powierzchnia_calkowita" class="form-control form-control-lg
-                        @error('powierzchnia_calkowita') is-invalid @else is-valid
+                        <input name="total_surface" type="number" id="total_surface" class="form-control form-control-lg
+                        @error('total_surface') is-invalid @else is-valid
                         @enderror" />
-                        <label class="form-label" for="powierzchnia_calkowita">Powierzchnia całkowita</label>
+                        <label class="form-label" for="total_surface">Powierzchnia całkowita</label>
                     </div>
                     <div class="form-outline form-white mb-4">
-                        <input name="jezyk_urzedowy" type="text" id="jezyk_urzedowy" class="form-control form-control-lg
-                        @error('jezyk_urzedowy') is-invalid @else is-valid
+                        <input name="language" type="text" id="language" class="form-control form-control-lg
+                        @error('language') is-invalid @else is-valid
                         @enderror" />
-                        <label class="form-label" for="jezyk_urzedowy">Język urzędowy</label>
+                        <label class="form-label" for="language">Język urzędowy</label>
                     </div>
                     <button class="btn btn-outline-light btn-lg px-5" type="submit">Dodaj</button>
                   </form>

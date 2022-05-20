@@ -16,7 +16,7 @@
                 <div class="profile-card-4 text-center">
                     <div class="profile-content">
                         <div class="profile-name">
-                            {{ $c->nazwa }}
+                            {{ $c->name }}
                         </div>
                     </div>
                     <table class="table table-dark">
@@ -31,7 +31,7 @@
                           <tr>
                             <th scope="row">1</th>
                             <td>Nazwa</td>
-                            <td class="opis">{{ $c->nazwa }}</td>
+                            <td class="opis">{{ $c->name }}</td>
                           </tr>
                           <tr>
                             <th scope="row">2</th>
@@ -41,17 +41,17 @@
                           <tr>
                             <th scope="row">3</th>
                             <td>Waluta</td>
-                            <td>{{ $c->waluta }}</td>
+                            <td>{{ $c->currency }}</td>
                           </tr>
                           <tr>
                             <th scope="row">4</th>
                             <td>Powierzchnia całkowita</td>
-                            <td>{{ $c->powierzchnia_calkowita }} km<sup>2</sup></td>
+                            <td>{{ $c->total_surface }} km<sup>2</sup></td>
                           </tr>
                           <tr>
                             <th scope="row">4</th>
                             <td>Język urzędowy</td>
-                            <td>{{ $c->jezyk_urzedowy }} </td>
+                            <td>{{ $c->language }} </td>
                           </tr>
                         </tbody>
                       </table>

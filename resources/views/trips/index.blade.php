@@ -24,12 +24,12 @@
                         class="img img-fluid">
                     <div class="profile-content">
                         <div class="profile-name">
-                            {{ $trip->nazwa }}
+                            {{ $trip->name }}
                         </div>
                                         <a class="btn btn-lg" href="{{ route('trips.show', $trip->id) }}">
                                             <span>Więcej<br>szczegółów</span>
                                         </a>
-                                        <a class="btn btn-lg" href="#">
+                                        <a class="btn btn-lg" href="{{ route('reserve', $trip->id) }}">
                                             <span>Rezerwuj<br>lot</span>
                                         </a>
                             @can('update', $trip)

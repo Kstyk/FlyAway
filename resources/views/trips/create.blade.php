@@ -35,35 +35,35 @@
                     @method('POST')
                     <p class="text-white-50 mb-5">Wprowadź poprawne dane</p>
                     <div class="form-outline form-white mb-4">
-                        <input id="nazwa" type="text" name="nazwa" class="form-control form-control-lg
-                        @error('nazwa') is-invalid @else is-valid
+                        <input id="name" type="text" name="name" class="form-control form-control-lg
+                        @error('name') is-invalid @else is-valid
                         @enderror" />
-                        <label class="form-label" for="typeEmailX">Nazwa</label>
+                        <label class="form-label" for="name">Nazwa</label>
                     </div>
 
                     <div class="form-outline form-white mb-4">
-                        <input name="kontynent" type="text" id="kontynent" class="form-control form-control-lg
-                        @error('kontynent') is-invalid @else is-valid
+                        <input name="continent" type="text" id="continent" class="form-control form-control-lg
+                        @error('continent') is-invalid @else is-valid
                         @enderror" />
-                        <label class="form-label" for="typePasswordX">Kontynent</label>
+                        <label class="form-label" for="continent">Kontynent</label>
                     </div>
                     <div class="form-outline form-white mb-4">
-                        <input name="okres_trwania" type="number" id="okres" class="form-control form-control-lg
-                        @error('okres_trwania') is-invalid @else is-valid
+                        <input name="period" type="number" id="period" class="form-control form-control-lg
+                        @error('period') is-invalid @else is-valid
                         @enderror" />
-                        <label class="form-label" for="typePasswordX">Okres trwania wycieczki</label>
+                        <label class="form-label" for="period">Okres trwania wycieczki</label>
                     </div>
                     <div class="form-outline form-white mb-4">
-                        <textarea name="opis" id="opis" rows="5" class="form-control form-control-lg
-                        @error('okres_trwania') is-invalid @else is-valid
+                        <textarea name="describe" id="describe" rows="5" class="form-control form-control-lg
+                        @error('describe') is-invalid @else is-valid
                         @enderror"></textarea>
-                        <label class="form-label" for="typePasswordX">Opis</label>
+                        <label class="form-label" for="describe">Opis</label>
                     </div>
                     <div class="form-outline form-white mb-4">
-                        <input name="cena" type="number" id="okres" class="form-control form-control-lg
-                        @error('okres_trwania') is-invalid @else is-valid
+                        <input name="price" type="number" id="price" class="form-control form-control-lg
+                        @error('price') is-invalid @else is-valid
                         @enderror" />
-                        <label class="form-label" for="typePasswordX">Cena wycieczki</label>
+                        <label class="form-label" for="price">Cena wycieczki</label>
                     </div>
                     <div class="form-outline form-white mb-4">
                         <select class="form-control form-control-lg" id="country_id" name="country_id">
@@ -73,7 +73,7 @@
                                 </option>
                             @endforeach
                         </select>
-                        <label class="form-label" for="typePasswordX">Kraj</label>
+                        <label class="form-label" for="country_id">Kraj</label>
                     </div>
                     <div class="form-outline form-white mb-4">
                         <input name="img_name" type="file" id="img_name" accept="image/png, image/gif, image/jpeg" class="form-control form-control-lg

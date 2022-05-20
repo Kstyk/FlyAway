@@ -40,8 +40,8 @@ class AirportController extends Controller
         if(Auth::check())
             if(Auth::user()->isAdmin()) {
                 $request->validate([
-                    'nazwa' => 'required|unique:airports',
-                    'miasto' => 'required|max:64',
+                    'name' => 'required|unique:airports',
+                    'city' => 'required|max:64',
                     'country_id' => 'required',
                 ]);
 
@@ -78,8 +78,8 @@ class AirportController extends Controller
             return redirect()->route('airports.index');
 
         $request->validate([
-            'nazwa' => 'required|unique:airports,nazwa,'.$id,
-            'miasto' => 'required|max:64',
+            'name' => 'required|unique:airports,nazwa,'.$id,
+            'city' => 'required|max:64',
             'country_id' => 'required',
         ]);
 

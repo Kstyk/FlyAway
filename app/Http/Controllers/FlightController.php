@@ -79,11 +79,11 @@ class FlightController extends Controller
 
         $request->validate([
             'trip_id' => 'required',
-            'nazwa_linii' => 'required|max:128',
-            'liczba_miejsc' => 'required|integer|min:1',
+            'airline_name' => 'required|max:128',
+            'places' => 'required|integer|min:1',
             'airport_id' => 'required',
             'airport_id_2' => 'required',
-            'data_wylotu' => 'required|date|after:today|date_format:Y-m-d',
+            'departure_date' => 'required|date|after:today|date_format:Y-m-d',
         ]);
 
         $flight = Flight::findOrFail($id);

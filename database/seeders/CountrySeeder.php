@@ -28,98 +28,98 @@ class CountrySeeder extends Seeder
         Country::upsert(
             [
                 [
-                    'nazwa' => 'Stany Zjednoczone',
+                    'name' => 'Stany Zjednoczone',
                     'iso3166' => 'US',
-                    'waluta' => 'Dolar amerykański',
-                    'powierzchnia_calkowita' => 9833520,
-                    'jezyk_urzedowy' => 'angielski'
+                    'currency' => 'Dolar amerykański',
+                    'total_surface' => 9833520,
+                    'language' => 'angielski'
                 ],
                 [
-                    'nazwa' => 'Polska',
+                    'name' => 'Polska',
                     'iso3166' => 'PL',
-                    'waluta' => 'złoty',
-                    'powierzchnia_calkowita' => 312696,
-                    'jezyk_urzedowy' => 'polski'
+                    'currency' => 'złoty',
+                    'total_surface' => 312696,
+                    'language' => 'polski'
                 ],
                 [
-                    'nazwa' => 'Chiny',
+                    'name' => 'Chiny',
                     'iso3166' => 'CN',
-                    'waluta' => 'yuan',
-                    'powierzchnia_calkowita' => 9596960,
-                    'jezyk_urzedowy' => 'mandaryński'
+                    'currency' => 'yuan',
+                    'total_surface' => 9596960,
+                    'language' => 'mandaryński'
                 ],
                 [
-                    'nazwa' => 'Zjednoczone Emiraty Arabskie',
+                    'name' => 'Zjednoczone Emiraty Arabskie',
                     'iso3166' => 'AE',
-                    'waluta' => 'dirham',
-                    'powierzchnia_calkowita' => 83600,
-                    'jezyk_urzedowy' => 'arabski'
+                    'currency' => 'dirham',
+                    'total_surface' => 83600,
+                    'language' => 'arabski'
                 ],
                 [
-                    'nazwa' => 'Japonia',
+                    'name' => 'Japonia',
                     'iso3166' => 'JP',
-                    'waluta' => 'jen',
-                    'powierzchnia_calkowita' => 377972,
-                    'jezyk_urzedowy' => 'japoński'
+                    'currency' => 'jen',
+                    'total_surface' => 377972,
+                    'language' => 'japoński'
                 ],
                 [
-                    'nazwa' => 'Wielka Brytania',
+                    'name' => 'Wielka Brytania',
                     'iso3166' => 'GB',
-                    'waluta' => 'funt szterling',
-                    'powierzchnia_calkowita' => 244820,
-                    'jezyk_urzedowy' => 'angielski'
+                    'currency' => 'funt szterling',
+                    'total_surface' => 244820,
+                    'language' => 'angielski'
                 ],
                 [
-                    'nazwa' => 'Francja',
+                    'name' => 'Francja',
                     'iso3166' => 'FR',
-                    'waluta' => 'euro',
-                    'powierzchnia_calkowita' => 643801,
-                    'jezyk_urzedowy' => 'francuski'
+                    'currency' => 'euro',
+                    'total_surface' => 643801,
+                    'language' => 'francuski'
                 ],
                 [
-                    'nazwa' => 'Holandia',
+                    'name' => 'Holandia',
                     'iso3166' => 'NL',
-                    'waluta' => 'euro',
-                    'powierzchnia_calkowita' => 41526,
-                    'jezyk_urzedowy' => 'niderlandzki'
+                    'currency' => 'euro',
+                    'total_surface' => 41526,
+                    'language' => 'niderlandzki'
                 ],
                 [
-                    'nazwa' => 'Korea Południowa',
+                    'name' => 'Korea Południowa',
                     'iso3166' => 'KR',
-                    'waluta' => 'won południowokoreański',
-                    'powierzchnia_calkowita' => 100210,
-                    'jezyk_urzedowy' => 'koreański'
+                    'currency' => 'won południowokoreański',
+                    'total_surface' => 100210,
+                    'language' => 'koreański'
                 ],
                 [
-                    'nazwa' => 'Niemcy',
+                    'name' => 'Niemcy',
                     'iso3166' => 'DE',
-                    'waluta' => 'euro',
-                    'powierzchnia_calkowita' => 357578,
-                    'jezyk_urzedowy' => 'niemiecki'
+                    'currency' => 'euro',
+                    'total_surface' => 357578,
+                    'language' => 'niemiecki'
                 ],
                 [
-                    'nazwa' => 'Brazylia',
+                    'name' => 'Brazylia',
                     'iso3166' => 'BR',
-                    'waluta' => 'real brazylijski',
-                    'powierzchnia_calkowita' => 8515767,
-                    'jezyk_urzedowy' => 'portugalski'
+                    'currency' => 'real brazylijski',
+                    'total_surface' => 8515767,
+                    'language' => 'portugalski'
                 ],
                 [
-                    'nazwa' => 'Republika Południowej Afryki',
+                    'name' => 'Republika Południowej Afryki',
                     'iso3166' => 'ZA',
-                    'waluta' => 'rand',
-                    'powierzchnia_calkowita' => 1219090,
-                    'jezyk_urzedowy' => 'angielski'
+                    'currency' => 'rand',
+                    'total_surface' => 1219090,
+                    'language' => 'angielski'
                 ],
                 [
-                    'nazwa' => 'Algieria',
+                    'name' => 'Algieria',
                     'iso3166' => 'DZ',
-                    'waluta' => 'dinar algierski',
-                    'powierzchnia_calkowita' => 2381741,
-                    'jezyk_urzedowy' => 'arabski'
+                    'currency' => 'dinar algierski',
+                    'total_surface' => 2381741,
+                    'language' => 'arabski'
                 ],
             ],
-            'nazwa'
+            'name'
         );
     }
 }

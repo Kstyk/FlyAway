@@ -25,7 +25,7 @@
                     <div class="profile-card-4 text-center profile-card-airport">
                         <div class="profile-content">
                             <div class="profile-name">
-                                {{ $airport->nazwa }}
+                                {{ $airport->name }}
                             </div>
                                         <a class="btn btn-lg" href="{{ route('airports.show', $airport) }}">
                                             <span>Więcej<br>szczegółów</span>

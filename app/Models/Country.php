@@ -12,7 +12,7 @@ class Country extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id', 'nazwa', 'iso3166', 'waluta', 'powierzchnia_calkowita', 'jezyk_urzedowy'];
+    protected $fillable = ['id', 'name', 'iso3166', 'currency', 'total_surface', 'language'];
 
     public function trips() {
         return $this->hasMany(Trip::class);
