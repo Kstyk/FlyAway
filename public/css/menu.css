@@ -9,3 +9,10 @@ body {
 .navbar {
     border-bottom: 4px solid #ee445f;
 }
+
+@media only screen and (min-width:992px) {
+    #navbarNavDropdown {
+        display: flex;
+        justify-content: space-between;
+    }
+}

@@ -43,7 +43,6 @@ body {
     overflow: hidden;
     position: relative;
     margin: 10px auto;
-    cursor: pointer;
 }
 
 .profile-card-4 img {
@@ -65,12 +64,11 @@ body {
     top: 0px;
     color: #FFF;
     font-size: 17px;
-    margin-bottom: 20px;
 }
 
 .profile-card-4 .profile-name p {
     font-weight: 600;
-    font-size: 13px;
+    font-size: 17px;
     letter-spacing: 1.5px;
 }
 
@@ -102,8 +100,8 @@ body {
 .profile-card-4 .profile-content::before {
     content: "";
     position: absolute;
-    height: 20px;
-    top: -10px;
+    height: 50px;
+    top: -30px;
     left: 0px;
     right: 0px;
     background-color: #192226;
@@ -113,7 +111,7 @@ body {
 
 }
 
-.profile-card-4:hover img {
+.profile-card-4 img:hover {
     transform: rotate(5deg) scale(1.1, 1.1);
     filter: brightness(110%);
 }

@@ -68,8 +68,8 @@
                     <div class="form-outline form-white mb-4">
                         <select class="form-control form-control-lg" id="country_id" name="country_id">
                             @foreach ($countries as $c)
-                                <option value="{{$c->id}}" @if($c->nazwa == $trip->country->nazwa) selected @endif>
-                                    {{ $c->nazwa }}
+                                <option value="{{$c->id}}" @if($c->name == $trip->country->name) selected @endif>
+                                    {{ $c->name }}
                                 </option>
                             @endforeach
                         </select>

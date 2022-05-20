@@ -7,6 +7,7 @@
 <body>
     @include('shared.nav')
     <div class="container" id="container_trips">
+        <h1 class="fw-bold mb-2 text-uppercase text-white text-center border-bottom border-white pb-1 mb-5">Nasze wycieczki</h1>
         @if($errors->any())
             <h4><?php echo "<script type='text/javascript'>alert('".$errors->first()."');</script>"; ?></h4>
         @endif
@@ -23,7 +24,7 @@
                 <div class="profile-card-4 text-center"><img src="{{ asset('storage\img_trips\\'.$trip->img_name.'') }}"
                         class="img img-fluid">
                     <div class="profile-content">
-                        <div class="profile-name">
+                        <div class="profile-name pt-0 mb-3">
                             {{ $trip->name }}
                         </div>
                                         <a class="btn btn-lg" href="{{ route('trips.show', $trip->id) }}">

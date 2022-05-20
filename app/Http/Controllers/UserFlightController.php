@@ -55,4 +55,22 @@ class UserFlightController extends Controller
             } else
             return redirect()->route('trips.index');
         }
+
+    public function destroy($f) {
+        try {
+            $uf = UserFlight::where('id', $f)->first();
+            $flight = Flight::where('id', $uf->flight_id)->first();
+
+            if($flight->departure_date > Carbon::now()) {
+                Flight::find($flight->id)->increment('places');
+                $query = UserFlight::where('id', $f)->delete();
+            } else {
+                $query = UserFlight::where('id', $f)->delete();
+            }
+
+            return redirect()->route('userflights.index');
+        } catch(Exception $e) {
+            return redirect()->route('userflights.index')->withErrors(['msg' => "Nie można usunąć tej rezerwacji!"]);
+        }
+    }
 }

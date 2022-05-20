@@ -15,6 +15,7 @@
 <body>
     @include('shared.nav')
     <div class="container container-fluid">
+        <h1 class="fw-bold mb-2 text-uppercase text-white text-center border-bottom border-white pb-1 mb-5">Loty</h1>
         @if ($errors->any())
             <h4><?php echo "<script type='text/javascript'>alert('" . $errors->first() . "');</script>"; ?></h4>
         @endif
@@ -26,7 +27,7 @@
         </div>
         @endcan
         <div class="container-fluid pt-0">
-        <table class="table table-dark text-white">
+        <table class="table text-white">
             <thead>
               <tr>
                 <th scope="col">#</th>

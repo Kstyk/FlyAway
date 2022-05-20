@@ -27,7 +27,7 @@
 
                         <div class="media-body mb-5 text-white pb-10 justify-content-end">
                             <h4 class="mt-0 mb-0">{{ $user->name }} {{ $user->surname }}</h4>
-                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-outline-dark btn-sm btn-block p-2 text-white mt-2">Edytuj profil</a>
+                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-outline-dark btn-sm btn-block p-2 text-white mt-2 border border-white">Edytuj profil</a>
                         </div>
 
                     </div>

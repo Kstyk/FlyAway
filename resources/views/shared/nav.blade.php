@@ -5,18 +5,16 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
+        <ul class="nav navbar-nav">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">O nas</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Kontakt</a>
           </li>
+        </ul>
+        <ul class="nav navbar-nav">
           @if (Auth::check())
-          <li class="nav-item">
-            <a class="nav-link whitehover" href="{{ route('logout') }}"> {{ Auth::user()->name }},
-            wyloguj się... </a>
-        </li>
           @if(Auth::user()->isAdmin())
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -42,11 +40,14 @@
             </ul>
           </li>
           @endif
+          <li class="nav-item">
+            <a class="nav-link whitehover" href="{{ route('logout') }}"> {{ Auth::user()->name }},
+            wyloguj się... </a>
+            </li>
           @else
           <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Zaloguj się...</a><span class="hover"></span></li>
-          <li class="nav-item"><a class="nav-link" href="#">Zarejestruj się...</a><span class="hover"></span></li>
+          <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Zarejestruj się...</a><span class="hover"></span></li>
           @endif
         </ul>
-      </div>
     </div>
   </nav>

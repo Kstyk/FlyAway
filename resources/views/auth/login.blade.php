@@ -15,7 +15,7 @@
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col-12 col-lg-12 col-xl-12">
-            <div class="card bg-dark text-white" style="border-radius: 1rem;">
+            <div class="card bg-transparent text-white" style="border-radius: 1rem;">
               <div class="card-body p-5 text-center">
 
                 <div class="mb-md-5 mt-md-4 pb-5">
@@ -32,7 +32,7 @@
                   @endif
                   <form method="POST" action="{{ route('login.authenticate') }}">
                     @csrf
-                    <p class="text-white-50 mb-5">Please enter your login and password!</p>
+                    <p class="text-white-50 mb-5">Podaj twój email i hasło</p>
 
                     <div class="form-outline form-white mb-4">
                         <input id="emai" type="email" name="email" value="{{ old('email') }}" class="form-control form-control-lg
@@ -52,7 +52,7 @@
                   </form>
                 </div>
                 <div>
-                  <p class="mb-0">Nie masz konta? <a href="#!" class="text-white-50 fw-bold">Zarejestruj się!</a>
+                  <p class="mb-0">Nie masz konta? <a href="{{ route('register') }}" class="text-white-50 fw-bold">Zarejestruj się!</a>
                   </p>
                 </div>
 
