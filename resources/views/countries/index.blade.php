@@ -20,6 +20,7 @@
             </a>
         </div>
         @endcan
+        {{ $countries->links('pagination::bootstrap-4') }}
         <div class="row">
             @forelse ($countries as $c)
                 <div class="col-md-4">

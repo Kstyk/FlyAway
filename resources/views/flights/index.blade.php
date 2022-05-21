@@ -57,7 +57,7 @@
               @forelse ($flights as $f)
                 <tr>
                     <td><?php echo $i; $i++; ?></td>
-                    <td><a href="{{ route('trips.show', $f->Trip->id) }}">{{ $f->Trip->name }}</a></td>
+                    <td><a href="{{ route('trips.show', $f->trip->id) }}">{{ $f->Trip->name }}</a></td>
                     <td>{{ $f->airline_name }}</td>
                     <td>{{ $f->places }}</td>
                     <td><a href="{{ route('airports.show', $f->Airport->id) }}">{{ $f->Airport->name }}</a></td>

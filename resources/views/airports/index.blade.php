@@ -20,6 +20,7 @@
             </a>
         </div>
         @endcan
+        {{ $airports->links('pagination::bootstrap-4') }}
         <div class="row">
             @forelse ($airports as $airport)
                 <div class="col-md-4">

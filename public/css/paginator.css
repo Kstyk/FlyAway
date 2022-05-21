@@ -1,0 +1,15 @@
+.page-link {
+    background-color: transparent !important;
+    color: white !important;
+}
+
+nav .pagination .active {
+    background-color: #2f3f44;
+    border-color:blue !important;
+}
+
+.pagination > .active > span,
+.pagination > .active > span:focus,
+.pagination > .active > span:hover {
+    border:1px solid white !important;
+}

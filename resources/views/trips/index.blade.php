@@ -18,6 +18,7 @@
             </a>
         </div>
         @endcan
+        {{ $trips->links('pagination::bootstrap-4') }}
         <div class="row">
         @forelse ($trips as $trip)
             <div class="col-md-4">
@@ -49,7 +50,7 @@
                 </div>
             </div>
             @empty
-
+            <h6 class="text-white text-center">Brak wycieczek</h6>
             @endforelse
         </div>
     </div>

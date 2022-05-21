@@ -12,7 +12,7 @@ class AirportController extends Controller
 {
     public function index() {
         return view('airports.index', [
-                'airports' => Airport::all()
+                'airports' => Airport::paginate(6)
             ]);
     }
 

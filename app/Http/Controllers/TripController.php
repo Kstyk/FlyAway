@@ -15,7 +15,7 @@ class TripController extends Controller
 {
     public function index() {
         return view('trips.index', [
-                'trips' => Trip::all()
+                'trips' => Trip::paginate(6)
             ]);
     }
 
