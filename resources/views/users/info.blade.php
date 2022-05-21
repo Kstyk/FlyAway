@@ -29,6 +29,7 @@
                         <div class="media-body mb-5 text-white pb-10 justify-content-end">
                             <h4 class="mt-0 mb-0">{{ $user->name }} {{ $user->surname }}</h4>
                             <a href="{{ route('users.edit', $user->id) }}" class="btn btn-outline-dark btn-sm btn-block p-2 text-white mt-2 border border-white">Edytuj profil</a>
+                            <a href="{{ route('addmoney', $user->id) }}" class="btn btn-outline-dark btn-sm btn-block p-2 text-white mt-2 border border-white">Doładuj konto</a>
                         </div>
 
                     </div>
@@ -51,6 +52,10 @@
                       <tr>
                           <th>Email</th>
                           <td>{{ $user->email }}</td>
+                      </tr>
+                      <tr>
+                          <th>Stan konta</th>
+                          <td>{{ $user->bank_balance}}</td>
                       </tr>
                       <tr>
                         <th>Kraj</th>

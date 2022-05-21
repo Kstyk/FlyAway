@@ -8,6 +8,7 @@ use App\Http\Controllers\AirportController;
 use App\Http\Controllers\FlightController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserFlightController;
+use App\Http\Controllers\UserBankBalanceController;
 
 
 /*
@@ -30,6 +31,11 @@ Route::resource('users', UserController::class);
 Route::get('reserve/{id}', [UserFlightController::class, 'create'])->name('reserve');
 Route::post('store', [UserFlightController::class, 'store'])->name('userflight.store');
 Route::resource('userflights', UserFlightController::class);
+
+Route::controller(UserBankBalanceController::class) -> group(function() {
+    Route::get('/addmoney/{id}', 'edit')->name('addmoney');
+    Route::put('/saved/{id}', 'update')->name('save');
+});
 
 
 require __DIR__.'/auth.php';

@@ -54,7 +54,13 @@
                             <td ><form class="d-flex flex-column align-content-center" id="delete" method="POST" action="{{ route('userflights.destroy', $f->id) }}">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-outline-light btn-lg px-5 py-3 border border-white" type="submit" onclick="return confirm('Jesteś pewien, że chcesz odwołać tą rezerwację?')">Odwołaj</button>
+                                <button class="btn btn-outline-light btn-lg px-5 py-3 border border-white" type="submit"
+                                @if(!auth()->user()->isAdmin())
+                                    onclick="return confirm('Jesteś pewien, że chcesz odwołać tą rezerwację? Odzyskasz tylko połowę pieniędzy!')">Odwołaj
+                                @else
+                                    onclick="return confirm('Jesteś pewien, że chcesz odwołać tą rezerwację? Ten użytkownik odzyska tylko połowę pieniędzy!')">Odwołaj
+                                @endif
+                            </button>
                             </form></td>
                         </tr>
                         @endif
@@ -71,6 +77,7 @@
                         <th>Lotnisko końcowe</th>
                         <th>Data wylotu</th>
                         <th>Data zakupu</th>
+                        <th style="width: 5%">Liczba zarezerwowanych biletów</th>
                         <th>Usuń rezerwację</th>
                     </tr>
                     @foreach ($uf as $f)
@@ -83,6 +90,7 @@
                             <td><a class="text-white text-decoration-none" href="{{ route('airports.show', $f->Flight->airport2->id) }}">{{ $f->Flight->airport2->name }}, {{ $f->Flight->airport2->city }}</a></td>
                             <td>{{ $f->Flight->departure_date }}</td>
                             <td>{{ $f->date_of_purchase }}</td>
+                            <td>{{ $f->amount_of_tickets }}</td>
                             <td><form id="delete" method="POST" action="{{ route('userflights.destroy', $f->id) }}">
                                 @csrf
                                 @method('DELETE')

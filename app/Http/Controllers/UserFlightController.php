@@ -49,12 +49,28 @@ class UserFlightController extends Controller
                     'amount_of_tickets' => 'required|integer',
                 ]);
 
-                Flight::find($request->get('flight_id'))->decrement('places', $request->get('amount_of_tickets'));
-                $data = Carbon::now();
+                $flight = Flight::find($request->get('flight_id'));
+                $trip_price = Trip::find($flight->trip_id)->price;
+                // dd($trip_price);
 
-                UserFlight::create(array_merge($request->all(), ['date_of_purchase' => $data]));
+                $user_bankbalance = User::find($request->get('user_id'))->bank_balance;
+                // dd($user_bankbalance);
 
-                return redirect()->route('userflights.index');
+                $needed_cash = $trip_price * $request->get('amount_of_tickets');
+                // dd($needed_cash);
+
+                if($user_bankbalance >= $needed_cash) {
+                    User::find($request->get('user_id'))->decrement('bank_balance', round($needed_cash, 2));
+                    Flight::find($request->get('flight_id'))->decrement('places', $request->get('amount_of_tickets'));
+                    $data = Carbon::now();
+
+                    UserFlight::create(array_merge($request->all(), ['date_of_purchase' => $data]));
+
+                    return redirect()->route('userflights.index');
+                } else {
+                    return redirect()->route('reserve', $flight->trip_id)->withErrors(['msg' => 'Nie stać cię na tyle biletów! Sprawdź swój stan konta.']);
+                }
+
             } else
             return redirect()->route('trips.index');
         }
@@ -65,6 +81,12 @@ class UserFlightController extends Controller
             $flight = Flight::where('id', $uf->flight_id)->first();
 
             if($flight->departure_date > Carbon::now()) {
+                $trip_price = Trip::find($flight->trip_id)->price;
+                $amountsoftickets = $uf->amount_of_tickets;
+
+                $cashback = round(($trip_price*$amountsoftickets)/2, 2);
+                User::find($uf->user_id)->increment('bank_balance', $cashback);
+
                 Flight::find($flight->id)->increment('places', $uf->amount_of_tickets);
                 $query = UserFlight::where('id', $f)->delete();
             } else {

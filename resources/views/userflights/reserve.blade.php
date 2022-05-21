@@ -33,6 +33,7 @@
                         <th>Lotnisko startowe</th>
                         <th>Lotnisko końcowe</th>
                         <th>Wolnych miejsc</th>
+                        <th>Cena za bilet</th>
                         @if(auth()->user()->isAdmin())
                         <th>Użytkownik</th>
                         @endif
@@ -46,6 +47,7 @@
                             <td>{{ $f->airport->name }}, {{ $f->airport->city }}</td>
                             <td>{{ $f->airport2->name }}, {{ $f->airport2->city }}</td>
                             <td>{{ $f->places }}</td>
+                            <td>{{ $f->Trip->price }}</td>
                             @if(auth()->user()->isAdmin())
                             <form method="POST" action="{{ route('userflight.store') }}">
                                 @csrf
