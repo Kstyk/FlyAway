@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Country;
 use Auth;
 use Exception;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -36,6 +39,7 @@ class UserController extends Controller
             if(Auth::user()->isAdmin() || Auth::user()->id == $id) {
                 return view('users.edit', [
                     'user' => User::findOrFail($id),
+                    'countries' => Country::all(),
                 ]);
             } else
                 return redirect()->route('trips.index');
@@ -54,11 +58,34 @@ class UserController extends Controller
                         'surname' => 'required',
                         'date_of_birth' => 'required|integer|max:2004|min:1880',
                         'email' => 'required|min:0',
+                        'country_id' => 'required',
+                        'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg',
                     ]);
 
-                $user = User::findOrFail($id);
-                $input = $request->all();
-                $user->update($input);
+                    if ($request->hasFile('avatar')) {
+                        $image = $request->file('avatar');
+                        $filename = $image->getClientOriginalName();
+
+                        $img = Image::make($image->getRealPath());
+                        $img->resize(200, 200, function ($constraint) {
+                            $constraint->aspectRatio();
+                        });
+
+                        $img->stream();
+
+                        Storage::disk('public')->put('avatars'.'/'.$filename, $img, 'public');
+
+                        $requestData = $request->all();
+                        $requestData['avatar'] = $filename;
+                        $user = User::findOrFail($id);
+                        $input = $requestData;
+                        $user->update($input);
+                    } else {
+                        $user = User::findOrFail($id);
+                        $input = $request->all();
+                        $user->update($input);
+                    }
+
                 return redirect()->route('users.show', $id);
             } else
             return redirect()->route('trips.index');

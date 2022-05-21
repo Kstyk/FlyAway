@@ -51,7 +51,7 @@
                             <td>{{ $trip->period }} dni</td>
                           </tr>
                           <tr>
-                            <th scope="row">4</th>
+                            <th scope="row">5</th>
                             <td>Cena wycieczki</td>
                             <td>{{ $trip->price }} PLN</td>
                           </tr>

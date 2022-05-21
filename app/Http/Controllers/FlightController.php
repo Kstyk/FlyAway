@@ -8,12 +8,14 @@ use App\Models\Airport;
 use App\Models\Trip;
 use Auth;
 use Exception;
+use Carbon\Carbon;
 
 class FlightController extends Controller
 {
     public function index() {
         return view('flights.index', [
-                'flights' => Flight::all(),
+                'flights' => Flight::all()->where('departure_date','>',Carbon::now())->sortBy('departure_date'),
+                'flights_arch' => Flight::all()->where('departure_date','<=',Carbon::now())->sortByDesc('departure_date'),
             ]);
     }
 
@@ -37,11 +39,11 @@ class FlightController extends Controller
             if(Auth::user()->isAdmin()) {
                 $request->validate([
                     'trip_id' => 'required',
-                    'nazwa_linii' => 'required|max:128',
-                    'liczba_miejsc' => 'required|integer|min:1',
+                    'airline_name' => 'required|max:128',
+                    'places' => 'required|integer|min:1',
                     'airport_id' => 'required',
                     'airport_id_2' => 'required',
-                    'data_wylotu' => 'required|date|after:today|date_format:Y-m-d',
+                    'departure_date' => 'required|date|after:today|date_format:Y-m-d',
                 ]);
 
                 $input = $request->all();

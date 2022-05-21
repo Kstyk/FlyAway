@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 class RegisterController extends Controller
 {
@@ -30,18 +32,44 @@ class RegisterController extends Controller
             'email' => 'required|unique:users,email',
             'country_id' => 'required',
             'password' => 'required',
-            'confirm_password' => 'same:password'
+            'confirm_password' => 'same:password',
+            'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg',
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'surname' => $request->surname,
-            'date_of_birth' => $request->date_of_birth,
-            'email' => $request->email,
-            'country_id' => $request->country_id,
-            'password' => Hash::make($request->password),
-            'role_id' => DB::table('roles')->where('name', 'user')->value('id'),
-        ]);
+        if ($request->hasFile('avatar')) {
+            $image = $request->file('avatar');
+            $filename = $image->getClientOriginalName();
+
+            $img = Image::make($image->getRealPath());
+            $img->resize(200, 200, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+
+            $img->stream();
+
+            Storage::disk('public')->put('avatars'.'/'.$filename, $img, 'public');
+
+            $user = User::create([
+                'name' => $request->name,
+                'surname' => $request->surname,
+                'date_of_birth' => $request->date_of_birth,
+                'email' => $request->email,
+                'country_id' => $request->country_id,
+                'password' => Hash::make($request->password),
+                'role_id' => DB::table('roles')->where('name', 'user')->value('id'),
+                'avatar' => $filename
+            ]);
+        } else {
+            $user = User::create([
+                'name' => $request->name,
+                'surname' => $request->surname,
+                'date_of_birth' => $request->date_of_birth,
+                'email' => $request->email,
+                'country_id' => $request->country_id,
+                'password' => Hash::make($request->password),
+                'role_id' => DB::table('roles')->where('name', 'user')->value('id'),
+            ]);
+        }
 
         Auth::login($user);
 

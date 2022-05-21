@@ -7,6 +7,7 @@ use Auth;
 use App\Models\Trip;
 use App\Models\Flight;
 use App\Models\UserFlight;
+use App\Models\User;
 use Carbon\Carbon;
 
 class UserFlightController extends Controller
@@ -32,7 +33,8 @@ class UserFlightController extends Controller
         if(Auth::check())
                 return view('userflights.reserve', [
                     'trip' => Trip::findOrFail($id),
-                    'flights' => Flight::all()->where('trip_id', $id)->where('places', '>', 0)->where('departure_date','>',Carbon::now())
+                    'flights' => Flight::all()->where('trip_id', $id)->where('places', '>', 0)->where('departure_date','>',Carbon::now()),
+                    'users' => User::all()->where('role_id', 2)
                 ]);
         else
             return redirect()->route('login');

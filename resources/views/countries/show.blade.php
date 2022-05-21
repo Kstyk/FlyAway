@@ -50,7 +50,7 @@
                             <td>{{ $c->total_surface }} km<sup>2</sup></td>
                           </tr>
                           <tr>
-                            <th scope="row">4</th>
+                            <th scope="row">5</th>
                             <td>Język urzędowy</td>
                             <td>{{ $c->language }} </td>
                           </tr>

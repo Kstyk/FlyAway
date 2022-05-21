@@ -32,6 +32,10 @@
                         <th>Data wylotu</th>
                         <th>Lotnisko startowe</th>
                         <th>Lotnisko końcowe</th>
+                        <th>Wolnych miejsc</th>
+                        @if(auth()->user()->isAdmin())
+                        <th>Użytkownik</th>
+                        @endif
                         <th>Wybierz</th>
                     </tr>
                     @forelse ($flights as $f)
@@ -40,6 +44,24 @@
                             <td>{{ $f->departure_date }}</td>
                             <td>{{ $f->airport->name }}, {{ $f->airport->city }}</td>
                             <td>{{ $f->airport2->name }}, {{ $f->airport2->city }}</td>
+                            <td>{{ $f->places }}</td>
+                            @if(auth()->user()->isAdmin())
+                            <form method="POST" action="{{ route('userflight.store') }}">
+                                @csrf
+                                @method('POST')
+                            <td>
+                                <select name="user_id" id="user" class ="form-control bg-dark text-white">
+                                    @foreach ($users as $u)
+                                        <option class="px-2" value="{{ $u->id }}">{{ $u->name }} {{ $u->surname }}</option>
+                                    @endforeach
+                                </select>
+                            </td>
+                            <td>
+                                <input name="flight_id" type="text" class="d-none" value="{{ $f->id }}">
+                                <button class="btn btn-outline-light btn-lg px-2" type="submit">Rezerwuj</button>
+                            </td>
+                            </form>
+                            @else
                             <td>
                                 <form method="POST" action="{{ route('userflight.store') }}">
                                     @csrf
@@ -49,10 +71,11 @@
                                     <button class="btn btn-outline-light btn-lg px-2" type="submit">Rezerwuj</button>
                                 </form>
                             </td>
+                            @endif
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5">Nie ma obecnie żadnych lotów do {{ $trip->name }}</td>
+                            <td colspan="7">Nie ma obecnie żadnych lotów do {{ $trip->name }}</td>
                         </tr>
                     @endforelse
                 </table>

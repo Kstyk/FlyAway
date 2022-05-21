@@ -12,6 +12,12 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Kontakt</a>
           </li>
+          @if((Auth::check() && !Auth::user()->isAdmin()) || !Auth::check())
+          <li class="nav-item"><a class="nav-link" href="{{ route('trips.index') }}">Wycieczki</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ route('countries.index') }}">Kraje</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ route('flights.index') }}">Loty</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ route('airports.index') }}">Lotniska</a></li>
+          @endif
         </ul>
         <ul class="nav navbar-nav">
           @if (Auth::check())

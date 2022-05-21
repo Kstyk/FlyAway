@@ -22,7 +22,7 @@
                 <div class="px-4 pt-0 pb-4 cover border border-bottom-0 border-white">
                     <div class="media profile-head pb-5 d-flex flex-row justify-content-around">
                         <div class="profile mr-3 pb-5">
-                            <img src="{{ asset('storage\avatars\default.png') }}" alt="..." width="130" class="rounded mb-2 img-thumbnail">
+                            <img src="{{ asset('storage\avatars\\'.$user->avatar.'') }}" alt="..." width="130" class="rounded mb-2 img-thumbnail">
                         </div>
 
                         <div class="media-body mb-5 text-white pb-10 justify-content-end">
@@ -51,6 +51,10 @@
                           <th>Email</th>
                           <td>{{ $user->email }}</td>
                       </tr>
+                      <tr>
+                        <th>Kraj</th>
+                        <td>{{ $user->country->name }}</td>
+                        </tr>
                       <tr>
                           <th colspan="2"><a class="btn btn-outline-light btn-lg px-5 text-white" href="{{ route('change-password') }}">Zmień hasło</a></th>
                       </tr>

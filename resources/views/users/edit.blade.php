@@ -30,7 +30,7 @@
                       </ul>
                   </div>
                   @endif
-                  <form method="POST" action="{{ route('users.update', $user->id) }}">
+                  <form method="POST" enctype="multipart/form-data" action="{{ route('users.update', $user->id) }}">
                     @csrf
                     @method('PUT')
                     <p class="text-white-50 mb-5">Wprowadź poprawne dane</p>
@@ -58,6 +58,22 @@
                         @error('email') is-invalid @else is-valid
                         @enderror" />
                         <label class="form-label" for="email">Email</label>
+                    </div>
+                    <div class="form-outline form-white mb-4">
+                        <select class="form-control form-control-lg" id="country_id" name="country_id">
+                            @foreach ($countries as $c)
+                                <option value="{{$c->id}}" @if($c->id == $user->country_id) selected @endif>
+                                    {{ $c->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <label class="form-label" for="country_id">Kraj</label>
+                    </div>
+                    <div class="form-outline form-white mb-4">
+                        <input name="avatar" type="file" id="avatar" accept="image/png, image/gif, image/jpeg" class="form-control form-control-lg
+                        @error('avatar') is-invalid @else is-valid
+                        @enderror" />
+                        <label class="form-label" for="avatar">Avatar użytkownila</label>
                     </div>
                     <button class="btn btn-outline-light btn-lg px-5" type="submit">Edytuj</button>
                   </form>

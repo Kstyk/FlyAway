@@ -29,7 +29,7 @@
                       </ul>
                   </div>
                   @endif
-                  <form method="POST" action="{{ route('register.store') }}">
+                  <form method="POST" enctype="multipart/form-data" action="{{ route('register.store') }}">
                     @csrf
                     @method('POST')
                     <div class="form-outline form-white mb-4">
@@ -77,6 +77,12 @@
                         @error('confirm_password') is-invalid @else is-valid
                         @enderror" />
                         <label class="form-label" for="confirm_password">Powtórz hasło</label>
+                    </div>
+                    <div class="form-outline form-white mb-4">
+                        <input name="avatar" type="file" id="avatar" accept="image/png, image/gif, image/jpeg" class="form-control form-control-lg
+                        @error('avatar') is-invalid @else is-valid
+                        @enderror" />
+                        <label class="form-label" for="avatar">Avatar użytkownila</label>
                     </div>
 
                     <button class="btn btn-outline-light btn-lg px-5" type="submit">Zarejestruj</button>
