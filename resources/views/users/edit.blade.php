@@ -73,7 +73,7 @@
                         <input name="avatar" type="file" id="avatar" accept="image/png, image/gif, image/jpeg" class="form-control form-control-lg
                         @error('avatar') is-invalid @else is-valid
                         @enderror" />
-                        <label class="form-label" for="avatar">Avatar użytkownila</label>
+                        <label class="form-label" for="avatar">Avatar użytkownika</label>
                     </div>
                     <button class="btn btn-outline-light btn-lg px-5" type="submit">Edytuj</button>
                   </form>

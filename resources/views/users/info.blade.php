@@ -23,7 +23,8 @@
                     <div class="media profile-head pb-5 d-flex flex-row justify-content-around">
                         <div class="profile mr-3 pb-5">
                             <img src="{{ asset('storage\avatars\\'.$user->avatar.'') }}" alt="..." width="130" class="rounded mb-2 img-thumbnail">
-                        </div>
+                            <input type="text" name="avatar" value="default.png" class="d-none">
+                            </div>
 
                         <div class="media-body mb-5 text-white pb-10 justify-content-end">
                             <h4 class="mt-0 mb-0">{{ $user->name }} {{ $user->surname }}</h4>

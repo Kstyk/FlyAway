@@ -36,6 +36,7 @@
                         @if(auth()->user()->isAdmin())
                         <th>Użytkownik</th>
                         @endif
+                        <th>Liczba biletów</th>
                         <th>Wybierz</th>
                     </tr>
                     @forelse ($flights as $f)
@@ -50,7 +51,14 @@
                                 @csrf
                                 @method('POST')
                             <td>
-                                <select name="user_id" id="user" class ="form-control bg-dark text-white">
+                                <select name="amount_of_tickets" id="amount_of_tickets" class ="form-control bg-dark text-white">
+                                    @for ($i = 1; $i <= $f->places; $i++)
+                                        <option class="px-2" value="{{ $i }}">{{ $i }}</option>
+                                    @endfor
+                                </select>
+                            </td>
+                            <td>
+                                <select name="user_id" id="user_id" class ="form-control bg-dark text-white">
                                     @foreach ($users as $u)
                                         <option class="px-2" value="{{ $u->id }}">{{ $u->name }} {{ $u->surname }}</option>
                                     @endforeach
@@ -62,15 +70,22 @@
                             </td>
                             </form>
                             @else
+                            <form method="POST" action="{{ route('userflight.store') }}">
+                                @csrf
+                                @method('POST')
                             <td>
-                                <form method="POST" action="{{ route('userflight.store') }}">
-                                    @csrf
-                                    @method('POST')
+                                <select name="amount_of_tickets" id="amount_of_tickets" class ="form-control bg-dark text-white">
+                                    @for ($i = 1; $i <= $f->places; $i++)
+                                        <option class="px-2" value="{{ $i }}">{{ $i }}</option>
+                                    @endfor
+                                </select>
+                            </td>
+                            <td>
                                     <input name="flight_id" type="text" class="d-none" value="{{ $f->id }}">
                                     <input name="user_id" type="text" class="d-none" value="{{ Auth::user()->id }}">
                                     <button class="btn btn-outline-light btn-lg px-2" type="submit">Rezerwuj</button>
-                                </form>
                             </td>
+                            </form>
                             @endif
                         </tr>
                     @empty

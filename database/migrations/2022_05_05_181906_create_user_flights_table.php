@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class)->constrained();
             $table->foreignIdFor(Flight::class)->constrained();
             $table->date('date_of_purchase');
+            $table->integer('amount_of_tickets');
             $table->timestamps();
         });
     }

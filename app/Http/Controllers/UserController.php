@@ -81,8 +81,10 @@ class UserController extends Controller
                         $input = $requestData;
                         $user->update($input);
                     } else {
+                        $requestData = $request->all();
+                        $requestData['avatar'] = 'default.png';
                         $user = User::findOrFail($id);
-                        $input = $request->all();
+                        $input = $requestData;
                         $user->update($input);
                     }
 

@@ -46,9 +46,10 @@ class UserFlightController extends Controller
                 $request->validate([
                     'user_id' => 'required',
                     'flight_id' => 'required',
+                    'amount_of_tickets' => 'required|integer',
                 ]);
 
-                Flight::find($request->get('flight_id'))->decrement('places');
+                Flight::find($request->get('flight_id'))->decrement('places', $request->get('amount_of_tickets'));
                 $data = Carbon::now();
 
                 UserFlight::create(array_merge($request->all(), ['date_of_purchase' => $data]));
@@ -64,7 +65,7 @@ class UserFlightController extends Controller
             $flight = Flight::where('id', $uf->flight_id)->first();
 
             if($flight->departure_date > Carbon::now()) {
-                Flight::find($flight->id)->increment('places');
+                Flight::find($flight->id)->increment('places', $uf->amount_of_tickets);
                 $query = UserFlight::where('id', $f)->delete();
             } else {
                 $query = UserFlight::where('id', $f)->delete();
