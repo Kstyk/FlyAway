@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Gate;
 use App\Models\Trip;
 use App\Models\Country;
 use Auth;
-use Exception;
+use Illuminate\Database\QueryException;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 
@@ -146,7 +146,7 @@ class TripController extends Controller
         try {
             $trip->delete();
             return redirect()->route('trips.index');
-        } catch(Exception $e) {
+        } catch(QueryException $e) {
             return redirect()->route('trips.index')->withErrors(['msg' => "Nie można usunąć tej wycieczki"]);
         }
     }

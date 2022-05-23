@@ -20,8 +20,10 @@ return new class extends Migration
             $table->foreignIdFor(Trip::class)->constrained();
             $table->string('airline_name', 128);
             $table->integer('places');
-            $table->foreignIdFor(Airport::class)->constrained();
-            $table->foreignIdFor(Airport::class, 'airport_id_2')->constrained();
+            $table->bigInteger('departure_airport')->unsigned();
+            $table->bigInteger('destination_airport')->unsigned();
+            $table->foreign('departure_airport')->references('id')->on('airports')->onDelete('restrict');
+            $table->foreign('destination_airport')->references('id')->on('airports')->onDelete('restrict');
             $table->date('departure_date');
             $table->timestamps();
         });

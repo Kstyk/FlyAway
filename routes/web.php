@@ -23,6 +23,9 @@ use App\Http\Controllers\UserBankBalanceController;
 */
 
 Route::view('/aboutus', 'contactinfo.aboutus')->name('aboutus');
+Route::view('/contact', 'contactinfo.contact')->name('contact');
+
+Route::get('/', [TripController::class, 'index']);
 
 Route::resource('trips', TripController::class);
 Route::resource('countries', CountryController::class);

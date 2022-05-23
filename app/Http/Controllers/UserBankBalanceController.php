@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Auth;
-use Exception;
+use Illuminate\Database\QueryException;
 
 class UserBankBalanceController extends Controller
 {
@@ -28,7 +28,7 @@ class UserBankBalanceController extends Controller
             if(Auth::user()->id == $id) {
 
                     $request->validate([
-                        'bank_balance' => 'required|regex:/^\d+(\.\d{1,2})?$/'
+                        'bank_balance' => 'required|numeric|min:1'
                     ]);
 
                     $input = $request -> all();

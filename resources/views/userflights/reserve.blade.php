@@ -44,8 +44,8 @@
                         <tr>
                             <td>{{ $f->airline_name }}</td>
                             <td>{{ $f->departure_date }}</td>
-                            <td>{{ $f->airport->name }}, {{ $f->airport->city }}</td>
-                            <td>{{ $f->airport2->name }}, {{ $f->airport2->city }}</td>
+                            <td>{{ $f->departure->name }}, {{ $f->departure->city }}</td>
+                            <td>{{ $f->destination->name }}, {{ $f->destination->city }}</td>
                             <td>{{ $f->places }}</td>
                             <td>{{ $f->Trip->price }}</td>
                             @if(auth()->user()->isAdmin())

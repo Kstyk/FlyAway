@@ -38,7 +38,7 @@
                         <th>Data wylotu</th>
                         <th>Data zakupu</th>
                         <th style="width: 5%">Liczba zarezerwowanych biletów</th>
-                        <th>Usuń rezerwację</th>
+                        <th>Odwołaj rezerwację</th>
                     </tr>
                     @foreach ($uf as $f)
                         @if($f->Flight->departure_date > \Carbon\Carbon::now())
@@ -46,8 +46,8 @@
                             <td>{{ $f->User->name }} {{ $f->User->surname }}</td>
                             <td><a class="text-white text-decoration-none" href="{{ route('trips.show', $f->Flight->Trip->id) }}">{{ $f->Flight->Trip->name }}</a></td>
                             <td>{{ $f->Flight->airline_name }}</td>
-                            <td><a class="text-white text-decoration-none" href="{{ route('airports.show', $f->Flight->airport->id) }}">{{ $f->Flight->airport->name }}, {{ $f->Flight->airport->city }}</a></td>
-                            <td><a class="text-white text-decoration-none" href="{{ route('airports.show', $f->Flight->airport2->id) }}">{{ $f->Flight->airport2->name }}, {{ $f->Flight->airport2->city }}</a></td>
+                            <td><a class="text-white text-decoration-none" href="{{ route('airports.show', $f->Flight->departure->id) }}">{{ $f->Flight->departure->name }}, {{ $f->Flight->departure->city }}</a></td>
+                            <td><a class="text-white text-decoration-none" href="{{ route('airports.show', $f->Flight->destination->id) }}">{{ $f->Flight->destination->name }}, {{ $f->Flight->destination->city }}</a></td>
                             <td>{{ $f->Flight->departure_date }}</td>
                             <td>{{ $f->date_of_purchase }}</td>
                             <td>{{ $f->amount_of_tickets }}</td>
@@ -78,7 +78,7 @@
                         <th>Data wylotu</th>
                         <th>Data zakupu</th>
                         <th style="width: 5%">Liczba zarezerwowanych biletów</th>
-                        <th>Usuń rezerwację</th>
+                        <th>Usuń</th>
                     </tr>
                     @foreach ($uf as $f)
                         @if($f->Flight->departure_date < \Carbon\Carbon::now())
@@ -86,8 +86,8 @@
                             <td>{{ $f->User->name }} {{ $f->User->surname }}</td>
                             <td><a class="text-white text-decoration-none" href="{{ route('trips.show', $f->Flight->Trip->id) }}">{{ $f->Flight->Trip->name }}</a></td>
                             <td>{{ $f->Flight->airline_name }}</td>
-                            <td><a class="text-white text-decoration-none" href="{{ route('airports.show', $f->Flight->airport->id) }}">{{ $f->Flight->airport->name }}, {{ $f->Flight->airport->city }}</a></td>
-                            <td><a class="text-white text-decoration-none" href="{{ route('airports.show', $f->Flight->airport2->id) }}">{{ $f->Flight->airport2->name }}, {{ $f->Flight->airport2->city }}</a></td>
+                            <td><a class="text-white text-decoration-none" href="{{ route('airports.show', $f->Flight->departure->id) }}">{{ $f->Flight->departure->name }}, {{ $f->Flight->departure->city }}</a></td>
+                            <td><a class="text-white text-decoration-none" href="{{ route('airports.show', $f->Flight->destination->id) }}">{{ $f->Flight->destination->name }}, {{ $f->Flight->destination->city }}</a></td>
                             <td>{{ $f->Flight->departure_date }}</td>
                             <td>{{ $f->date_of_purchase }}</td>
                             <td>{{ $f->amount_of_tickets }}</td>

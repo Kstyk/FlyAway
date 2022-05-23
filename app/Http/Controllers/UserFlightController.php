@@ -9,6 +9,7 @@ use App\Models\Flight;
 use App\Models\UserFlight;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Database\QueryException;
 
 class UserFlightController extends Controller
 {
@@ -97,7 +98,7 @@ class UserFlightController extends Controller
             }
 
             return redirect()->route('userflights.index');
-        } catch(Exception $e) {
+        } catch(QueryException $e) {
             return redirect()->route('userflights.index')->withErrors(['msg' => "Nie można usunąć tej rezerwacji!"]);
         }
     }

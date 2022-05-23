@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Country;
 use Auth;
-use Exception;
+use Illuminate\Database\QueryException;
 
 class CountryController extends Controller
 {
@@ -100,7 +100,7 @@ class CountryController extends Controller
         try {
             $query = Country::where('id', $c)->delete();
             return redirect()->route('countries.index');
-        } catch(Exception $e) {
+        } catch(QueryException $e) {
             return redirect()->route('countries.index')->withErrors(['msg' => "Nie można usunąć tego kraju"]);
         }
     }

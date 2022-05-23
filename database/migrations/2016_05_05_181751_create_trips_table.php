@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('continent', 64);
             $table->integer('period');
             $table->string('describe',1000);
-            $table->double('price');
+            $table->decimal('price');
             $table->foreignIdFor(Country::class)->constrained();
             $table->string('img_name', 150);
             $table->timestamps();

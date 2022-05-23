@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Country;
 use Auth;
-use Exception;
+use Illuminate\Database\QueryException;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 
@@ -57,7 +57,7 @@ class UserController extends Controller
                         'name' => 'required',
                         'surname' => 'required',
                         'date_of_birth' => 'required|integer|max:2004|min:1880',
-                        'email' => 'required|min:0',
+                        'email' => 'required|min:0|unique:users,email'.$id,
                         'country_id' => 'required',
                         'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg',
                     ]);
@@ -102,7 +102,7 @@ class UserController extends Controller
         try {
             $query = User::where('id', $id)->delete();
             return redirect()->route('users.index');
-        } catch(Exception $e) {
+        } catch(QueryException $e) {
             return redirect()->route('users.index')->withErrors(['msg' => "Nie można usunąć tego użytkownika, ponieważ ma aktualnie zarezerwowane loty lub historię lotów."]);
         }
     }

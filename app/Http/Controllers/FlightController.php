@@ -7,7 +7,7 @@ use App\Models\Flight;
 use App\Models\Airport;
 use App\Models\Trip;
 use Auth;
-use Exception;
+use Illuminate\Database\QueryException;
 use Carbon\Carbon;
 
 class FlightController extends Controller
@@ -21,28 +21,25 @@ class FlightController extends Controller
 
     public function create()
     {
-        if(Auth::check())
-            if(Auth::user()->isAdmin())
+        if(Auth::check() && Auth::user()->isAdmin()) {
                 return view('flights.create', [
                     'trips' => Trip::all(),
                     'airports' => Airport::all()
                 ]);
-            else
-                return redirect()->route('flights.index');
-        else
-            return redirect()->route('flights.index');
+            }
+        return redirect()->route('flights.index');
     }
 
     public function store(Request $request)
     {
-        if(Auth::check())
+        if(Auth::check()) {
             if(Auth::user()->isAdmin()) {
                 $request->validate([
                     'trip_id' => 'required',
                     'airline_name' => 'required|max:128',
                     'places' => 'required|integer|min:1',
-                    'airport_id' => 'required',
-                    'airport_id_2' => 'required',
+                    'departure_airport' => 'required',
+                    'destination_airport' => 'required|different:departure_airport',
                     'departure_date' => 'required|date|after:today|date_format:Y-m-d',
                 ]);
 
@@ -53,7 +50,8 @@ class FlightController extends Controller
             } else {
                 return redirect()->route('flights.index');
             }
-        else return redirect()->route('flights.index');
+        }
+        return redirect()->route('flights.index');
     }
 
     public function edit($id) {
@@ -83,8 +81,8 @@ class FlightController extends Controller
             'trip_id' => 'required',
             'airline_name' => 'required|max:128',
             'places' => 'required|integer|min:1',
-            'airport_id' => 'required',
-            'airport_id_2' => 'required',
+            'departure_airport' => 'required',
+            'destination_airport' => 'required|different:departure_airport',
             'departure_date' => 'required|date|after:today|date_format:Y-m-d',
         ]);
 
@@ -105,7 +103,7 @@ class FlightController extends Controller
         try {
             $query = Flight::where('id', $f)->delete();
             return redirect()->route('flights.index');
-        } catch(Exception $e) {
+        } catch(QueryException $e) {
             return redirect()->route('flights.index')->withErrors(['msg' => "Nie można usunąć tego lotu - ktoś go już zarezerwował!"]);
         }
     }

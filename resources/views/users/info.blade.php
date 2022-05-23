@@ -58,7 +58,7 @@
                       </tr>
                       <tr>
                           <th>Stan konta</th>
-                          <td>{{ $user->bank_balance}}</td>
+                          <td>{{ $user->bank_balance}} PLN</td>
                       </tr>
                       <tr>
                         <th>Kraj</th>

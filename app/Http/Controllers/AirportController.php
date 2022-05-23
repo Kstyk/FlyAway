@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Airport;
 use App\Models\Country;
 use Auth;
-use Exception;
+use Illuminate\Database\QueryException;
 
 class AirportController extends Controller
 {
@@ -100,7 +100,7 @@ class AirportController extends Controller
         try {
             $airport->delete();
             return redirect()->route('airports.index');
-        } catch(Exception $e) {
+        } catch(QueryException $e) {
             return redirect()->route('airports.index')->withErrors(['msg' => "Nie można usunąć tego lotniska"]);
         }
     }

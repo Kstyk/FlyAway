@@ -33,10 +33,12 @@
                                         <a class="btn btn-lg" href="{{ route('airports.show', $airport) }}">
                                             <span>Więcej<br>szczegółów</span>
                                         </a>
-                                @can('delete', $airport)
+                                @can('update', $airport)
                                         <a class="btn btn-lg" href="{{ route('airports.edit', $airport) }}">
                                             <span>Edytuj</span>
                                         </a>
+                                    @endcan
+                                    @can('delete', $airport)
                                         <form id="delete" class="btn btn-lg" method="POST" action="{{ route('airports.destroy', $airport->id) }}">
                                             @csrf
                                             @method('DELETE')

@@ -12,18 +12,18 @@ class Flight extends Model
 {
     use HasFactory;
 
-    protected $fillable =['id', 'trip_id', 'airline_name', 'places', 'airport_id', 'airport_id_2', 'departure_date'];
+    protected $fillable =['id', 'trip_id', 'airline_name', 'places', 'departure_airport', 'destination_airport', 'departure_date'];
 
     public function trip() {
         return $this->belongsTo(Trip::class);
     }
 
-    public function airport() {
-        return $this->belongsTo(Airport::class, 'airport_id');
+    public function departure() {
+        return $this->belongsTo(Airport::class, 'departure_airport');
     }
 
-    public function airport2() {
-        return $this->belongsTo(Airport::class, 'airport_id_2');
+    public function destination() {
+        return $this->belongsTo(Airport::class, 'destination_airport');
     }
 
     public function userflights() {

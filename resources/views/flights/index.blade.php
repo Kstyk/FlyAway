@@ -60,8 +60,8 @@
                     <td><a href="{{ route('trips.show', $f->trip->id) }}">{{ $f->Trip->name }}</a></td>
                     <td>{{ $f->airline_name }}</td>
                     <td>{{ $f->places }}</td>
-                    <td><a href="{{ route('airports.show', $f->Airport->id) }}">{{ $f->Airport->name }}</a></td>
-                    <td><a href="{{ route('airports.show', $f->Airport2->id) }}">{{ $f->Airport2->name }}</a></td>
+                    <td><a href="{{ route('airports.show', $f->departure->id) }}">{{ $f->departure->name }}</a></td>
+                    <td><a href="{{ route('airports.show', $f->destination->id) }}">{{ $f->destination->name }}</a></td>
                     <td>{{ $f->departure_date }}</td>
                     @can('update', $f)
                     <td><a href="{{ route('flights.edit', $f) }}">Edycja</a></td>
@@ -101,11 +101,13 @@
                         <td><a href="{{ route('trips.show', $f->Trip->id) }}">{{ $f->Trip->name }}</a></td>
                         <td>{{ $f->airline_name }}</td>
                         <td>{{ $f->places }}</td>
-                        <td><a href="{{ route('airports.show', $f->Airport->id) }}">{{ $f->Airport->name }}</a></td>
-                        <td><a href="{{ route('airports.show', $f->Airport2->id) }}">{{ $f->Airport2->name }}</a></td>
+                        <td><a href="{{ route('airports.show', $f->departure->id) }}">{{ $f->departure->name }}</a></td>
+                        <td><a href="{{ route('airports.show', $f->destination->id) }}">{{ $f->destination->name }}</a></td>
                         <td>{{ $f->departure_date }}</td>
                         @can('update', $f)
                         <td><a href="{{ route('flights.edit', $f) }}">Edycja</a></td>
+                        @endcan
+                        @can('delete', $f)
                         <td><form id="delete" method="POST" action="{{ route('flights.destroy', $f->id) }}">
                             @csrf
                             @method('DELETE')

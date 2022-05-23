@@ -58,24 +58,24 @@
                         <label class="form-label" for="places">Liczba miejsc</label>
                     </div>
                     <div class="form-outline form-white mb-4">
-                        <select class="form-control form-control-lg" id="airport_id" name="airport_id">
+                        <select class="form-control form-control-lg" id="departure_airport" name="departure_airport">
                             @foreach ($airports as $a)
-                                <option value="{{$a->id}}" @if($a->name == $flight->airport->name) selected @endif>
+                                <option value="{{$a->id}}" @if($a->name == $flight->departure->name) selected @endif>
                                     {{ $a->name }}
                                 </option>
                             @endforeach
                         </select>
-                        <label class="form-label" for="airport_id">Lotnisko startowe</label>
+                        <label class="form-label" for="departure_airport">Lotnisko startowe</label>
                     </div>
                     <div class="form-outline form-white mb-4">
-                        <select class="form-control form-control-lg" id="airport_id_2" name="airport_id_2">
+                        <select class="form-control form-control-lg" id="destination_airport" name="destination_airport">
                             @foreach ($airports as $a)
-                                <option value="{{$a->id}}" @if($a->name == $flight->airport2->name) selected @endif>
+                                <option value="{{$a->id}}" @if($a->name == $flight->destination->name) selected @endif>
                                     {{ $a->name }}
                                 </option>
                             @endforeach
                         </select>
-                        <label class="form-label" for="airport_id_2">Lotnisko końcowe</label>
+                        <label class="form-label" for="destination_airport">Lotnisko końcowe</label>
                     </div>
                     <div class="form-group"> <!-- Date input -->
                         <input class="form-control" id="date" name="departure_date" placeholder="YYYY-MM-DD" value="{{ $flight->departure_date }}" type="text"/>
