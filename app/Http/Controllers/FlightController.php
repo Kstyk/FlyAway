@@ -104,7 +104,7 @@ class FlightController extends Controller
             $query = Flight::where('id', $f)->delete();
             return redirect()->route('flights.index');
         } catch(QueryException $e) {
-            return redirect()->route('flights.index')->withErrors(['msg' => "Nie można usunąć tego lotu - ktoś go już zarezerwował!"]);
+            return redirect()->route('flights.index')->withErrors(__('custom.flight_notdelete'));
         }
     }
 }

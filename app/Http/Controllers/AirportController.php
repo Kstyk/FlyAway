@@ -101,7 +101,7 @@ class AirportController extends Controller
             $airport->delete();
             return redirect()->route('airports.index');
         } catch(QueryException $e) {
-            return redirect()->route('airports.index')->withErrors(['msg' => "Nie można usunąć tego lotniska"]);
+            return redirect()->route('airports.index')->withErrors(__('custom.airport_notdelete'));
         }
     }
 }

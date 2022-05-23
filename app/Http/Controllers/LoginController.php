@@ -34,9 +34,7 @@ class LoginController extends Controller
             return redirect()->route('trips.index');
         }
 
-        return back()->withErrors([
-            'email' => 'Podałeś zły email.',
-        ])->onlyInput('email');
+        return back()->withErrors(__('passwords.user'))->onlyInput('email');
     }
 
     public function logout(Request $request)

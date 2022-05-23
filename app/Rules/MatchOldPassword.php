@@ -39,6 +39,6 @@ class MatchOldPassword implements Rule
      */
     public function message()
     {
-        return 'Podane hasło nie jest zgodne z aktualnym.';
+        return __('passwords.different');
     }
 }

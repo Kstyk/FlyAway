@@ -147,7 +147,7 @@ class TripController extends Controller
             $trip->delete();
             return redirect()->route('trips.index');
         } catch(QueryException $e) {
-            return redirect()->route('trips.index')->withErrors(['msg' => "Nie można usunąć tej wycieczki"]);
+            return redirect()->route('trips.index')->withErrors(__('custom.trip_notdelete'));
         }
     }
 }

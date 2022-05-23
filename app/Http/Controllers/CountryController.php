@@ -101,7 +101,7 @@ class CountryController extends Controller
             $query = Country::where('id', $c)->delete();
             return redirect()->route('countries.index');
         } catch(QueryException $e) {
-            return redirect()->route('countries.index')->withErrors(['msg' => "Nie można usunąć tego kraju"]);
+            return redirect()->route('countries.index')->withErrors(__('custom.country_notdelete'));
         }
     }
 }

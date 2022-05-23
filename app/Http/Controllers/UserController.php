@@ -103,7 +103,7 @@ class UserController extends Controller
             $query = User::where('id', $id)->delete();
             return redirect()->route('users.index');
         } catch(QueryException $e) {
-            return redirect()->route('users.index')->withErrors(['msg' => "Nie można usunąć tego użytkownika, ponieważ ma aktualnie zarezerwowane loty lub historię lotów."]);
+            return redirect()->route('users.index')->withErrors(__('custom.user_notdelete'));
         }
     }
 

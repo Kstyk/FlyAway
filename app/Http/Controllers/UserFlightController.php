@@ -99,7 +99,7 @@ class UserFlightController extends Controller
 
             return redirect()->route('userflights.index');
         } catch(QueryException $e) {
-            return redirect()->route('userflights.index')->withErrors(['msg' => "Nie można usunąć tej rezerwacji!"]);
+            return redirect()->route('userflights.index')->withErrors(__('custom.userflight_notdelete'));
         }
     }
 }
