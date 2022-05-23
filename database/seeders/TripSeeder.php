@@ -120,7 +120,43 @@ class TripSeeder extends Seeder
                     'price' => 7000,
                     'country_id' => '12',
                     'img_name' => 'p11.jpg'
-                ]
+                ],
+                [
+                    'name' => 'Sahara',
+                    'continent' => 'Afryka',
+                    'period' => 15,
+                    'describe' => Str::random(150),
+                    'price' => 4000,
+                    'country_id' => '13',
+                    'img_name' => 'p13.jpg'
+                ],
+                [
+                    'name' => 'Czarnobyl',
+                    'continent' => 'Europa',
+                    'period' => 4,
+                    'describe' => Str::random(150),
+                    'price' => 1000,
+                    'country_id' => '14',
+                    'img_name' => 'p14.jpg'
+                ],
+                [
+                    'name' => 'Andy',
+                    'continent' => 'Ameryka Południowa',
+                    'period' => 22,
+                    'describe' => Str::random(150),
+                    'price' => 4550,
+                    'country_id' => '15',
+                    'img_name' => 'p15.jpg'
+                ],
+                [
+                    'name' => 'Bangkok',
+                    'continent' => 'Azja',
+                    'period' => 12,
+                    'describe' => Str::random(150),
+                    'price' => 2500,
+                    'country_id' => '16',
+                    'img_name' => 'p16.jpg'
+                ],
             ], 'name'
         );
     }

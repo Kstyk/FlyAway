@@ -1,24 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     @include('shared.header')
-    <link rel="stylesheet" href="{{asset('css/cards_with_trips.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/cards_with_trips.css') }}">
+    <title>Kraje</title>
 </head>
-
 <body>
     @include('shared.nav')
     <div class="container container-fluid">
         <h1 class="fw-bold mb-2 text-uppercase text-white text-center border-bottom border-white pb-1 mb-5">Kraje</h1>
         @if ($errors->any())
-            <h4><?php echo "<script type='text/javascript'>alert('" . $errors->first() . "');</script>"; ?></h4>
+            <h4><?php echo "<script type='text/javascript'>alert('" . session('errors')->first('msg') . "');</script>"; ?></h4>
         @endif
         @can('create', $countries->first())
-        <div class="row">
-            <a class="btn btn-lg btn-add" href="{{ route('countries.create') }}">
-                <span>Dodaj kraj</span>
-            </a>
-        </div>
+            <div class="row">
+                <a class="btn btn-lg btn-add" href="{{ route('countries.create') }}">
+                    <span>Dodaj kraj</span>
+                </a>
+            </div>
         @endcan
         {{ $countries->links('pagination::bootstrap-4') }}
         <div class="row">
@@ -29,27 +28,31 @@
                             <div class="profile-name mb-3">
                                 {{ $c->name }}
                             </div>
-                                        <a class="btn btn-lg" href="{{ route('countries.show', $c) }}">
-                                            <span>Więcej<br>szczegółów</span>
-                                        </a>
-                                @can('update', $c)
-                                        <a class="btn btn-lg" href="{{ route('countries.edit', $c) }}">
-                                            <span>Edytuj</span>
-                                        </a>
-                                        <form id="delete" class="btn btn-lg" method="POST" action="{{ route('countries.destroy', $c->id) }}">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button
-                                                onclick="return confirm('Jesteś pewien, że chcesz usunąć ten kraj?')">Usuń</button>
-                                        </form>
+                            <a class="btn btn-lg" href="{{ route('countries.show', $c) }}">
+                                <span>Więcej<br>szczegółów</span>
+                            </a>
+                            @can('update', $c)
+                                <a class="btn btn-lg" href="{{ route('countries.edit', $c) }}">
+                                    <span>Edytuj</span>
+                                </a>
                                 @endcan
-                            </div>
+                            @can('delete', $c)
+                                <form id="delete" class="btn btn-lg" method="POST"
+                                    action="{{ route('countries.destroy', $c->id) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button
+                                        onclick="return confirm('Jesteś pewien, że chcesz usunąć ten kraj?')">Usuń</button>
+                                </form>
+                            @endcan
                         </div>
                     </div>
+                </div>
             @empty
             @endforelse
         </div>
     </div>
+    @include('shared.footer')
     @include('shared.js')
 </body>
 

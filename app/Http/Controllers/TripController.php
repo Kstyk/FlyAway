@@ -109,7 +109,7 @@ class TripController extends Controller
                 'price' => 'required|numeric|min:0',
                 'describe' => 'required|min:0|max:1000',
                 'country_id' => 'required',
-                'img_name' => 'image|required|unique:trips|mimes:jpeg,png,jpg,gif,svg',
+                'img_name' => 'image|unique:trips|mimes:jpeg,png,jpg,gif,svg',
             ]);
 
             if ($request->hasFile('img_name')) {
@@ -128,12 +128,17 @@ class TripController extends Controller
 
                 $requestData = $request->all();
                 $requestData['img_name'] = $filename;
-            }
 
-        $trip = Trip::findOrFail($id);
-        $input = $requestData;
-        $trip->update($input);
-        return redirect()->route('trips.index');
+                $trip = Trip::findOrFail($id);
+                $input = $requestData;
+                $trip->update($input);
+                return redirect()->route('trips.index');
+            } else {
+                $trip = Trip::findOrFail($id);
+                $input = $request->all();
+                $trip->update($input);
+                return redirect()->route('trips.index');
+            }
     }
 
     public function destroy(Trip $trip)

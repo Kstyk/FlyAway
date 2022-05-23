@@ -22,6 +22,8 @@ use App\Http\Controllers\UserBankBalanceController;
 |
 */
 
+Route::view('/aboutus', 'contactinfo.aboutus')->name('aboutus');
+
 Route::resource('trips', TripController::class);
 Route::resource('countries', CountryController::class);
 Route::resource('airports', AirportController::class);

@@ -91,6 +91,26 @@ class AirportSeeder extends Seeder
                 'name' => 'O. R. Tambo International Airport',
                 'country_id' => 12,
                 'city' => 'Johannesburg'
+            ],
+            [
+                'name' => 'Port lotniczy Kijów-Boryspol',
+                'country_id' => 14,
+                'city' => 'Kijów'
+            ],
+            [
+                'name' => 'Port lotniczy Algier',
+                'country_id' => 13,
+                'city' => 'Algier'
+            ],
+            [
+                'name' => 'Port lotniczy Lima-Jorge Chávez',
+                'country_id' => 15,
+                'city' => 'Callao'
+            ],
+            [
+                'name' => 'Port lotniczy Bangkok-Suvarnabhumi',
+                'country_id' => 16,
+                'city' => 'Bangkok'
             ]
         ],
         'name'

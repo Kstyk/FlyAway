@@ -68,7 +68,10 @@ class UserFlightController extends Controller
 
                     return redirect()->route('userflights.index');
                 } else {
-                    return redirect()->route('reserve', $flight->trip_id)->withErrors(['msg' => 'Nie stać cię na tyle biletów! Sprawdź swój stan konta.']);
+                    if(!Auth::user()->isAdmin())
+                        return redirect()->route('reserve', $flight->trip_id)->withErrors(['msg' => 'Nie stać cię na tyle biletów! Sprawdź swój stan konta.']);
+                    else
+                    return redirect()->route('reserve', $flight->trip_id)->withErrors(['msg' => 'Ten użytkownik ma za niski stan konta na taką ilość biletów.']);
                 }
 
             } else

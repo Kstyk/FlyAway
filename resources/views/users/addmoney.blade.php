@@ -45,6 +45,7 @@
           </div>
         </div>
       </div>
+      @include('shared.footer')
     @include('shared.js')
 </body>
 </html>

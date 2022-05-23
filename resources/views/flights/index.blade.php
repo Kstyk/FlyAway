@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Flights</title>
+    <title>Loty</title>
     @include('shared.header')
     <link rel="stylesheet" href="{{asset('css/cards_with_trips.css')}}">
     <style>
@@ -119,6 +119,7 @@
               </table>
             </div>
     </div>
+    @include('shared.footer')
     @include('shared.js')
 </body>
 

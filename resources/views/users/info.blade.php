@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ asset('css/user_info.css') }}">
     <link rel="stylesheet" href="{{asset('css/cards_with_trips.css')}}">
     @include('shared.header')
+    <title>Profil {{ $user->name }} {{ $user->surname }}</title>
 </head>
 
 <body>
@@ -29,7 +30,9 @@
                         <div class="media-body mb-5 text-white pb-10 justify-content-end">
                             <h4 class="mt-0 mb-0">{{ $user->name }} {{ $user->surname }}</h4>
                             <a href="{{ route('users.edit', $user->id) }}" class="btn btn-outline-dark btn-sm btn-block p-2 text-white mt-2 border border-white">Edytuj profil</a>
+                            @if(!Auth::user()->isAdmin())
                             <a href="{{ route('addmoney', $user->id) }}" class="btn btn-outline-dark btn-sm btn-block p-2 text-white mt-2 border border-white">Doładuj konto</a>
+                            @endif
                         </div>
 
                     </div>
@@ -61,9 +64,11 @@
                         <th>Kraj</th>
                         <td>{{ $user->country->name }}</td>
                         </tr>
+                        @if(!Auth::user()->isAdmin())
                       <tr>
                           <th colspan="2"><a class="btn btn-outline-light btn-lg px-5 text-white" href="{{ route('change-password') }}">Zmień hasło</a></th>
                       </tr>
+                      @endif
                     </tbody>
                   </table>
             </div>
@@ -71,7 +76,7 @@
         </div>
     </div>
     </div>
-
+    @include('shared.footer')
     @include('shared.js')
     </body>
 

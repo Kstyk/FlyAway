@@ -4,6 +4,7 @@
 <head>
     @include('shared.header')
     <link rel="stylesheet" href="{{asset('css/cards_with_trips.css')}}">
+    <title>Lotniska</title>
 </head>
 
 <body>
@@ -50,6 +51,7 @@
             @endforelse
         </div>
     </div>
+    @include('shared.footer')
     @include('shared.js')
 </body>
 

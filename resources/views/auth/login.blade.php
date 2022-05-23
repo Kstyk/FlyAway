@@ -8,6 +8,7 @@
     @include("shared.header")
     <link rel="stylesheet" href="{{asset('css/cards_with_trips.css')}}">
     <link rel="stylesheet" href="css/login.css">
+    <title>Zaloguj się</title>
 </head>
 <body class="text-white">
     @include("shared.nav")
@@ -20,7 +21,7 @@
 
                 <div class="mb-md-5 mt-md-4 pb-5">
 
-                  <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                  <h2 class="fw-bold mb-2 text-uppercase">Zaloguj się</h2>
                   @if ($errors->any())
                   <div class="alert alert-danger">
                       <ul>
@@ -61,5 +62,6 @@
           </div>
         </div>
       </div>
+      @include('shared.footer')
 </body>
 </html>

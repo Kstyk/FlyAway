@@ -101,6 +101,7 @@
                     @endforeach
                 </table>
     </div>
+    @include('shared.footer')
     @include('shared.js')
     <script>
         $(document).ready(function() {

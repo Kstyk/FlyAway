@@ -8,6 +8,7 @@
             color:white;
         }
     </style>
+    <title>Edytuj kraj</title>
 </head>
 <body>
     @include('shared.nav')
@@ -74,7 +75,7 @@
           </div>
         </div>
       </div>
-
+      @include('shared.footer')
     @include('shared.js')
 </body>
 </html>

@@ -118,6 +118,27 @@ class CountrySeeder extends Seeder
                     'total_surface' => 2381741,
                     'language' => 'arabski'
                 ],
+                [
+                    'name' => 'Ukraina',
+                    'iso3166' => 'UA',
+                    'currency' => 'hrywna',
+                    'total_surface' => 603700,
+                    'language' => 'ukraiński'
+                ],
+                [
+                    'name' => 'Peru',
+                    'iso3166' => 'PE',
+                    'currency' => 'sol',
+                    'total_surface' => 1285216,
+                    'language' => 'hiszpański'
+                ],
+                [
+                    'name' => 'Tajlandia',
+                    'iso3166' => 'TH',
+                    'currency' => 'bat',
+                    'total_surface' => 513120,
+                    'language' => 'tajski'
+                ],
             ],
             'name'
         );

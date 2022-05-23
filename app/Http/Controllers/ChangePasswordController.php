@@ -27,7 +27,10 @@ class ChangePasswordController extends Controller
      */
     public function index()
     {
+        if(!Auth::user()->isAdmin())
         return view('users.changePassword');
+            else
+        return redirect()->route('trips.index');
     }
 
     /**

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Szczegóły tripa</title>
+    <title>{{ $trip->name }}</title>
     @include('shared.header')
     <link rel="stylesheet" href="{{asset('css/show_card.css')}}">
     <link rel="stylesheet" href="{{asset('css/cards_with_trips.css')}}">
@@ -61,6 +61,7 @@
             </div>
         </div>
     </div>
+    @include('shared.footer')
     @include('shared.js')
 </body>
 </html>

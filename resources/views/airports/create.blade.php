@@ -8,6 +8,7 @@
             color:white;
         }
     </style>
+    <title>Dodaj lotnisko</title>
 </head>
 <body>
     @include('shared.nav')
@@ -66,7 +67,7 @@
           </div>
         </div>
       </div>
-
+      @include('shared.footer')
     @include('shared.js')
 </body>
 </html>

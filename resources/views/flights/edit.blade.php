@@ -8,6 +8,7 @@
             color:white;
         }
     </style>
+    <title>Edytuj lot</title>
 </head>
 <body>
     @include('shared.nav')
@@ -76,13 +77,13 @@
                         </select>
                         <label class="form-label" for="airport_id_2">Lotnisko końcowe</label>
                     </div>
-                    <div class="form-outline form-white mb-4">
-                        <input name="departure_date" type="text" class="form-control" value={{ \Carbon\Carbon::parse($a->departure_date)->format('Y-m-d') }}>
+                    <div class="form-group"> <!-- Date input -->
+                        <input class="form-control" id="date" name="departure_date" placeholder="YYYY-MM-DD" value="{{ $flight->departure_date }}" type="text"/>
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                        <label class="control-label" for="departure_date">Data wylotu</label>
+                      </div>
 
-                        <label class="form-label" for="departure_date">Data wylotu</label>
-                    </div>
-
-                    <button class="btn btn-outline-light btn-lg px-5" type="submit">Edytuj</button>
+                    <button class="btn btn-outline-light btn-lg px-5 mt-3" type="submit">Edytuj</button>
                   </form>
                 </div>
               </div>
@@ -90,8 +91,21 @@
           </div>
         </div>
       </div>
-
+      @include('shared.footer')
     @include('shared.js')
+    <script>
+        $(document).ready(function(){
+      var date_input=$('input[name="departure_date"]'); //our date input has the name "date"
+      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+      var options={
+        format: 'yyyy-mm-dd',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+      };
+      date_input.datepicker(options);
+    })
+    </script>
 </body>
 </html>
 

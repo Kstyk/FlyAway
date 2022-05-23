@@ -7,7 +7,7 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="nav navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">O nas</a>
+            <a class="nav-link active" aria-current="page" href="{{ route('aboutus') }}">O nas</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Kontakt</a>

@@ -8,7 +8,7 @@
     @include('shared.header')
     <link rel="stylesheet" href="{{asset('css/show_card.css')}}">
     <link rel="stylesheet" href="{{asset('css/cards_with_trips.css')}}">
-<body>
+<body class="min-vh-100">
     @include('shared.nav')
     <div class="container container-fluid">
         <h1 class="fw-bold mb-2 text-uppercase text-white text-center border-bottom border-white pb-1 mb-5">{{ $c->name }}</h1>
@@ -60,6 +60,7 @@
             </div>
         </div>
     </div>
+    @include('shared.footer')
     @include('shared.js')
 </body>
 </html>
