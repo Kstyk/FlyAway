@@ -29,20 +29,20 @@
                     @method('POST')
                     <p class="text-white-50 mb-5">Wprowadź poprawne dane</p>
                     <div class="form-outline form-white mb-4">
-                        <input id="name" type="text" name="name" class="form-control form-control-lg
+                        <input id="name" type="text" name="name" class="form-control-lg w-100
                         @error('name') is-invalid @else is-valid
                         @enderror" />
                         <label class="form-label" for="name">Nazwa</label>
                     </div>
 
                     <div class="form-outline form-white mb-4">
-                        <input name="continent" type="text" id="continent" class="form-control form-control-lg
+                        <input name="continent" type="text" id="continent" class="form-control-lg w-100
                         @error('continent') is-invalid @else is-valid
                         @enderror" />
                         <label class="form-label" for="continent">Kontynent</label>
                     </div>
                     <div class="form-outline form-white mb-4">
-                        <select class="form-control form-control-lg" id="country_id" name="country_id">
+                        <select class="form-control-lg w-100" id="country_id" name="country_id">
                             @foreach ($countries as $c)
                                 <option value="{{ $c->id }}">
                                     {{ $c->name }}
@@ -52,25 +52,25 @@
                         <label class="form-label" for="country_id">Kraj</label>
                     </div>
                     <div class="form-outline form-white mb-4">
-                        <input name="period" type="number" id="period" class="form-control form-control-lg
+                        <input name="period" type="number" id="period" class="form-control-lg w-100
                         @error('period') is-invalid @else is-valid
                         @enderror" />
                         <label class="form-label" for="period">Okres trwania wycieczki</label>
                     </div>
                     <div class="form-outline form-white mb-4">
-                        <textarea name="describe" id="describe" rows="5" class="form-control form-control-lg
+                        <textarea name="describe" id="describe" rows="5" class="form-control-lg w-100
                         @error('describe') is-invalid @else is-valid
                         @enderror"></textarea>
                         <label class="form-label" for="describe">Opis</label>
                     </div>
                     <div class="form-outline form-white mb-4">
-                        <input name="price" type="number" id="price" class="form-control form-control-lg
+                        <input name="price" type="number" id="price" class="form-control-lg w-100
                         @error('price') is-invalid @else is-valid
                         @enderror" />
                         <label class="form-label" for="price">Cena wycieczki</label>
                     </div>
                     <div class="form-outline form-white mb-4">
-                        <input name="img_name" type="file" id="img_name" accept="image/png, image/gif, image/jpeg" class="form-control form-control-lg
+                        <input name="img_name" type="file" id="img_name" accept="image/png, image/gif, image/jpeg" class="form-control-lg w-100
                         @error('img_name') is-invalid @else is-valid
                         @enderror" />
                         <label class="form-label" for="img_name">Zdjęcie wycieczki</label>

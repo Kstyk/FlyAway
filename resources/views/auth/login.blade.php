@@ -29,14 +29,14 @@
                     <p class="text-white-50 mb-5">Podaj twój email i hasło</p>
 
                     <div class="form-outline form-white mb-4">
-                        <input id="emai" type="email" name="email" value="{{ old('email') }}" class="form-control form-control-lg
+                        <input id="emai" type="email" name="email" value="{{ old('email') }}" class="form-control-lg w-100
                         @error('email') is-invalid @else is-valid
                         @enderror" />
                         <label class="form-label" for="email">Email</label>
                     </div>
 
                     <div class="form-outline form-white mb-4">
-                        <input name="password" type="password" id="password" class="form-control form-control-lg
+                        <input name="password" type="password" id="password" class="form-control-lg w-100
                         @error('password') is-invalid @else is-valid
                         @enderror" />
                         <label class="form-label" for="password">Hasło</label>

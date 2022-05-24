@@ -29,7 +29,7 @@
                     @method('POST')
                     <p class="text-white-50 mb-5">Wprowadź poprawne dane</p>
                     <div class="form-outline form-white mb-4">
-                        <select class="form-control form-control-lg" id="trip_id" name="trip_id">
+                        <select class="form-control-lg w-100" id="trip_id" name="trip_id">
                             @foreach ($trips as $t)
                                 <option value="{{$t->id}}">
                                     {{ $t->name }}
@@ -39,19 +39,19 @@
                         <label class="form-label" for="trip_id">Wycieczka</label>
                     </div>
                     <div class="form-outline form-white mb-4">
-                        <input id="airline_name" type="text" name="airline_name" class="form-control form-control-lg
+                        <input id="airline_name" type="text" name="airline_name" class="form-control-lg w-100
                         @error('airline_name') is-invalid @else is-valid
                         @enderror" />
                         <label class="form-label" for="airline_name">Nazwa linii</label>
                     </div>
                     <div class="form-outline form-white mb-4">
-                        <input name="places" type="number" id="places" class="form-control form-control-lg
+                        <input name="places" type="number" id="places" class="form-control-lg w-100
                         @error('places') is-invalid @else is-valid
                         @enderror" />
                         <label class="form-label" for="places">Liczba miejsc</label>
                     </div>
                     <div class="form-outline form-white mb-4">
-                        <select class="form-control form-control-lg" id="departure_airport" name="departure_airport">
+                        <select class="form-control-lg w-100" id="departure_airport" name="departure_airport">
                             @foreach ($airports as $a)
                                 <option value="{{$a->id}}">
                                     {{ $a->name }}, {{ $a->city }}
@@ -61,7 +61,7 @@
                         <label class="form-label" for="departure_airport">Lotnisko startowe</label>
                     </div>
                     <div class="form-outline form-white mb-4">
-                        <select class="form-control form-control-lg" id="destination_airport" name="destination_airport">
+                        <select class="form-control-lg w-100" id="destination_airport" name="destination_airport">
                             @foreach ($airports as $a)
                                 <option value="{{$a->id}}">
                                     {{ $a->name }}, {{ $a->city }}
@@ -71,7 +71,7 @@
                         <label class="form-label" for="destination_airport">Lotnisko końcowe</label>
                     </div>
                     <div class="form-group"> <!-- Date input -->
-                        <input class="form-control" id="date" name="departure_date" placeholder="YYYY-MM-DD" type="text"/>
+                        <input autocomplete="off" class="form-control-lg w-100" id="date" name="departure_date" placeholder="YYYY-MM-DD" type="text"/>
                         <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
                         <label class="control-label" for="departure_date">Data wylotu</label>
                       </div>

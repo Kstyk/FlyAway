@@ -29,32 +29,32 @@
                     @method('POST')
                     <p class="text-white-50 mb-5">Wprowadź poprawne dane</p>
                     <div class="form-outline form-white mb-4">
-                        <input id="name" type="text" name="name" class="form-control form-control-lg
+                        <input id="name" type="text" name="name" class="form-control-lg w-100
                         @error('name') is-invalid @else is-valid
                         @enderror" />
                         <label class="form-label" for="name">Nazwa</label>
                     </div>
 
                     <div class="form-outline form-white mb-4">
-                        <input name="iso3166" type="text" id="iso3166" class="form-control form-control-lg
+                        <input name="iso3166" type="text" id="iso3166" class="form-control-lg w-100
                         @error('iso3166') is-invalid @else is-valid
                         @enderror" />
                         <label class="form-label" for="iso3166">Kod iso3166</label>
                     </div>
                     <div class="form-outline form-white mb-4">
-                        <input name="currency" type="text" id="currency" class="form-control form-control-lg
+                        <input name="currency" type="text" id="currency" class="form-control-lg w-100
                         @error('currency') is-invalid @else is-valid
                         @enderror" />
                         <label class="form-label" for="currency">Waluta</label>
                     </div>
                     <div class="form-outline form-white mb-4">
-                        <input name="total_surface" type="number" id="total_surface" class="form-control form-control-lg
+                        <input name="total_surface" type="number" id="total_surface" class="form-control-lg w-100
                         @error('total_surface') is-invalid @else is-valid
                         @enderror" />
                         <label class="form-label" for="total_surface">Powierzchnia całkowita</label>
                     </div>
                     <div class="form-outline form-white mb-4">
-                        <input name="language" type="text" id="language" class="form-control form-control-lg
+                        <input name="language" type="text" id="language" class="form-control-lg w-100
                         @error('language') is-invalid @else is-valid
                         @enderror" />
                         <label class="form-label" for="language">Język urzędowy</label>

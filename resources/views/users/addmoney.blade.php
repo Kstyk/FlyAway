@@ -24,7 +24,7 @@
                     @csrf
                     @method('PUT')
                     <div class="form-outline form-white mb-4">
-                        <input id="bank_balance" type="number" name="bank_balance" class="form-control form-control-lg
+                        <input id="bank_balance" type="number" name="bank_balance" class="form-control-lg w-100
                         @error('bank_balance') is-invalid @else is-valid
                         @enderror" />
                         <label class="form-label" for="bank_balance">Kwota</label>

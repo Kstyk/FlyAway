@@ -20,6 +20,6 @@ class CheckAdmin
         if(!Gate::allows('is-admin')) {
             return redirect()->back()->withErrors(__('custom.not_allowed'));
         }
-        return true;
+        return $next($request);
     }
 }

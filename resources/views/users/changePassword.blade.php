@@ -24,21 +24,21 @@
                         @csrf
 
                         <div class="form-outline form-white mb-4">
-                            <input id="current_password" type="password" name="current_password" class="form-control form-control-lg
+                            <input id="current_password" type="password" name="current_password" class="form-control-lg w-100
                             @error('current_password') is-invalid @else is-valid
                             @enderror" />
                             <label class="form-label" for="current_password">Obecne hasło</label>
                         </div>
 
                         <div class="form-outline form-white mb-4">
-                            <input name="new_password" type="password" id="new_password" class="form-control form-control-lg
+                            <input name="new_password" type="password" id="new_password" class="form-control-lg w-100
                             @error('new_password') is-invalid @else is-valid
                             @enderror" />
                             <label class="form-label" for="new_password">Nowe hasło</label>
                         </div>
 
                         <div class="form-outline form-white mb-4">
-                            <input name="new_confirm_password" type="password" id="new_confirm_password" class="form-control form-control-lg
+                            <input name="new_confirm_password" type="password" id="new_confirm_password" class="form-control-lg w-100
                             @error('new_confirm_password') is-invalid @else is-valid
                             @enderror" />
                             <label class="form-label" for="new_confirm_password">Powtórz nowe hasło</label>

@@ -35,7 +35,7 @@ class UserController extends Controller
 
     public function edit($id) {
             $user = User::findOrFail($id);
-            if($user->canotn('update', [Auth::user(), $user]))
+            if($user->cannot('update', [Auth::user(), $user]))
                 return redirect()->back()->withErrors(__('custom.not_allowed'));
 
             return view('users.edit', [
