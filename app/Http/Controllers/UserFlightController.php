@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use DB;
+use Exception;
 use App\Models\Trip;
 use App\Models\Flight;
 use App\Models\UserFlight;
@@ -48,33 +50,41 @@ class UserFlightController extends Controller
                     'amount_of_tickets' => 'required|integer',
                 ]);
 
-                $flight = Flight::find($request->get('flight_id'));
-                $trip_price = Trip::find($flight->trip_id)->price;
-                // dd($trip_price);
+                DB::beginTransaction();
+                try {
+                    $flight = Flight::find($request->get('flight_id'));
+                    $trip_price = Trip::find($flight->trip_id)->price;
+                     // dd($trip_price);
 
-                $user_bankbalance = User::find($request->get('user_id'))->bank_balance;
-                // dd($user_bankbalance);
+                     $user_bankbalance = User::find($request->get('user_id'))->bank_balance;
+                    // dd($user_bankbalance);
 
-                $needed_cash = $trip_price * $request->get('amount_of_tickets');
-                // dd($needed_cash);
+                    $needed_cash = $trip_price * $request->get('amount_of_tickets');
+                    // dd($needed_cash);
 
-                if($user_bankbalance >= $needed_cash) {
-                    User::find($request->get('user_id'))->decrement('bank_balance', round($needed_cash, 2));
-                    Flight::find($request->get('flight_id'))->decrement('places', $request->get('amount_of_tickets'));
-                    $data = Carbon::now();
+                    if($user_bankbalance >= $needed_cash) {
+                        User::find($request->get('user_id'))->decrement('bank_balance', round($needed_cash, 2));
+                        Flight::find($request->get('flight_id'))->decrement('places', $request->get('amount_of_tickets'));
+                        $data = Carbon::now();
 
-                    UserFlight::create(array_merge($request->all(), ['date_of_purchase' => $data]));
+                        UserFlight::create(array_merge($request->all(), ['date_of_purchase' => $data]));
 
-                    return redirect()->route('userflights.index');
-                } else {
-                    if(!Gate::allows('is-admin'))
-                        return redirect()->route('reserve', $flight->trip_id)->withErrors(['msg' => 'Nie stać cię na tyle biletów! Sprawdź swój stan konta.']);
-                    else
-                        return redirect()->route('reserve', $flight->trip_id)->withErrors(['msg' => 'Ten użytkownik ma za niski stan konta na taką ilość biletów.']);
+                        DB::commit();
+
+                        return redirect()->route('userflights.index');
+                    } else {
+                        if(!Gate::allows('is-admin'))
+                            return redirect()->route('reserve', $flight->trip_id)->withErrors(['msg' => 'Nie stać cię na tyle biletów! Sprawdź swój stan konta.']);
+                        else
+                            return redirect()->route('reserve', $flight->trip_id)->withErrors(['msg' => 'Ten użytkownik ma za niski stan konta na taką ilość biletów.']);
+                    }
+                } catch(Exception $ex) {
+                    DB::rollback();
+                    return redirect()->back()->withErrors(__('custom.not_reserved'));
                 }
-
             } else
             return redirect()->route('trips.index');
+
         }
 
     public function destroy($f) {

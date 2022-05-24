@@ -9,4 +9,5 @@ return [
     'userflight_notdelete' => 'Nie można usunąć tej rezerwacji!',
 
     'not_allowed' => 'Nie masz uprawnień do wykonania tej akcji.',
+    'not_reserved' => 'Nieudana rezerwacja lotu.',
 ];
