@@ -15,15 +15,7 @@
     <div class="container pt-5">
         <h2 class="fw-bold mb-2 text-uppercase text-white text-center">Wybrałeś wycieczkę do: {{ $trip->name }}</h2>
         <h4 class="fw-bold mb-2 text-uppercase text-white text-center">Oto dostępne loty: </h4>
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+        @include('shared.error')
 
             <div class="form-outline form-white mb-4">
                 <table class="table text-white">

@@ -12,6 +12,8 @@
     @include('shared.nav')
     <div class="container container-fluid">
         <h1 class="fw-bold mb-2 text-uppercase text-white text-center border-bottom border-white pb-1 mb-5">O nas</h1>
+        @include('shared.error')
+
         <p class="text-white text-center">
             <img src="https://cdn.pixabay.com/photo/2017/06/20/22/14/man-2425121_960_720.jpg" style="width:100%" class="float-left pb-5" alt="people">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet suscipit rem nemo dolores quos voluptate non eaque mollitia, recusandae odio deleniti tenetur aspernatur. Magnam reiciendis voluptatem sit facilis dolorum velit!

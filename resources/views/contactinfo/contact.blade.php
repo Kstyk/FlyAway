@@ -10,6 +10,8 @@
 <body>
     @include('shared.nav')
     <div class="container container-fluid text-white text-center">
+        @include('shared.error')
+
         <h1 class="fw-bold mb-2 text-uppercase text-white text-center border-bottom border-white pb-1 mb-5">Kontakt</h1>
         Seweryn Drąg <br>
         dragseweryn@zohomail.eu <br>

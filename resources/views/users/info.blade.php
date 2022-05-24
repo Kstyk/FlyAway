@@ -15,7 +15,8 @@
 <body>
     @include('shared.nav')
 
-    <div class="container">
+    <div class="container container-fluid">
+        @include('shared.error')
     <div class="row py-5 px-8">
         <div class="col-md-8 mx-auto">
             <!-- Profile widget -->
@@ -31,7 +32,7 @@
                             <h4 class="mt-0 mb-0">{{ $user->name }} {{ $user->surname }}</h4>
                             <a href="{{ route('users.edit', $user->id) }}" class="btn btn-outline-dark btn-sm btn-block p-2 text-white mt-2 border border-white">Edytuj profil</a>
                             @if(!Auth::user()->isAdmin())
-                            <a href="{{ route('addmoney', $user->id) }}" class="btn btn-outline-dark btn-sm btn-block p-2 text-white mt-2 border border-white">Doładuj konto</a>
+                            <a href="{{ route('addmoney') }}" class="btn btn-outline-dark btn-sm btn-block p-2 text-white mt-2 border border-white">Doładuj konto</a>
                             @endif
                         </div>
 

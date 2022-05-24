@@ -9,9 +9,8 @@
     @include('shared.nav')
     <div class="container" id="container_trips">
         <h1 class="fw-bold mb-2 text-uppercase text-white text-center border-bottom border-white pb-1 mb-5">Nasze wycieczki</h1>
-        @if($errors->any())
-            <h4><?php echo "<script type='text/javascript'>alert('".$errors->first()."');</script>"; ?></h4>
-        @endif
+        @include('shared.error')
+
         @can('create', $trips->first())
         <div class="row">
             <a class="btn btn-lg btn-add" href="{{ route('trips.create') }}">

@@ -20,15 +20,8 @@
                 <div class="mb-md-5 mt-md-4 pb-5">
 
                   <h2 class="fw-bold mb-2 text-uppercase">Zarejestruj się</h2>
-                  @if ($errors->any())
-                  <div class="alert alert-danger">
-                      <ul>
-                          @foreach ($errors->all() as $error)
-                              <li>{{ $error }}</li>
-                          @endforeach
-                      </ul>
-                  </div>
-                  @endif
+                  @include('shared.error')
+
                   <form method="POST" enctype="multipart/form-data" action="{{ route('register.store') }}">
                     @csrf
                     @method('POST')

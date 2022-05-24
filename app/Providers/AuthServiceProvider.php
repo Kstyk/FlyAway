@@ -6,8 +6,15 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvid
 use Illuminate\Support\Facades\Gate;
 use App\Policies\TripPolicy;
 use App\Policies\UserPolicy;
+use App\Policies\FlightPolicy;
+use App\Policies\CountryPolicy;
+use App\Policies\AirportPolicy;
 use App\Models\User;
 use App\Models\Trip;
+use App\Models\Flight;
+use App\Models\Country;
+use App\Models\Airport;
+use Auth;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -19,6 +26,9 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         Trip::class => TripPolicy::class,
         User::class => UserPolicy::class,
+        Country::class => CountryPolicy::class,
+        Flight::class => FlightPolicy::class,
+        Airport::class => AirportPolicy::class
     ];
 
     /**
@@ -31,7 +41,8 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('is-admin', function (User $user) {
-            return $user->role_id == 1;
+            return $user->isAdmin();
         });
+
     }
 }

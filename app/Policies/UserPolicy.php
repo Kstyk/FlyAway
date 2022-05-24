@@ -10,28 +10,27 @@ class UserPolicy
 {
     use HandlesAuthorization;
 
-    public function create(User $user)
+    public function view(User $authenticatedUser, User $user)
     {
-        return $user->role_id == 1 || $user->id==Auth::user()->id;
+        if($user->role_id == 1)
+            return true;
+        else
+            return $user->id==$authenticatedUser->id;
     }
 
-    public function update(User $user)
+    public function update(User $authenticatedUser, User $user)
     {
-        return $user->role_id == 1 || $user->id==Auth::user()->id;
+        if($user->role_id == 1)
+            return true;
+        else
+            return $user->id==$authenticatedUser->id;
     }
 
     public function delete(User $user)
     {
-        return $user->role_id == 1 || $user->id==Auth::user()->id;
-    }
-
-    public function restore(User $user)
-    {
-        return true;
-    }
-
-    public function forceDelete(User $user)
-    {
-        return true;
+        if($user->role_id == 1)
+            return true;
+        else
+            return $user->id==$authenticatedUser->id;
     }
 }

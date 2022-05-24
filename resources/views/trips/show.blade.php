@@ -12,6 +12,8 @@
     @include('shared.nav')
     <div class="container" id="container_trips">
         <h1 class="fw-bold mb-2 text-uppercase text-white text-center border-bottom border-white pb-1 mb-5">{{ $trip->name }}</h1>
+        @include('shared.error')
+
         <div class="row">
             <div class="col-md-12">
                 <div class="profile-card-4 text-center"><img src="{{ asset('storage\img_trips\\'.$trip->img_name.'') }}"

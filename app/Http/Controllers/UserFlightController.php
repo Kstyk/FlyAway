@@ -10,13 +10,13 @@ use App\Models\UserFlight;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Gate;
 
 class UserFlightController extends Controller
 {
     public function index()
     {
-        if(Auth::check())
-            if(Auth::user()->isAdmin()) {
+                if(Gate::allows('is-admin')) {
                     return view('userflights.index', [
                         'uf' => UserFlight::all()
                     ]);
@@ -25,8 +25,6 @@ class UserFlightController extends Controller
                         'uf' => UserFlight::all()->where('user_id', Auth::user()->id)
                     ]);
                 }
-        else
-            return redirect()->route('trips.index');
     }
 
     public function create($id)
@@ -69,10 +67,10 @@ class UserFlightController extends Controller
 
                     return redirect()->route('userflights.index');
                 } else {
-                    if(!Auth::user()->isAdmin())
+                    if(!Gate::allows('is-admin'))
                         return redirect()->route('reserve', $flight->trip_id)->withErrors(['msg' => 'Nie stać cię na tyle biletów! Sprawdź swój stan konta.']);
                     else
-                    return redirect()->route('reserve', $flight->trip_id)->withErrors(['msg' => 'Ten użytkownik ma za niski stan konta na taką ilość biletów.']);
+                        return redirect()->route('reserve', $flight->trip_id)->withErrors(['msg' => 'Ten użytkownik ma za niski stan konta na taką ilość biletów.']);
                 }
 
             } else
@@ -88,7 +86,11 @@ class UserFlightController extends Controller
                 $trip_price = Trip::find($flight->trip_id)->price;
                 $amountsoftickets = $uf->amount_of_tickets;
 
-                $cashback = round(($trip_price*$amountsoftickets)/2, 2);
+                if(Gate::allows('is-admin'))
+                    $cashback = ($trip_price*$amountsoftickets);
+                else
+                    $cashback = ($trip_price*$amountsoftickets)/2;
+
                 User::find($uf->user_id)->increment('bank_balance', $cashback);
 
                 Flight::find($flight->id)->increment('places', $uf->amount_of_tickets);

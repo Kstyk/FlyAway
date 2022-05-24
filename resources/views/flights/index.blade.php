@@ -27,9 +27,8 @@
     @include('shared.nav')
     <div class="container container-fluid">
         <h1 class="fw-bold mb-2 text-uppercase text-white text-center border-bottom border-white pb-1 mb-5">Loty</h1>
-        @if ($errors->any())
-            <h4><?php echo "<script type='text/javascript'>alert('" . $errors->first() . "');</script>"; ?></h4>
-        @endif
+        @include('shared.error')
+
         @can('create', $flights->first())
         <div class="row">
             <a class="btn btn-lg btn-add" href="{{ route('flights.create') }}">

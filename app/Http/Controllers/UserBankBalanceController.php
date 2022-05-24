@@ -4,42 +4,27 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use Auth;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Gate;
+use Auth;
 
 class UserBankBalanceController extends Controller
 {
-    public function edit($id) {
-        if(Auth::check()){
-            if(Auth::user()->id == $id) {
-                return view('users.addmoney', [
-                    'user' => User::findOrFail($id),
-                ]);
-            } else
-                return redirect()->route('trips.index');
-        } else {
-            return redirect()->route('trips.index');
-        }
+    public function edit() {
+        return view('users.addmoney', [
+            'user' => User::findOrFail(Auth::user()->id),
+        ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        if(Auth::check()){
-            if(Auth::user()->id == $id) {
+        $request->validate([
+            'bank_balance' => 'required|numeric|min:1'
+        ]);
 
-                    $request->validate([
-                        'bank_balance' => 'required|numeric|min:1'
-                    ]);
+        $input = $request -> all();
+        User::findOrFail(Auth::user()->id)->increment('bank_balance', $input['bank_balance']);
 
-                    $input = $request -> all();
-                    User::findOrFail($id)->increment('bank_balance', $input['bank_balance']);
-
-                return redirect()->route('users.show', $id);
-            } else
-            return redirect()->route('trips.index');
-    } else {
-        return redirect()->route('trips.index');
-    }
-
+        return redirect()->route('users.show', Auth::user()->id);
     }
 }

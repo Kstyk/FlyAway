@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Country;
 use App\Models\UserFlight;
+use Auth;
 
 class User extends Authenticatable
 {
@@ -64,5 +65,9 @@ class User extends Authenticatable
 
     public function isAdmin() {
         return $this->role_id == 1;
+    }
+
+    public function isLogged() {
+        return $this->id === auth()->user()->id;
     }
 }

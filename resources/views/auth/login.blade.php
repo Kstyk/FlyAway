@@ -22,15 +22,8 @@
                 <div class="mb-md-5 mt-md-4 pb-5">
 
                   <h2 class="fw-bold mb-2 text-uppercase">Zaloguj się</h2>
-                  @if ($errors->any())
-                  <div class="alert alert-danger">
-                      <ul>
-                          @foreach ($errors->all() as $error)
-                              <li>{{ $error }}</li>
-                          @endforeach
-                      </ul>
-                  </div>
-                  @endif
+                  @include('shared.error')
+
                   <form method="POST" action="{{ route('login.authenticate') }}">
                     @csrf
                     <p class="text-white-50 mb-5">Podaj twój email i hasło</p>

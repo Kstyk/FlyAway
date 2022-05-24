@@ -38,8 +38,8 @@ Route::post('store', [UserFlightController::class, 'store'])->name('userflight.s
 Route::resource('userflights', UserFlightController::class);
 
 Route::controller(UserBankBalanceController::class) -> group(function() {
-    Route::get('/addmoney/{id}', 'edit')->name('addmoney');
-    Route::put('/saved/{id}', 'update')->name('save');
+    Route::get('/addmoney', 'edit')->name('addmoney');
+    Route::put('/saved', 'update')->name('save');
 });
 
 

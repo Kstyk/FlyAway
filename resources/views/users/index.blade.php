@@ -12,9 +12,7 @@
     @include('shared.nav')
     <div class="container container-fluid">
         <h1 class="fw-bold mb-2 text-uppercase text-white text-center border-bottom border-white pb-1 mb-5">Użytkownicy</h1>
-        @if ($errors->any())
-            <h4><?php echo "<script type='text/javascript'>alert('" . $errors->first() . "');</script>"; ?></h4>
-        @endif
+        @include('shared.error')
         <table class="table text-white">
             <thead>
               <tr>

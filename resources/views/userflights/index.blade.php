@@ -18,16 +18,7 @@
     @include('shared.nav')
     <div class="container pt-5">
         <h4 class="fw-bold mb-2 text-uppercase text-white text-center border-bottom border-white pb-1 mb-5">Zarezerwowane loty: </h4>
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
+        @include('shared.error')
                 <table class="table text-white" id="sortedTable">
                     <tr>
                         <th>Imię i nazwisko</th>
@@ -58,7 +49,7 @@
                                 @if(!auth()->user()->isAdmin())
                                     onclick="return confirm('Jesteś pewien, że chcesz odwołać tą rezerwację? Odzyskasz tylko połowę pieniędzy!')">Odwołaj
                                 @else
-                                    onclick="return confirm('Jesteś pewien, że chcesz odwołać tą rezerwację? Ten użytkownik odzyska tylko połowę pieniędzy!')">Odwołaj
+                                    onclick="return confirm('Jesteś pewien, że chcesz odwołać tą rezerwację? Ten użytkownik odzyska całą kwotę')">Odwołaj
                                 @endif
                             </button>
                             </form></td>

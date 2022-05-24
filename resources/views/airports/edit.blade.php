@@ -22,15 +22,8 @@
                 <div class="mb-md-5 mt-md-4 pb-5">
 
                   <h2 class="fw-bold mb-2 text-uppercase">Edytuj lotnisko</h2>
-                  @if ($errors->any())
-                  <div class="alert alert-danger">
-                      <ul>
-                          @foreach ($errors->all() as $error)
-                              <li>{{ $error }}</li>
-                          @endforeach
-                      </ul>
-                  </div>
-                  @endif
+                  @include('shared.error')
+
                   <form method="POST" action="{{ route('airports.update', $airport->id) }}">
                     @csrf
                     @method('PUT')
