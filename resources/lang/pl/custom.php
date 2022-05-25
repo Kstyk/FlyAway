@@ -10,4 +10,5 @@ return [
 
     'not_allowed' => 'Nie masz uprawnień do wykonania tej akcji.',
     'not_reserved' => 'Nieudana rezerwacja lotu.',
+    '404_notfound' => 'Nie znaleziono strony o tym adresie. Za kilka sekund nastąpi automatyczne przekierowanie do strony głównej',
 ];
