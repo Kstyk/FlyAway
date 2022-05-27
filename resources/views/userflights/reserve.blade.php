@@ -64,7 +64,7 @@
                             </td>
                             </form>
                             @else
-                            <form method="POST" action="{{ route('userflight.store') }}">
+                            <form method="POST" action="{{ route('userflight.addToCart', ['id' => $f->id]) }}">
                                 @csrf
                                 @method('POST')
                             <td>
@@ -77,7 +77,7 @@
                             <td>
                                     <input name="flight_id" type="text" class="d-none" value="{{ $f->id }}">
                                     <input name="user_id" type="text" class="d-none" value="{{ Auth::user()->id }}">
-                                    <button class="btn btn-outline-light btn-lg px-2" type="submit">Rezerwuj</button>
+                                    <button class="btn btn-outline-light btn-lg px-2" type="submit">Dodaj do koszyka</button>
                             </td>
                             </form>
                             @endif

@@ -36,6 +36,7 @@
             </ul>
           </li>
           @else
+          <li class="nav-item"><a class="nav-link" href="{{ route('userflight.shoppingCart') }}">Mój koszyk <span class="badge">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span></a></li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Moje konto

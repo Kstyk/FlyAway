@@ -6,10 +6,12 @@ use Illuminate\Http\Request;
 use Auth;
 use DB;
 use Exception;
+use Session;
 use App\Models\Trip;
 use App\Models\Flight;
 use App\Models\UserFlight;
 use App\Models\User;
+use App\Models\Cart;
 use Carbon\Carbon;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Gate;
@@ -41,51 +43,80 @@ class UserFlightController extends Controller
             return redirect()->route('login');
     }
 
-    public function store(Request $request)
-    {
-        if(Auth::check()) {
-                $request->validate([
-                    'user_id' => 'required',
-                    'flight_id' => 'required',
-                    'amount_of_tickets' => 'required|integer',
+    public function getAddToCart(Request $request, $id) {
+        $flight = Flight::find($request->get('flight_id'));
+        $trip_price = Trip::find($flight->trip_id)->price;
+        $tickets = $request->get('amount_of_tickets');
+
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->add($flight, $tickets, $trip_price, $flight->id);
+
+        $request -> session()->put('cart', $cart);
+        //dd($request->session()->get('cart'));
+        return redirect()->route('trips.index');
+    }
+
+    public function getCart() {
+        if(!Session::has('cart')) {
+            return view('userflights.shopping-cart', ['flights' => null]);
+        }
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+        return view('userflights.shopping-cart', ['flights' => $cart->items, 'totalPrice' => $cart->totalPrice]);
+    }
+
+    public function store(Request $request) {
+        if(Session::has('cart')) {
+            $store_carts = Session::get('cart');
+            $cart = new Cart($store_carts);
+
+            $items = $cart -> items;
+            $totalPrice = $cart->totalPrice;
+
+            DB::beginTransaction();
+
+            $user = User::find($request->get('user_id'));
+            $user_bankbalance = $user->bank_balance;
+
+            if($user_bankbalance < $totalPrice) {
+                DB::rollback();
+                return redirect()->back()->withErrors(__('custom.not_enough_cash'));
+            } else {
+                $user -> decrement('bank_balance', $totalPrice);
+            }
+
+            foreach($items as $it) {
+
+                $flight = Flight::find($it['flight']['id']);
+                $date = Carbon::now();
+
+                $places = $flight->places;
+                $places_wanted = $it['qty'];
+
+                if($places < $places_wanted) {
+                    DB::rollback();
+                    return redirect()->back()->withErrors(__('custom.too_late'));
+                }
+
+                $flight->decrement('places', $places_wanted);
+
+                UserFlight::create([
+                    'user_id' => $user->id,
+                    'flight_id' => $flight->id,
+                    'date_of_purchase' => $date,
+                    'amount_of_tickets' => $places_wanted
                 ]);
 
-                DB::beginTransaction();
-                try {
-                    $flight = Flight::find($request->get('flight_id'));
-                    $trip_price = Trip::find($flight->trip_id)->price;
-                     // dd($trip_price);
+            }
 
-                     $user_bankbalance = User::find($request->get('user_id'))->bank_balance;
-                    // dd($user_bankbalance);
+            DB::commit();
 
-                    $needed_cash = $trip_price * $request->get('amount_of_tickets');
-                    // dd($needed_cash);
+            Session::forget('cart');
 
-                    if($user_bankbalance >= $needed_cash) {
-                        User::find($request->get('user_id'))->decrement('bank_balance', round($needed_cash, 2));
-                        Flight::find($request->get('flight_id'))->decrement('places', $request->get('amount_of_tickets'));
-                        $data = Carbon::now();
-
-                        UserFlight::create(array_merge($request->all(), ['date_of_purchase' => $data]));
-
-                        DB::commit();
-
-                        return redirect()->route('userflights.index');
-                    } else {
-                        if(!Gate::allows('is-admin'))
-                            return redirect()->route('reserve', $flight->trip_id)->withErrors(['msg' => 'Nie stać cię na tyle biletów! Sprawdź swój stan konta.']);
-                        else
-                            return redirect()->route('reserve', $flight->trip_id)->withErrors(['msg' => 'Ten użytkownik ma za niski stan konta na taką ilość biletów.']);
-                    }
-                } catch(Exception $ex) {
-                    DB::rollback();
-                    return redirect()->back()->withErrors(__('custom.not_reserved'));
-                }
-            } else
-            return redirect()->route('trips.index');
-
+            return redirect()->route('userflights.index');
         }
+    }
 
     public function destroy($f) {
         try {

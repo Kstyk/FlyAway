@@ -37,6 +37,16 @@ Route::get('reserve/{id}', [UserFlightController::class, 'create'])->name('reser
 Route::post('store', [UserFlightController::class, 'store'])->name('userflight.store');
 Route::resource('userflights', UserFlightController::class);
 
+Route::post('add-to-cart/{id}', [
+    'uses' => 'App\Http\Controllers\UserFlightController@getAddToCart',
+    'as' => 'userflight.addToCart'
+]);
+
+Route::get('shopping-cart', [
+    'uses' => 'App\Http\Controllers\UserFlightController@getCart',
+    'as' => 'userflight.shoppingCart'
+]);
+
 Route::controller(UserBankBalanceController::class) -> group(function() {
     Route::get('/addmoney', 'edit')->name('addmoney');
     Route::put('/saved', 'update')->name('save');
