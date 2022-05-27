@@ -47,6 +47,21 @@ Route::get('shopping-cart', [
     'as' => 'userflight.shoppingCart'
 ]);
 
+Route::get('delete-one/{id}', [
+    'uses' => 'App\Http\Controllers\UserFlightController@deleteOne',
+    'as' => 'userflight.deleteOne'
+]);
+
+Route::get('delete/{id}', [
+    'uses' => 'App\Http\Controllers\UserFlightController@delete',
+    'as' => 'userflight.delete'
+]);
+
+Route::post('delete-all', [
+    'uses' => 'App\Http\Controllers\UserFlightController@deleteAll',
+    'as' => 'userflight.deleteAll'
+]);
+
 Route::controller(UserBankBalanceController::class) -> group(function() {
     Route::get('/addmoney', 'edit')->name('addmoney');
     Route::put('/saved', 'update')->name('save');

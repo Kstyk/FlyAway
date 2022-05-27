@@ -26,9 +26,6 @@
                         <th>Lotnisko końcowe</th>
                         <th>Wolnych miejsc</th>
                         <th>Cena za bilet</th>
-                        @if(auth()->user()->isAdmin())
-                        <th>Użytkownik</th>
-                        @endif
                         <th>Liczba biletów</th>
                         <th>Wybierz</th>
                     </tr>
@@ -40,30 +37,6 @@
                             <td>{{ $f->destination->name }}, {{ $f->destination->city }}</td>
                             <td>{{ $f->places }}</td>
                             <td>{{ $f->Trip->price }}</td>
-                            @if(auth()->user()->isAdmin())
-                            <form method="POST" action="{{ route('userflight.store') }}">
-                                @csrf
-                                @method('POST')
-                            <td>
-                                <select name="amount_of_tickets" id="amount_of_tickets" class ="form-control bg-dark text-white">
-                                    @for ($i = 1; $i <= $f->places; $i++)
-                                        <option class="px-2" value="{{ $i }}">{{ $i }}</option>
-                                    @endfor
-                                </select>
-                            </td>
-                            <td>
-                                <select name="user_id" id="user_id" class ="form-control bg-dark text-white">
-                                    @foreach ($users as $u)
-                                        <option class="px-2" value="{{ $u->id }}">{{ $u->name }} {{ $u->surname }}</option>
-                                    @endforeach
-                                </select>
-                            </td>
-                            <td>
-                                <input name="flight_id" type="text" class="d-none" value="{{ $f->id }}">
-                                <button class="btn btn-outline-light btn-lg px-2" type="submit">Rezerwuj</button>
-                            </td>
-                            </form>
-                            @else
                             <form method="POST" action="{{ route('userflight.addToCart', ['id' => $f->id]) }}">
                                 @csrf
                                 @method('POST')
@@ -80,7 +53,6 @@
                                     <button class="btn btn-outline-light btn-lg px-2" type="submit">Dodaj do koszyka</button>
                             </td>
                             </form>
-                            @endif
                         </tr>
                     @empty
                         <tr>

@@ -12,9 +12,10 @@
 
 <body>
     @include('shared.nav')
-    @include('shared.error')
-    @if (Session::has('cart'))
+    @if(Session::has('cart'))
+    @if (Session::get('cart')->items != null)
         <div class="container container-fluid">
+            @include('shared.error')
             <div class="row">
                 <table class="table text-white text-center">
                     <tr>
@@ -29,8 +30,20 @@
                             <td><span class="badge">{{ $f['qty'] }}</span></td>
                             <td><span>{{ $f['flight']['trip']['name'] }}</span></td>
                             <td><span>{{ $f['price'] }}</span></td>
-                            <td><button class="btn btn-success w-50">-1</button></td>
-                            <td><button class="btn btn-success w-50">Wszystkie</button></td>
+                            <td>
+                                <form method="GET" action="{{ route('userflight.deleteOne', $f['flight']['id']) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-success w-50" type="submit">-1</button>
+                                </form>
+                            </td>
+                            <td>
+                                <form method="GET" action="{{ route('userflight.delete', $f['flight']['id']) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-success w-50" type="submit">Wszystkie</button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                     </table>
@@ -43,14 +56,19 @@
                 <form action="{{ route('userflight.store') }}" method="post">
                     @csrf
                     @method('POST')
-                    <input type="text" name="user_id" class="d-none" value={{ Auth::user()->id }}>
                     <button type="submit" class="btn">Kup</button>
+                </form>
+                <form action="{{ route('userflight.deleteAll') }}" method="post">
+                    @csrf
+                    @method('POST')
+                    <button type="submit" class="btn">Wyczyść cały koszyk</button>
                 </form>
             </div>
         @else
-            <div class="row">
-                <strong class="text-white text-center">Koszyk jest pusty</strong>
-            </div>
+            <h2 class="fw-bold mb-2 text-uppercase text-white text-center mt-5">Koszyk jest pusty</h2>
+        @endif
+        @else
+            <h2 class="fw-bold mb-2 text-uppercase text-white text-center mt-5">Koszyk jest pusty</h2>
     @endif
     </div>
     @include('shared.footer')

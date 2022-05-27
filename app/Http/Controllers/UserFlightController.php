@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use DB;
-use Exception;
 use Session;
 use App\Models\Trip;
 use App\Models\Flight;
@@ -15,37 +14,52 @@ use App\Models\Cart;
 use Carbon\Carbon;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Gate;
+use App\Http\Middleware\CheckUser;
 
 class UserFlightController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(CheckUser::class)->except(['index', 'destroy']);
+    }
+
     public function index()
     {
-                if(Gate::allows('is-admin')) {
-                    return view('userflights.index', [
-                        'uf' => UserFlight::all()
-                    ]);
-                } else {
-                    return view('userflights.index', [
-                        'uf' => UserFlight::all()->where('user_id', Auth::user()->id)
-                    ]);
-                }
+        if(Gate::allows('is-admin')) {
+            return view('userflights.index', [
+                'uf' => UserFlight::all()
+            ]);
+        } else {
+            return view('userflights.index', [
+                'uf' => UserFlight::all()->where('user_id', Auth::user()->id)
+            ]);
+        }
     }
 
     public function create($id)
     {
-        if(Auth::check())
-                return view('userflights.reserve', [
-                    'trip' => Trip::findOrFail($id),
-                    'flights' => Flight::all()->where('trip_id', $id)->where('places', '>', 0)->where('departure_date','>',Carbon::now()),
-                    'users' => User::all()->where('role_id', 2)
-                ]);
-        else
+        if(!Gate::allows('is-logged'))
             return redirect()->route('login');
+
+        return view('userflights.reserve', [
+            'trip' => Trip::findOrFail($id),
+            'flights' => Flight::all()->where('trip_id', $id)->where('places', '>', 0)->where('departure_date','>',Carbon::now()),
+        ]);
+
     }
 
     public function getAddToCart(Request $request, $id) {
-        $flight = Flight::find($request->get('flight_id'));
-        $trip_price = Trip::find($flight->trip_id)->price;
+        $flight = Flight::findOrFail($request->get('flight_id'));
+
+        $request->validate([
+            'amount_of_tickets' => 'required|integer|min:1|max:'.$flight->places,
+            'flight_id' => 'required',
+        ]);
+
+        if(!Gate::allows('is-logged'))
+            return redirect()->route('login');
+
+        $trip_price = Trip::findOrFail($flight->trip_id)->price;
         $tickets = $request->get('amount_of_tickets');
 
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
@@ -58,6 +72,9 @@ class UserFlightController extends Controller
     }
 
     public function getCart() {
+        if(!Gate::allows('is-logged'))
+            return redirect()->route('login');
+
         if(!Session::has('cart')) {
             return view('userflights.shopping-cart', ['flights' => null]);
         }
@@ -67,6 +84,9 @@ class UserFlightController extends Controller
     }
 
     public function store(Request $request) {
+        if(!Gate::allows('is-logged'))
+            return redirect()->route('login');
+
         if(Session::has('cart')) {
             $store_carts = Session::get('cart');
             $cart = new Cart($store_carts);
@@ -76,7 +96,7 @@ class UserFlightController extends Controller
 
             DB::beginTransaction();
 
-            $user = User::find($request->get('user_id'));
+            $user = Auth::user();
             $user_bankbalance = $user->bank_balance;
 
             if($user_bankbalance < $totalPrice) {
@@ -88,7 +108,7 @@ class UserFlightController extends Controller
 
             foreach($items as $it) {
 
-                $flight = Flight::find($it['flight']['id']);
+                $flight = Flight::findOrFail($it['flight']['id']);
                 $date = Carbon::now();
 
                 $places = $flight->places;
@@ -118,13 +138,74 @@ class UserFlightController extends Controller
         }
     }
 
+    //jeden bilet wycieczki
+    public function deleteOne($f) {
+        $items = Session::get('cart');
+        $flight = Flight::findOrFail($f);
+        $price = Trip::findOrFail($flight->trip_id)->price;
+
+        $oldtotalprice = $items->totalPrice;
+
+        $newtotalprice = $oldtotalprice-$price;
+        $items->totalPrice = $newtotalprice;
+
+        $items->totalQty--;
+
+        if($items->items[$f]['qty'] == 1) {
+            unset(Session::get('cart')->items[$f]);
+            return redirect()->back();
+
+        } else {
+            $oldprice = $items->items[$f]['price'];
+            $newprice = $oldprice - $price;
+
+            $items->items[$f]['qty']--;
+
+            $items->items[$f]['price'] = $newprice;
+            Session::put('cart', $items);
+        }
+
+        return redirect()->back();
+    }
+
+    //wszystkie bilety jednej wycieczki
+    public function delete($f) {
+        $items = Session::get('cart');
+        $flight = Flight::findOrFail($f);
+
+        $deletingprice = $items->items[$f]['price'];
+        $oldtotalprice = $items->totalPrice;
+        $newtotalprice = $oldtotalprice-$deletingprice;
+
+        $oldtotalqty = $items->totalQty;
+        $deletingqty = $items->items[$f]['qty'];
+        $newtotalqty = $oldtotalqty-$deletingqty;
+
+        $items->totalQty = $newtotalqty;
+        $items->totalPrice = $newtotalprice;
+
+        Session::put('cart', $items);
+        unset(Session::get('cart')->items[$f]);
+
+        return redirect()->back();
+    }
+
+    public function deleteAll() {
+        Session::forget('cart');
+
+        return redirect()->back();
+    }
+
     public function destroy($f) {
+        if(!Gate::allows('is-logged'))
+            return redirect()->route('login');
+
         try {
             $uf = UserFlight::where('id', $f)->first();
             $flight = Flight::where('id', $uf->flight_id)->first();
 
             if($flight->departure_date > Carbon::now()) {
-                $trip_price = Trip::find($flight->trip_id)->price;
+                $trip_price = Trip::findOrFail($flight->trip_id)->price;
                 $amountsoftickets = $uf->amount_of_tickets;
 
                 if(Gate::allows('is-admin'))
@@ -132,9 +213,9 @@ class UserFlightController extends Controller
                 else
                     $cashback = ($trip_price*$amountsoftickets)/2;
 
-                User::find($uf->user_id)->increment('bank_balance', $cashback);
+                User::findOrFail($uf->user_id)->increment('bank_balance', $cashback);
 
-                Flight::find($flight->id)->increment('places', $uf->amount_of_tickets);
+                Flight::findOrFail($flight->id)->increment('places', $uf->amount_of_tickets);
                 $query = UserFlight::where('id', $f)->delete();
             } else {
                 $query = UserFlight::where('id', $f)->delete();

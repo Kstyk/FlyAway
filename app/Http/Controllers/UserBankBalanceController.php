@@ -19,12 +19,16 @@ class UserBankBalanceController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'bank_balance' => 'required|numeric|min:1'
+            'bank_balance' => 'required|numeric|min:'
         ]);
 
         $input = $request -> all();
-        User::findOrFail(Auth::user()->id)->increment('bank_balance', $input['bank_balance']);
 
+        try {
+            User::findOrFail(Auth::user()->id)->increment('bank_balance', $input['bank_balance']);
+        } catch(QueryException $ex) {
+            return redirect()->back()->withErrors(__('custom.bank_balance'));
+        }
         return redirect()->route('users.show', Auth::user()->id);
     }
 }

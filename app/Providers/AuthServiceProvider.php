@@ -44,5 +44,9 @@ class AuthServiceProvider extends ServiceProvider
             return $user->isAdmin();
         });
 
+        Gate::define('is-logged', function () {
+            return Auth::check();
+        });
+
     }
 }

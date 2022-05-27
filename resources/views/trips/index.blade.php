@@ -31,9 +31,12 @@
                                         <a class="btn btn-lg" href="{{ route('trips.show', $trip->id) }}">
                                             <span>Więcej<br>szczegółów</span>
                                         </a>
+                                        @cannot('is-admin')
                                         <a class="btn btn-lg" href="{{ route('reserve', $trip->id) }}">
                                             <span>Rezerwuj<br>lot</span>
                                         </a>
+                                        @endcannot
+
                             @can('update', $trip)
                                 <div class="mr-3">
                                     <a class="btn btn-lg" href="{{ route('trips.edit', $trip->id) }}">
