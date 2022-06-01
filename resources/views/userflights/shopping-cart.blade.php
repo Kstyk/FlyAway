@@ -28,7 +28,7 @@
                     @foreach ($flights as $f)
                         <tr>
                             <td><span class="badge">{{ $f['qty'] }}</span></td>
-                            <td><span>{{ $f['flight']['trip']['name'] }}</span></td>
+                            <td><span><a href="{{ route('trips.show', $f['flight']['trip']['id']) }}">{{ $f['flight']['trip']['name'] }}</a></span></td>
                             <td><span>{{ $f['price'] }}</span></td>
                             <td>
                                 <form method="GET" action="{{ route('userflight.deleteOne', $f['flight']['id']) }}">

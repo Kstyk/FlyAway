@@ -3,10 +3,21 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Throwable;
+use Exception;
 
 class Handler extends ExceptionHandler
 {
+
+    public function render($request, Throwable $exception)
+    {
+        if ($exception instanceof MethodNotAllowedHttpException) {
+            return redirect()->route('trips.index');
+        }
+        return parent::render($request, $exception);
+    }
+
     /**
      * A list of exception types with their corresponding custom log levels.
      *

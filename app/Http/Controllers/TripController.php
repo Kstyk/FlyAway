@@ -83,6 +83,8 @@ class TripController extends Controller
 
     public function update(Request $request, $id)
     {
+        $trip = Trip::findOrFail($id);
+
         $request->validate([
             'name' => 'required|unique:trips,name,'.$id,
             'continent' => 'required',
@@ -94,6 +96,8 @@ class TripController extends Controller
         ]);
 
         if ($request->hasFile('img_name')) {
+            Storage::delete('img_trips'.'/'.$trip->img_name);
+
             $image      = $request->file('img_name');
             $filename = $image->getClientOriginalName();
 
@@ -110,7 +114,6 @@ class TripController extends Controller
             $requestData = $request->all();
             $requestData['img_name'] = $filename;
 
-            $trip = Trip::findOrFail($id);
             $input = $requestData;
             $trip->update($input);
             return redirect()->route('trips.index');

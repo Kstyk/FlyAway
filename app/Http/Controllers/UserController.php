@@ -72,15 +72,22 @@ class UserController extends Controller
 
             Storage::disk('public')->put('avatars'.'/'.$filename, $img, 'public');
 
+            if($user->avatar != "default.png") {
+                Storage::delete('avatars'.'/'.$user->avatar);
+            }
+
+
             $requestData = $request->all();
             $requestData['avatar'] = $filename;
-            $user = User::findOrFail($id);
             $input = $requestData;
             $user->update($input);
         } else {
+            if($user->avatar != "default.png") {
+                Storage::delete('avatars'.'/'.$user->avatar);
+            }
+
             $requestData = $request->all();
             $requestData['avatar'] = 'default.png';
-            $user = User::findOrFail($id);
             $input = $requestData;
             $user->update($input);
         }

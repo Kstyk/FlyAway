@@ -14,7 +14,10 @@ return [
     'not_allowed' => 'Nie masz uprawnień do wykonania tej akcji.',
     'not_reserved' => 'Nieudana rezerwacja lotu.',
     '404_notfound' => 'Nie znaleziono strony o tym adresie. Za kilka sekund nastąpi automatyczne przekierowanie do strony głównej',
+    '419_expired' => 'Ups, strona wygasła. Przekierowanie na stronę główną za kilka sekund',
     'only_users' => 'Akcja zarezerwowana tylko dla zalogowanych użytkowników',
 
-    'bank_balance' => 'Wprowadzona kwota jest za duża.'
+    'bank_balance' => 'Wprowadzona kwota jest za duża.',
+
+    'method_not_allowed' => 'Ups, coś poszło nie tak...'
 ];
