@@ -49,7 +49,7 @@ class ChangePasswordController extends Controller
         // User::findOrFail(auth()->user()->id)->update(['password'=> Hash::make($request->get('new_password'))]);
 
         $user = Auth::user();
-        $user->password = $request->get('new_password');
+        $user->password = Hash::make($request->get('new_password'));
         $user->save();
 
         return redirect()->route('users.show', auth()->user()->id);
