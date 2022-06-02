@@ -29,23 +29,23 @@
                     @method('PUT')
                     <p class="text-white-50 mb-5">Wprowadź poprawne dane</p>
                     <div class="form-outline form-white mb-4">
-                        <input id="name" type="text" name="name" value="{{ $airport->name }}" class="form-control form-control-lg
+                        <input id="name" type="text" name="name" value="{{ $airport->name }}" class="form-control-lg w-100
                         @error('name') is-invalid @else is-valid
                         @enderror" />
                         <label class="form-label" for="name">Nazwa</label>
                     </div>
                     <div class="form-outline form-white mb-4">
-                        <select class="form-control form-control-lg" id="country_id" name="country_id">
+                        <select class="form-control-lg w-100" id="country_id" name="country_id">
                             @foreach ($countries as $c)
-                                <option value="{{$c->id}}" @if($c->nazwa == $airport->country->nazwa) selected @endif>
-                                    {{ $c->nazwa }}
+                                <option value="{{$c->id}}" @if($c->name == $airport->country->name) selected @endif>
+                                    {{ $c->name }}
                                 </option>
                             @endforeach
                         </select>
                         <label class="form-label" for="country_id">Kraj</label>
                     </div>
                     <div class="form-outline form-white mb-4">
-                        <input name="city" type="text" id="city" value="{{ $airport->city }}" class="form-control form-control-lg
+                        <input name="city" type="text" id="city" value="{{ $airport->city }}" class="form-control-lg w-100
                         @error('city') is-invalid @else is-valid
                         @enderror" />
                         <label class="form-label" for="city">Miasto</label>
