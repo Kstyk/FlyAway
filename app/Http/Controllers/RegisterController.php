@@ -26,14 +26,14 @@ class RegisterController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'surname' => 'required',
+            'name' => 'required|max:255',
+            'surname' => 'required|max:255',
             'date_of_birth' => 'required|integer|max:2004|min:1880',
-            'email' => 'required|unique:users,email',
+            'email' => 'required|max:255|unique:users,email',
             'country_id' => 'required',
-            'password' => 'required',
+            'password' => 'required|max:255',
             'confirm_password' => 'same:password',
-            'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg',
+            'avatar' => 'image|max:255|mimes:jpeg,png,jpg,gif,svg',
         ]);
 
         if ($request->hasFile('avatar')) {

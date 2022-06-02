@@ -41,13 +41,13 @@ class TripController extends Controller
     public function store(Request $request)
     {
     $request->validate([
-        'name' => 'required|unique:trips',
-        'continent' => 'required',
-        'period' => 'required|integer|min:0',
-        'price' => 'required|numeric|min:0',
+        'name' => 'required|max:64|unique:trips',
+        'continent' => 'required|max:64',
+        'period' => 'required|integer|min:0|max:365',
+        'price' => 'required|numeric|max:999999|min:0',
         'describe' => 'required|min:0|max:1000',
         'country_id' => 'required',
-        'img_name' => 'image|required|unique:trips|mimes:jpeg,png,jpg,gif,svg',
+        'img_name' => 'image|required|max:150|unique:trips|mimes:jpeg,png,jpg,gif,svg',
     ]);
 
     if ($request->hasFile('img_name')) {
@@ -86,13 +86,13 @@ class TripController extends Controller
         $trip = Trip::findOrFail($id);
 
         $request->validate([
-            'name' => 'required|unique:trips,name,'.$id,
-            'continent' => 'required',
-            'period' => 'required|integer|min:0',
-            'price' => 'required|numeric|min:0',
+            'name' => 'required|max:64|unique:trips,name,'.$id,
+            'continent' => 'required|max:64',
+            'period' => 'required|integer|max:365|min:0',
+            'price' => 'required|numeric|max:999999|min:0',
             'describe' => 'required|min:0|max:1000',
             'country_id' => 'required',
-            'img_name' => 'image|unique:trips|mimes:jpeg,png,jpg,gif,svg',
+            'img_name' => 'image|unique:trips|max:150|mimes:jpeg,png,jpg,gif,svg',
         ]);
 
         if ($request->hasFile('img_name')) {

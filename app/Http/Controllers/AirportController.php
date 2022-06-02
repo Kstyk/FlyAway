@@ -38,7 +38,7 @@ class AirportController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|unique:airports',
+            'name' => 'required|max:128|unique:airports',
             'city' => 'required|max:64',
             'country_id' => 'required',
         ]);
@@ -60,7 +60,7 @@ class AirportController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|unique:airports,nazwa,'.$id,
+            'name' => 'required|max:128|unique:airports,nazwa,'.$id,
             'city' => 'required|max:64',
             'country_id' => 'required',
         ]);
