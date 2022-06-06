@@ -29,6 +29,7 @@
                         <th>Data wylotu</th>
                         <th>Data zakupu</th>
                         <th style="width: 5%">Liczba zarezerwowanych biletów</th>
+                        <th>Łączna cena</th>
                         <th>Odwołaj rezerwację</th>
                     </tr>
                     @foreach ($uf as $f)
@@ -42,6 +43,7 @@
                             <td>{{ $f->Flight->departure_date }}</td>
                             <td>{{ $f->date_of_purchase }}</td>
                             <td>{{ $f->amount_of_tickets }}</td>
+                            <td>{{ $f->price }}</td>
                             <td ><form class="d-flex flex-column align-content-center" id="delete" method="POST" action="{{ route('userflights.destroy', $f->id) }}">
                                 @csrf
                                 @method('DELETE')

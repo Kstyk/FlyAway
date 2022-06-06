@@ -55,7 +55,7 @@ class UserSeeder extends Seeder
                 'country_id' => '2',
                 'role_id' => '2'
             ]
-        ], 'name'
+        ], 'email'
         );
     }
 }

@@ -55,7 +55,7 @@ class UserController extends Controller
             'surname' => 'required|max:255',
             'date_of_birth' => 'required|integer|max:2004|min:1880',
             'email' => 'required|min:0|max:255|unique:users,email,'.$id,
-            'country_id' => 'required',
+            'country_id' => 'required|integer|exists:countries,id',
             'avatar' => 'image|max:255|mimes:jpeg,png,jpg,gif,svg',
         ]);
 

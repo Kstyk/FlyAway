@@ -53,7 +53,7 @@ class UserFlightController extends Controller
 
         $request->validate([
             'amount_of_tickets' => 'required|integer|min:1|max:'.$flight->places,
-            'flight_id' => 'required',
+            'flight_id' => 'required|integer|exists:flights,id',
         ]);
 
         if(!Gate::allows('is-logged'))
@@ -107,7 +107,7 @@ class UserFlightController extends Controller
             }
 
             foreach($items as $it) {
-
+                $price = $it['price'];
                 $flight = Flight::findOrFail($it['flight']['id']);
                 $date = Carbon::now();
 
@@ -125,7 +125,8 @@ class UserFlightController extends Controller
                     'user_id' => $user->id,
                     'flight_id' => $flight->id,
                     'date_of_purchase' => $date,
-                    'amount_of_tickets' => $places_wanted
+                    'amount_of_tickets' => $places_wanted,
+                    'price' => $price
                 ]);
 
             }
@@ -205,13 +206,12 @@ class UserFlightController extends Controller
             $flight = Flight::where('id', $uf->flight_id)->first();
 
             if($flight->departure_date > Carbon::now()) {
-                $trip_price = Trip::findOrFail($flight->trip_id)->price;
                 $amountsoftickets = $uf->amount_of_tickets;
 
                 if(Gate::allows('is-admin'))
-                    $cashback = ($trip_price*$amountsoftickets);
+                    $cashback = ($uf->price);
                 else
-                    $cashback = ($trip_price*$amountsoftickets)/2;
+                    $cashback = ($uf->price)/2;
 
                 User::findOrFail($uf->user_id)->increment('bank_balance', $cashback);
 

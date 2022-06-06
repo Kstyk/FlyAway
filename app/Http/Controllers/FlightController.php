@@ -37,11 +37,11 @@ class FlightController extends Controller
     public function store(Request $request)
     {
             $request->validate([
-                'trip_id' => 'required',
+                'trip_id' => 'required|integer|exists:trips,id',
                 'airline_name' => 'required|max:128',
                 'places' => 'required|integer|min:1',
-                'departure_airport' => 'required',
-                'destination_airport' => 'required|different:departure_airport',
+                'departure_airport' => 'required|integer|exists:airports,id',
+                'destination_airport' => 'required|integer|different:departure_airport|exists:airports,id',
                 'departure_date' => 'required|date|after:today|date_format:Y-m-d',
             ]);
 
@@ -62,11 +62,11 @@ class FlightController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'trip_id' => 'required',
+            'trip_id' => 'required|integer|exists:trips,id',
             'airline_name' => 'required|max:128',
             'places' => 'required|integer|min:1',
-            'departure_airport' => 'required',
-            'destination_airport' => 'required|different:departure_airport',
+            'departure_airport' => 'required|integer|exists:airports,id',
+            'destination_airport' => 'required|integer|different:departure_airport|exists:airports,id',
             'departure_date' => 'required|date|after:today|date_format:Y-m-d',
         ]);
 

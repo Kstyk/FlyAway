@@ -30,7 +30,7 @@ class RegisterController extends Controller
             'surname' => 'required|max:255',
             'date_of_birth' => 'required|integer|max:2004|min:1880',
             'email' => 'required|max:255|unique:users,email',
-            'country_id' => 'required',
+            'country_id' => 'required|integer|exists:countries,id',
             'password' => 'required|max:255',
             'confirm_password' => 'same:password',
             'avatar' => 'image|max:255|mimes:jpeg,png,jpg,gif,svg',

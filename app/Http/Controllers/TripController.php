@@ -46,7 +46,7 @@ class TripController extends Controller
         'period' => 'required|integer|min:0|max:365',
         'price' => 'required|numeric|max:999999|min:0',
         'describe' => 'required|min:0|max:1000',
-        'country_id' => 'required',
+        'country_id' => 'required|integer|exists:countries,id',
         'img_name' => 'image|required|max:150|unique:trips|mimes:jpeg,png,jpg,gif,svg',
     ]);
 
@@ -91,7 +91,7 @@ class TripController extends Controller
             'period' => 'required|integer|max:365|min:0',
             'price' => 'required|numeric|max:999999|min:0',
             'describe' => 'required|min:0|max:1000',
-            'country_id' => 'required',
+            'country_id' => 'required|integer|exists:countries,id',
             'img_name' => 'image|unique:trips|max:150|mimes:jpeg,png,jpg,gif,svg',
         ]);
 

@@ -40,7 +40,7 @@ class AirportController extends Controller
         $request->validate([
             'name' => 'required|max:128|unique:airports',
             'city' => 'required|max:64',
-            'country_id' => 'required',
+            'country_id' => 'required|integer|exists:countries,id',
         ]);
 
         $input = $request->all();
@@ -60,9 +60,9 @@ class AirportController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|max:128|unique:airports,nazwa,'.$id,
+            'name' => 'required|max:128|unique:airports,name,'.$id,
             'city' => 'required|max:64',
-            'country_id' => 'required',
+            'country_id' => 'required|integer|exists:countries,id',
         ]);
 
         $airport = Airport::findOrFail($id);
